@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-custom",
-  "version": "0.8.1",
+  "version": "0.1.0",
   "description": "OwlMeans Credentials extension to build customizable credentials.",
   "keywords": [
     "OwlMeans Credentials",
@@ -38,10 +38,10 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/vc-comm": "^0.8.0",
-    "@owlmeans/vc-ext-comm": "^0.8.0",
-    "@owlmeans/vc-lib-react": "^0.8.0",
-    "@owlmeans/vc-core": "^0.8.0",
+    "@owlmeans/vc-comm": "^0.1.0",
+    "@owlmeans/vc-ext-comm": "^0.1.0",
+    "@owlmeans/vc-lib-react": "^0.1.0",
+    "@owlmeans/vc-core": "^0.1.0",
     "i18next": "*",
     "jsonld": "^8.*",
     "react": "*",

@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-comm",
-  "version": "0.8.2",
+  "version": "0.1.0",
   "description": "It's DIDComm package for OwlMeans Credentials Core SSI Library",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",
@@ -30,7 +30,7 @@
     "dotenv": "^16.0.3"
   },
   "peerDependencies": {
-    "@owlmeans/vc-core": "^0.8.0"
+    "@owlmeans/vc-core": "^0.1.0"
   },
   "dependencies": {
     "@stablelib/x25519": "^1.0.3",

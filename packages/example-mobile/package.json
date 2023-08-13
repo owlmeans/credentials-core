@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-mold-wallet-native-example",
-  "version": "0.8.2",
+  "version": "0.1.0",
   "description": "> TODO: description",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",
@@ -27,7 +27,7 @@
     "react-native-eject": "^0.2.0"
   },
   "dependencies": {
-    "@owlmeans/vc-lib-native": "^0.8.2",
+    "@owlmeans/vc-lib-native": "^0.1.0",
     "react": "^18.2.0",
     "react-native": "^0.71.8",
     "react-native-crypto": "^2.2.0",

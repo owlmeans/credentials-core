@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-lib-native",
-  "version": "0.8.2",
+  "version": "0.1.0",
   "description": "OwlMeans Credentials UI package for mobile wallet applications",
   "keywords": [
     "SSI",
@@ -33,7 +33,7 @@
     "url": "https://github.com/owlmeans/credentials-core/issues"
   },
   "dependencies": {
-    "@owlmeans/vc-core": "^0.8.2",
+    "@owlmeans/vc-core": "^0.1.0",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
     "process": "^0.11.10",
