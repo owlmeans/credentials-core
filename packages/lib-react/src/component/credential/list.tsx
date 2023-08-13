@@ -16,15 +16,15 @@
 
 import {
   CredentialWrapper, RegistryType, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CREDENTIALS
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { FunctionComponent } from 'react'
 import {
-  BasicNavigator, EmptyProps, RegovComponentProps, WalletNavigatorMenuMethod, withRegov,
+  BasicNavigator, EmptyProps, WalletComponentProps, WalletNavigatorMenuMethod, withOwlWallet,
   WrappedComponentProps
 } from '../../common/'
 
 
-export const CredentialList: FunctionComponent<CredentialListParams> = withRegov<
+export const CredentialList: FunctionComponent<CredentialListParams> = withOwlWallet<
   CredentialListProps, CredentialListNavigator
 >('CredentialList',
   ({ t, i18n, credentials, tab, section, id, tabs, navigator, renderer: Renderer, ns }) => {
@@ -59,7 +59,7 @@ export const CredentialList: FunctionComponent<CredentialListParams> = withRegov
     return <Renderer {..._props}  />
   },
   {
-    namespace: 'regov-wallet-credential', transformer: (wallet, { tab, section }: CredentialListProps) => {
+    namespace: 'owlmeans-wallet-credential', transformer: (wallet, { tab, section }: CredentialListProps) => {
       return {
         credentials: wallet?.getRegistry(tab || REGISTRY_TYPE_CREDENTIALS)
           .registry.credentials[section || REGISTRY_SECTION_OWN] || []
@@ -91,7 +91,7 @@ export type CredentialListState = {
   credentials: CredentialWrapper[]
 }
 
-export type CredentialListProps = RegovComponentProps<
+export type CredentialListProps = WalletComponentProps<
   CredentialListParams, CredentialListImplProps, CredentialListState, CredentialListNavigator
 >
 

@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { Credential, Presentation } from "@owlmeans/regov-ssi-core"
+import { Credential, Presentation } from "@owlmeans/vc-core"
 
 const _buildHeaders = (
   config: ServerClientConfig, params?: ServierClientRequest

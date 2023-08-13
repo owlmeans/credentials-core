@@ -16,7 +16,7 @@
 
 import {
   CredentialDescription, CredentialSchema, MaybeArray, Presentation, Credential, UnsignedCredential
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { ExpandedTermDefinition } from "jsonld"
 
 

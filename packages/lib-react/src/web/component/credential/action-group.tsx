@@ -14,16 +14,16 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovComponentProps, withRegov } from '../../../common'
+import { EmptyProps, WalletComponentProps, withOwlWallet } from '../../../common'
 import copy from 'copy-to-clipboard'
 import saveAs from 'file-saver'
 import { Fragment, FunctionComponent } from 'react'
 import Button from '@mui/material/Button'
 
 
-export const CredentialActionGroup: FunctionComponent<CredentialActionGroupParams> = withRegov<
+export const CredentialActionGroup: FunctionComponent<CredentialActionGroupParams> = withOwlWallet<
   CredentialActionGroupProps
->({ namespace: 'regov-wallet-credential' }, ({ t, remove, content, prettyOutput, exportTitle }) => {
+>({ namespace: 'owlmeans-wallet-credential' }, ({ t, remove, content, prettyOutput, exportTitle }) => {
   content = typeof content === 'string' ? content : JSON.stringify(
     content, undefined, prettyOutput ? 2 : undefined
   )
@@ -49,4 +49,4 @@ export type CredentialActionGroupParams = EmptyProps & {
   remove?: () => void
 }
 
-export type CredentialActionGroupProps = RegovComponentProps<CredentialActionGroupParams>
+export type CredentialActionGroupProps = WalletComponentProps<CredentialActionGroupParams>

@@ -16,20 +16,20 @@
 
 import { FunctionComponent } from 'react'
 import { UseFormReturn } from 'react-hook-form'
-import { CryptoHelper } from '@owlmeans/regov-ssi-core'
-import { buildWalletWrapper } from '@owlmeans/regov-ssi-core'
+import { CryptoHelper } from '@owlmeans/vc-core'
+import { buildWalletWrapper } from '@owlmeans/vc-core'
 import {
-  BasicNavigator, EmptyProps, RegovComponentProps, RegovValidationRules, useRegov,
-  WalletNavigatorMenuMethod, WalletNavigatorMethod, withRegov, WrappedComponentProps
+  BasicNavigator, EmptyProps, WalletComponentProps, OwlWalletValidationRules, useOwlWallet,
+  WalletNavigatorMenuMethod, WalletNavigatorMethod, withOwlWallet, WrappedComponentProps
 } from '../../common/'
 import { generalNameVlidation, loginAliasValidation, passwordValidation } from '../../util'
 
 
 export const StoreCreation: FunctionComponent<StoreCreationParams> =
-  withRegov<StoreCreationProps, StoreCreationNavigator>(
+  withOwlWallet<StoreCreationProps, StoreCreationNavigator>(
     'StoreCreation',
     ({ t, i18n, defaultAlias, config, navigator, renderer: Renderer, extensions }) => {
-      const { handler } = useRegov()
+      const { handler } = useOwlWallet()
 
       const _props: StoreCreationImplProps = {
         t,
@@ -97,15 +97,15 @@ export const StoreCreation: FunctionComponent<StoreCreationParams> =
       }
 
       return <Renderer {..._props} />
-    }, { namespace: 'regov-wallet-store' })
+    }, { namespace: 'owlmeans-wallet-store' })
 
-export const storeCreationValidationRules: RegovValidationRules = {
+export const storeCreationValidationRules: OwlWalletValidationRules = {
   'creation.name': generalNameVlidation(),
   'creation.login': loginAliasValidation,
   'creation.password.input': passwordValidation
 }
 
-export type StoreCreationProps = RegovComponentProps<StoreCreationParams, StoreCreationImplParams>
+export type StoreCreationProps = WalletComponentProps<StoreCreationParams, StoreCreationImplParams>
 
 export type StoreCreationParams = {
   defaultAlias: string

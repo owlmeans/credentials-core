@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-import { WalletHandler } from '@owlmeans/regov-ssi-core'
+import { WalletHandler } from '@owlmeans/vc-core'
 
-import { NavigateFunction, Route, Routes, useParams } from 'react-router-dom-regov'
+import { NavigateFunction, Route, Routes, useParams } from 'react-router-dom-owlmeans'
 import {
-  basicNavigator, extendNavigator, MainAuthArea, MainDashboard, useRegov, Config,
+  basicNavigator, extendNavigator, MainAuthArea, MainDashboard, useOwlWallet, Config,
   EXTENSION_ITEM_PURPOSE_ROUTE
 } from '../../common'
 import {
@@ -28,7 +28,7 @@ import {
 
 
 export const NavigationRoot = () => {
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
 
   return <Routes>
     <Route path="/" element={<MainAuthArea menu={<WalletMainMenu />} />}>

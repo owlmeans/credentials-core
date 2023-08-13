@@ -17,9 +17,9 @@
 import { Fragment, FunctionComponent, useState } from 'react'
 import {
   CredentialEvidenceWidget, EvidenceWidgetImplProps, EXTENSION_ITEM_PURPOSE_EVIDENCE,
-  PurposeEvidenceWidgetParams, useRegov
+  PurposeEvidenceWidgetParams, useOwlWallet
 } from '../../../../common'
-import { CredentialWrapper, Credential } from '@owlmeans/regov-ssi-core'
+import { CredentialWrapper, Credential } from '@owlmeans/vc-core'
 import { StandardEvidenceWidget } from './evidence/'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Accordion from '@mui/material/Accordion'
@@ -37,7 +37,7 @@ import Divider from '@mui/material/Divider'
 
 export const CredentialEvidenceWidgetWeb = (props: EvidenceWidgetImplProps) => {
   const { t, tabs, isChild } = props
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
 
   const [tabIdx, setTab] = useState<number>(0)
   const tab = tabs[tabIdx]

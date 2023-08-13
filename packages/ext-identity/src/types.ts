@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { Extension } from "@owlmeans/regov-ssi-core"
+import { Extension } from "@owlmeans/vc-core"
 
 export type IdentitySubject = {
   identifier: string
@@ -23,10 +23,10 @@ export type IdentitySubject = {
   createdAt: string
 }
 
-export type RegovIdentityExtension = Extension
+export type OwlMeansIdentityExtension = Extension
 
-export const REGOV_IDENTITY_DEFAULT_NAMESPACE = 'regov-ext-basic-identity'
+export const OWLMEANS_IDENTITY_DEFAULT_NAMESPACE = 'owlmeans-ext-basic-identity'
 
-export const REGOV_IDENTITY_DEFAULT_TYPE = 'OwlMeans:Regov:Identity'
+export const OWLMEANS_IDENTITY_DEFAULT_TYPE = 'OwlMeans:Credentials:Identity'
 
 export const ERROR_NO_EXENSION = 'ERROR_NO_EXENSION'

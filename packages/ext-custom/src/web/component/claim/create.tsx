@@ -17,8 +17,8 @@
 import { FunctionComponent } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { Extension } from "@owlmeans/regov-ssi-core"
-import { ClaimNavigator, CredentialSelector, FormMainAction, PrimaryForm, useNavigator, useRegov, WalletFormProvider } from "@owlmeans/regov-lib-react"
+import { Extension } from "@owlmeans/vc-core"
+import { ClaimNavigator, CredentialSelector, FormMainAction, PrimaryForm, useNavigator, useOwlWallet, WalletFormProvider } from "@owlmeans/vc-lib-react"
 
 import { CustomDescription, UseFieldAt } from "../../../custom.types"
 import { buildForm, castHolderField } from "../helper/form"
@@ -29,7 +29,7 @@ import { buildClaim } from './helpers'
 
 export const ClaimCreate = (ext: Extension, descr: CustomDescription): FunctionComponent<ClaimCreateParams> =>
   (props) => {
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const navigator = useNavigator<ClaimNavigator>()
     // Load identities
     const identities = handler.wallet?.getIdentityWrappers()

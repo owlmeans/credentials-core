@@ -17,7 +17,7 @@
 import {
   CredentialWrapper, Credential, ExtensionRegistry, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, RegistryItem,
   WalletWrapper, Presentation
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { IncommigDocumentWithConn, IncommingWrapperMeta } from "../types"
 
 

@@ -16,14 +16,14 @@
 
 import React, { Fragment } from 'react'
 import {
-  EXTENSION_ITEM_PURPOSE_VALIDATION, ResultWidgetParams, useRegov, ValidationResultWidget
-} from "@owlmeans/regov-lib-react"
-import { Extension } from "@owlmeans/regov-ssi-core"
+  EXTENSION_ITEM_PURPOSE_VALIDATION, ResultWidgetParams, useOwlWallet, ValidationResultWidget
+} from "@owlmeans/vc-lib-react"
+import { Extension } from "@owlmeans/vc-core"
 import { FunctionComponent } from "react"
-import { REGOV_EXT_SIGNATURE_NAMESPACE, SignatureSubject } from "../../../types"
-import { getCompatibleSubject, Credential } from '@owlmeans/regov-ssi-core'
-import { normalizeValue } from '@owlmeans/regov-ssi-core'
-import { EvidenceTrust, EvidenceTrustHandle } from '@owlmeans/regov-lib-react'
+import { OWLMEANS_EXT_SIGNATURE_NAMESPACE, SignatureSubject } from "../../../types"
+import { getCompatibleSubject, Credential } from '@owlmeans/vc-core'
+import { normalizeValue } from '@owlmeans/vc-core'
+import { EvidenceTrust, EvidenceTrustHandle } from '@owlmeans/vc-lib-react'
 import Done from '@mui/icons-material/Done'
 import ErrorOutline from '@mui/icons-material/ErrorOutline'
 import ExpandMore from '@mui/icons-material/ExpandMore'
@@ -40,11 +40,11 @@ import Typography from '@mui/material/Typography'
 
 
 export const ValidationWidget = (_: Extension): FunctionComponent<ResultWidgetParams> =>
-  (props: ResultWidgetParams) => <ValidationResultWidget ns={props.ns || REGOV_EXT_SIGNATURE_NAMESPACE}
+  (props: ResultWidgetParams) => <ValidationResultWidget ns={props.ns || OWLMEANS_EXT_SIGNATURE_NAMESPACE}
     result={props.result} reload={props.reload} com={(props) => {
       const { result, reload, t } = props
       const subject = getCompatibleSubject<SignatureSubject>(result.instance as Credential)
-      const { extensions } = useRegov()
+      const { extensions } = useOwlWallet()
 
       const evidence = normalizeValue(result.result.evidence)
 

@@ -16,11 +16,11 @@
 
 import { FunctionComponent, useMemo, Fragment } from 'react'
 import {
-  CredentialListImplProps, useRegov, EXTENSION_ITEM_PURPOSE_ITEM, PurposeListItemParams
+  CredentialListImplProps, useOwlWallet, EXTENSION_ITEM_PURPOSE_ITEM, PurposeListItemParams
 } from '../../../common'
 import { ItemMenu, ItemMenuHandle, ItemMenuMeta, MenuIconButton, SimpleList, SimpleListItem } from '../common'
 import { CredentialListHeaderAction } from './list/header-action'
-import { CredentialWrapper, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/regov-ssi-core'
+import { CredentialWrapper, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Tab from '@mui/material/Tab'
@@ -57,7 +57,7 @@ export const CredentialListWeb = (props: CredentialListImplProps) => {
 
 const CredentialListItem = ({ wrapper, props, meta }: CredentialListItemProps) => {
   const { t, i18n } = props
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
 
   const credHint = wrapper.credential.type.join(', ')
   const signStatus = `list.item.${wrapper.credential.proof ? 'signed' : 'unsigned'}`

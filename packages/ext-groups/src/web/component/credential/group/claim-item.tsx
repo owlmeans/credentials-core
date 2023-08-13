@@ -15,12 +15,12 @@
  */
 
 import { Fragment, FunctionComponent, useMemo } from 'react'
-import { GroupSubject, REGOV_CREDENTIAL_TYPE_GROUP } from '../../../../types'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
-import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, Presentation, normalizeValue } from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper, UnsignedCredential } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
-import { IncommigDocumentWithConn } from '@owlmeans/regov-comm'
+import { GroupSubject, OWLMEANS_CREDENTIAL_TYPE_GROUP } from '../../../../types'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
+import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, Presentation, normalizeValue } from '@owlmeans/vc-core'
+import { CredentialWrapper, UnsignedCredential } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
+import { IncommigDocumentWithConn } from '@owlmeans/vc-comm'
 
 import Groups from '@mui/icons-material/Groups'
 import Avatar from '@mui/material/Avatar'
@@ -33,14 +33,14 @@ import Typography from '@mui/material/Typography'
 
 
 export const GroupClaimItem = (ext: Extension): FunctionComponent<ClaimGroupItemParams> =>
-  withRegov<ClaimGroupItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+  withOwlWallet<ClaimGroupItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
     const groupClaim = normalizeValue(
       wrapper.credential.verifiableCredential
     ).find(
-      cred => cred.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+      cred => cred.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
     )
     const subject = groupClaim?.credentialSubject as GroupSubject
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -87,4 +87,4 @@ export type ClaimGroupItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type ClaimGroupItemProps = RegovComponentProps<ClaimGroupItemParams>
+export type ClaimGroupItemProps = WalletComponentProps<ClaimGroupItemParams>

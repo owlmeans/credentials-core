@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { Extension } from "@owlmeans/regov-ssi-core"
+import { Extension } from "@owlmeans/vc-core"
 import { Router } from "express"
 
 

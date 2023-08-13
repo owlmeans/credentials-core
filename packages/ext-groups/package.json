@@ -1,14 +1,14 @@
 {
-  "name": "@owlmeans/regov-ext-groups",
+  "name": "@owlmeans/vc-ext-groups",
   "version": "0.8.1",
-  "description": "Groups VC Extension for Regov SSI",
+  "description": "OwlMeans Credentials extendsion for Groups VC",
   "keywords": [
-    "Regov",
+    "OwlMeans Credentials",
     "groups",
     "SSI"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/ext-groups"
   },
   "sources": "src/index.ts",
@@ -35,23 +35,23 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/regov-comm": "^0.8.0",
-    "@owlmeans/regov-ext-comm": "^0.8.0",
-    "@owlmeans/regov-lib-node": "^0.8.0",
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-comm": "^0.8.0",
+    "@owlmeans/vc-ext-comm": "^0.8.0",
+    "@owlmeans/vc-lib-node": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "express": "*",
     "i18next": "*",
     "react": "*",
     "react-hook-form": "*",
     "react-i18next": "*",
-    "react-router-dom-regov": "npm:react-router-dom@*"
+    "react-router-dom-owlmeans": "npm:react-router-dom@*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-node": {
+    "@owlmeans/vc-lib-node": {
       "optional": true
     },
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
     "express": {
@@ -78,7 +78,7 @@
     "react-i18next": {
       "optional": true
     },
-    "react-router-dom-regov": {
+    "react-router-dom-owlmeans": {
       "optional": true
     }
   },

@@ -21,7 +21,7 @@ import {
 import { i18n, TFunction } from 'i18next'
 import { I18nextProvider, useTranslation } from 'react-i18next'
 import { RegisterOptions, UseFormProps } from 'react-hook-form'
-import { createWalletHandler, ObserverTransformerOption, WalletHandler } from '@owlmeans/regov-ssi-core'
+import { createWalletHandler, ObserverTransformerOption, WalletHandler } from '@owlmeans/vc-core'
 import {
   BasicNavigator, NavigatorContextProvider, WalletNavigator, NavigatorContext
 } from './navigator'
@@ -29,47 +29,47 @@ import { UIExtensionRegistry } from '../extension'
 import { ServerClient } from './client'
 
 
-export const RegovContext = createContext<ContextParams>({
+export const OwlWalletContext = createContext<ContextParams>({
   map: {},
   handler: createWalletHandler(),
   config: {
     DID_PREFIX: 'ssitest',
-    code: 'regov.wallet.app'
+    code: 'owlmeans.wallet.app'
   }
 })
 
-export const useRegov = () => {
-  return useContext(RegovContext)
+export const useOwlWallet = () => {
+  return useContext(OwlWalletContext)
 }
 
-export const RegovProvider = ({
+export const OwlWalletProvider = ({
   map, handler, i18n, navigator, config, extensions, serverClient, children
 }: PropsWithChildren<ContextProviderParams>) => {
   const props = { map, handler, config, extensions, serverClient }
 
   return <I18nextProvider i18n={i18n}>
     <NavigatorContextProvider navigator={navigator}>
-      <RegovContext.Provider value={props}>{children}</RegovContext.Provider>
+      <OwlWalletContext.Provider value={props}>{children}</OwlWalletContext.Provider>
     </NavigatorContextProvider>
   </I18nextProvider>
 }
 
-type InferState<Type extends RegovComponentProps> = Type extends RegovComponentProps<any, any, infer State> ? State : never
-type InferProps<Type extends RegovComponentProps> = Type extends RegovComponentProps<infer Props, any, any> ? Props : never
+type InferState<Type extends WalletComponentProps> = Type extends WalletComponentProps<any, any, infer State> ? State : never
+type InferProps<Type extends WalletComponentProps> = Type extends WalletComponentProps<infer Props, any, any> ? Props : never
 
-export const withRegov = <
-  Type extends RegovComponentProps = RegovComponentProps,
+export const withOwlWallet = <
+  Type extends WalletComponentProps = WalletComponentProps,
   Nav extends WalletNavigator = BasicNavigator,
   Transformer extends ObserverTransformerOption<
     InferState<Type>, InferProps<Type>
   > = ObserverTransformerOption<InferState<Type>, InferProps<Type>>
 >(
-  name: string | RegovHOCOptions<Transformer>,
+  name: string | WalletHOCOptions<Transformer>,
   Com: FunctionComponent<Type>,
-  options?: RegovHOCOptions<Transformer>
+  options?: WalletHOCOptions<Transformer>
 ) => {
   type T = InferProps<Type>
-  // type I = Type extends RegovComponentProps<any,  infer Impl, any> ? Impl : never
+  // type I = Type extends WalletComponentProps<any,  infer Impl, any> ? Impl : never
   type S = InferState<Type>
 
   return ((props: PropsWithChildren<T>): FunctionComponentElement<T> => {
@@ -83,7 +83,7 @@ export const withRegov = <
     }
     const transformer = options?.transformer
 
-    const { handler, map, config, serverClient, extensions } = useRegov()
+    const { handler, map, config, serverClient, extensions } = useOwlWallet()
     const navigator = useContext(NavigatorContext)
     const { t, i18n } = useTranslation(props.ns || options?.namespace)
     const state: S = (transformer ? transformer(handler.wallet, props, handler) : {}) as S
@@ -118,7 +118,7 @@ export const withRegov = <
 }
 
 
-export type RegovComponentProps<
+export type WalletComponentProps<
   Type extends EmptyProps = EmptyProps,
   Props extends EmptyImplProps = EmptyImplProps,
   State extends EmptyState = EmptyState,
@@ -140,15 +140,15 @@ export type WrappedComponentProps<
   > = PropsWithChildren<Props & State & {
     t: TFunction
     i18n: i18n
-    rules?: RegovValidationRules
+    rules?: OwlWalletValidationRules
     form?: UseFormProps
   }>
 
-export type RegovValidationRules = {
+export type OwlWalletValidationRules = {
   [key: string]: RegisterOptions
 }
 
-export type RegovHOCOptions<
+export type WalletHOCOptions<
   Transformer extends ObserverTransformerOption = ObserverTransformerOption
   > = {
     namespace?: string

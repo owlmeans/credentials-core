@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CredentialDescription, CredentialWrapper, RegistryType } from "@owlmeans/regov-ssi-core"
+import { CredentialDescription, CredentialWrapper, RegistryType } from "@owlmeans/vc-core"
 import { EmptyProps, WalletNavigator, BasicNavigator } from "../common"
 
 export type ExtensionItemPurpose = typeof EXTENSION_ITEM_PURPOSE_ITEM

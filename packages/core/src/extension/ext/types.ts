@@ -239,8 +239,8 @@ export type ExtensionLocalization = {
 }
 
 export const VALIDATION_FAILURE_CHECKING = 'checking'
-export const TYPE_REGOV_CLAIM = 'RegovCredentialClaim'
-export const TYPE_REGOV_OFFER = 'RegovCredentialOffer'
-export const TYPE_REGOV_REFUSE = 'RegovCredentialRefuse'
-export const TYPE_REGOV_REQUEST = 'RegovCredentialRequest'
-export const TYPE_REGOV_RESPONSE = 'RegovCredentialRespnse'
+export const TYPE_OWLMEANS_CLAIM = 'OwlMeansCredentialClaim'
+export const TYPE_OWLMEANS_OFFER = 'OwlMeansCredentialOffer'
+export const TYPE_OWLMEANS_REFUSE = 'OwlMeansCredentialRefuse'
+export const TYPE_OWLMEANS_REQUEST = 'OwlMeansCredentialRequest'
+export const TYPE_OWLMEANS_RESPONSE = 'OwlMeansCredentialRespnse'

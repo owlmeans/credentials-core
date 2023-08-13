@@ -1063,27 +1063,27 @@
   resolved "https://registry.yarnpkg.com/@noble/secp256k1/-/secp256k1-1.7.1.tgz#b251c70f824ce3ca7f8dc3df08d58f005cc0507c"
   integrity sha512-hOUk6AyBFmqVrv7k5WAw/LpszxVbj9gGN4JRkIX52fdFAj1UA61KXmZDvqVEm+pOyec3+fIeZB02LYa/pWOArw==
 
-"@owlmeans/regov-ext-auth@link:../../ext-auth":
+"@owlmeans/vc-ext-auth@link:../../ext-auth":
   version "0.0.0"
   uid ""
 
-"@owlmeans/regov-ext-custom@link:../../ext-custom":
+"@owlmeans/vc-ext-custom@link:../../ext-custom":
   version "0.0.0"
   uid ""
 
-"@owlmeans/regov-ext-groups@link:../../ext-groups":
+"@owlmeans/vc-ext-groups@link:../../ext-groups":
   version "0.0.0"
   uid ""
 
-"@owlmeans/regov-ext-identity@link:../../ext-identity":
+"@owlmeans/vc-ext-identity@link:../../ext-identity":
   version "0.0.0"
   uid ""
 
-"@owlmeans/regov-lib-node@link:..":
+"@owlmeans/vc-lib-node@link:..":
   version "0.0.0"
   uid ""
 
-"@owlmeans/regov-ssi-core@link:../../core":
+"@owlmeans/vc-core@link:../../core":
   version "0.0.0"
   uid ""
 

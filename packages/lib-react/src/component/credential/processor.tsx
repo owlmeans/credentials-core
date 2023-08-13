@@ -17,21 +17,21 @@
 import { FunctionComponent } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import {
-  EmptyProps, RegovComponentProps, useRegov, withRegov, WrappedComponentProps
+  EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps
 } from '../../common/'
 import {
   EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { validateJsonOrEmpty } from '../../util'
 
 
-export const CredentialProcessor: FunctionComponent<CredentialProcessorParams> = withRegov<
+export const CredentialProcessor: FunctionComponent<CredentialProcessorParams> = withOwlWallet<
   CredentialProcessorProps
 >(
   'CredentialProcessor', ({
     t, i18n, navigator, renderer: Renderer
   }) => {
-  const { extensions, handler } = useRegov()
+  const { extensions, handler } = useOwlWallet()
 
   const _props: CredentialProcessorImplProps = {
     t, i18n,
@@ -83,13 +83,13 @@ export const CredentialProcessor: FunctionComponent<CredentialProcessorParams> =
   }
 
   return <Renderer {..._props} />
-}, { namespace: 'regov-wallet-credential' })
+}, { namespace: 'owlmeans-wallet-credential' })
 
 
 export type CredentialProcessorParams = EmptyProps & {
 }
 
-export type CredentialProcessorProps = RegovComponentProps<
+export type CredentialProcessorProps = WalletComponentProps<
   CredentialProcessorParams, CredentialProcessorImplParams
 >
 

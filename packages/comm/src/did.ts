@@ -17,7 +17,7 @@
 import {
   DIDPURPOSE_VERIFICATION, DIDVerificationItem, KEYCHAIN_ERROR_NO_KEY, VERIFICATION_KEY_HOLDER,
   WalletWrapper, CryptoKey, DIDDocumentUnsinged, DIDPURPOSE_AGREEMENT
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { COMM_DID_AGREEMENT_KEY_DEFAULT, COMM_VERIFICATION_TYPE } from './types'
 import { cryptoKeyToCommKey } from "./util"
 

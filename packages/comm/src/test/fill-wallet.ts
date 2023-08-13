@@ -17,7 +17,7 @@
 import {
   DIDPURPOSE_ASSERTION, DIDPURPOSE_AUTHENTICATION, DIDPURPOSE_VERIFICATION,
   REGISTRY_TYPE_IDENTITIES, VERIFICATION_KEY_HOLDER, WalletWrapper
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { commDidHelperBuilder } from "../did"
 
 

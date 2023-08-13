@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
-import { ItemMenu, ItemMenuHandle, MenuIconButton, ListItemMeta } from '@owlmeans/regov-lib-react'
-import { CredentialWrapper, getCompatibleSubject, Credential, Presentation } from '@owlmeans/regov-ssi-core'
-import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams } from '@owlmeans/regov-ssi-core'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
+import { ItemMenu, ItemMenuHandle, MenuIconButton, ListItemMeta } from '@owlmeans/vc-lib-react'
+import { CredentialWrapper, getCompatibleSubject, Credential, Presentation } from '@owlmeans/vc-core'
+import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useEffect, useMemo } from 'react'
 import { SignatureRequestSubject } from '../../types'
 import { getSignatureRequestFromPresentation } from '../../util'
@@ -33,9 +33,9 @@ import Typography from '@mui/material/Typography'
 
 
 export const SignatureRequestItemWeb = (ext: Extension): FunctionComponent<SignatureRequestItemParams> =>
-  withRegov<SignatureRequestItemProps>({ namespace: ext.localization?.ns },
+  withOwlWallet<SignatureRequestItemProps>({ namespace: ext.localization?.ns },
     ({ t, i18n, meta, wrapper, action, trigger }) => {
-      const { handler, extensions } = useRegov()
+      const { handler, extensions } = useOwlWallet()
       const subject = getCompatibleSubject<SignatureRequestSubject>(
         getSignatureRequestFromPresentation(wrapper.credential) as Credential
       )
@@ -86,4 +86,4 @@ export type SignatureRequestItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type SignatureRequestItemProps = RegovComponentProps<SignatureRequestItemParams>
+export type SignatureRequestItemProps = WalletComponentProps<SignatureRequestItemParams>

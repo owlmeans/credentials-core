@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovValidationRules, WrappedComponentProps } from '../../../../common'
+import { EmptyProps, OwlWalletValidationRules, WrappedComponentProps } from '../../../../common'
 import { formatError } from '../error'
 import { useCallback, useState } from 'react'
 import { Controller, useFormContext, UseFormProps } from 'react-hook-form'
@@ -146,7 +146,7 @@ export const FileProcessorWeb = (props: FileProcessorImplProps) => {
 }
 
 export type FileProcessorParams = EmptyProps & {
-  rules?: RegovValidationRules
+  rules?: OwlWalletValidationRules
   field: string
   form?: UseFormProps
   process: FileProcessorMethod

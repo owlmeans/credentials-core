@@ -16,8 +16,8 @@
 import {
   buildUIExtension, castMainModalHandler, ExtensionItemPurpose, EXTENSION_ITEM_PURPOSE_TOP_ACTION, 
   UIExtensionFactoryProduct
-} from "@owlmeans/regov-lib-react"
-import { addObserverToSchema, EventParams } from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-lib-react"
+import { addObserverToSchema, EventParams } from "@owlmeans/vc-core"
 import { buildCommExtension } from "../ext"
 import { CommExtConfig } from "../types"
 import { InboxButton, InboxWidget } from './component'

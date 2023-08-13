@@ -16,25 +16,25 @@
 
 import {
   buildWalletWrapper, DEFAULT_WALLET_ALIAS, cryptoHelper, WalletHandler, WalletWrapper
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import express, { Router, Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import { ServerExtensionRegistry } from '../extension'
 import { ServerStore } from '../store'
 import { readPeerVCs } from './peer-reader'
 import {
-  APP_EVENT_PRODUCE_IDENTITY, DEFAULT_STORE_PASSWORD, ERROR_NO_WALLET, RegovServerApp,
+  APP_EVENT_PRODUCE_IDENTITY, DEFAULT_STORE_PASSWORD, ERROR_NO_WALLET, OwlMeansBotApp,
   ServerAppConfig,
   ServerEventProduceIdentityParams
 } from './types'
 import { reviveJson } from '../utils'
 
 
-const _bindings = new WeakMap<Request, RegovServerApp>()
+const _bindings = new WeakMap<Request, OwlMeansBotApp>()
 
 export const buildApp = async (
   { router, handler, store, config, extensions }: BuildAppParams
-): Promise<RegovServerApp> => {
+): Promise<OwlMeansBotApp> => {
 
   await store.init(handler)
 
@@ -88,7 +88,7 @@ export const buildApp = async (
     handler.notify()
   }
 
-  const _app: RegovServerApp = {
+  const _app: OwlMeansBotApp = {
     handler,
 
     extensions,
@@ -124,8 +124,8 @@ export const buildApp = async (
   return _app
 }
 
-export const getAppContext = (req: Request): RegovServerApp => {
-  return _bindings.get(req) as RegovServerApp
+export const getAppContext = (req: Request): OwlMeansBotApp => {
+  return _bindings.get(req) as OwlMeansBotApp
 }
 
 export const assertWallet = (req: Request, res: Response): WalletWrapper => {

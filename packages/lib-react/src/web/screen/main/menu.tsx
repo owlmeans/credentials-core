@@ -15,15 +15,15 @@
  */
 
 
-import { useNavigate } from 'react-router-dom-regov'
+import { useNavigate } from 'react-router-dom-owlmeans'
 import {
-  MainMenu, MainMenuNavigation, NavigatorContextProvider, useNavigator, useRegov
+  MainMenu, MainMenuNavigation, NavigatorContextProvider, useNavigator, useOwlWallet
 } from '../../../common'
 import {  CREDENTIAL_LIST_ROUTE  } from '../../component'
 
 
 export const WalletMainMenu = () => {
-  const { handler } = useRegov()
+  const { handler } = useOwlWallet()
   const navigate = useNavigate()
   const nav = useNavigator<MainMenuNavigation>({
     menu: async (item: string, params: Object) => { navigate(item, params) }

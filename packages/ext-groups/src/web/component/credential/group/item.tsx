@@ -16,12 +16,12 @@
 
 import { Fragment, FunctionComponent, useMemo } from 'react'
 import { GroupSubject } from '../../../../types'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
 import {
   Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams
-} from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper, Credential, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-core'
+import { CredentialWrapper, Credential, getCompatibleSubject } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
 import Groups from '@mui/icons-material/Groups'
 
 import Avatar from '@mui/material/Avatar'
@@ -34,9 +34,9 @@ import Typography from '@mui/material/Typography'
 
 
 export const GroupItem = (ext: Extension): FunctionComponent<GroupItemParams> =>
-  withRegov<GroupItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+  withOwlWallet<GroupItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
     const subject = getCompatibleSubject<GroupSubject>(wrapper.credential)
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -82,5 +82,5 @@ export type GroupItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type GroupItemProps = RegovComponentProps<GroupItemParams>
+export type GroupItemProps = WalletComponentProps<GroupItemParams>
 

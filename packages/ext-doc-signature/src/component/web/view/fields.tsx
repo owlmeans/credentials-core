@@ -16,7 +16,7 @@
 
 import React, { FunctionComponent, PropsWithChildren } from "react"
 
-import { dateFormatter, EmptyProps, EntityRenderer, EntityTextRenderer } from "@owlmeans/regov-lib-react"
+import { dateFormatter, EmptyProps, EntityRenderer, EntityTextRenderer } from "@owlmeans/vc-lib-react"
 import { UseTranslationResponse } from "react-i18next"
 import { SignatureCredential } from "../../../types"
 import { typeFormatterFacotry } from "../../formatter"

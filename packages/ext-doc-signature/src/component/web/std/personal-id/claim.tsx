@@ -1,27 +1,27 @@
 import React, { Fragment } from "react"
 
 import { PresonalIdClaimFields } from "./types"
-import { Extension, Presentation, Credential } from "@owlmeans/regov-ssi-core"
+import { Extension, Presentation, Credential } from "@owlmeans/vc-core"
 import { useForm } from "react-hook-form"
 import {
-  ERROR_WIDGET_AUTHENTICATION, personaIdDefaultValues, PersonalIdSubject, RegovStdPersonalIdClaim,
-  REGOV_CRED_PERSONALID
+  ERROR_WIDGET_AUTHENTICATION, personaIdDefaultValues, PersonalIdSubject, OwlMeansStdPersonalIdClaim,
+  OWLMEANS_CRED_PERSONALID
 } from "../../../../types"
 import { useTranslation } from "react-i18next"
 import {
   MainTextInput, PrimaryForm, WalletFormProvider, CountryInput, GenderInput, DateInput, useNavigator,
-  BasicNavigator, useRegov, AlertOutput, FormMainAction, CredentialListInputDetails
-} from "@owlmeans/regov-lib-react"
+  BasicNavigator, useOwlWallet, AlertOutput, FormMainAction, CredentialListInputDetails
+} from "@owlmeans/vc-lib-react"
 
 import DialogContent from "@mui/material/DialogContent"
 import DialogActions from "@mui/material/DialogActions"
 import Button from "@mui/material/Button"
 
 
-export const PersonalIdClaim = (ext: Extension): CredentialListInputDetails<RegovStdPersonalIdClaim> => props => {
+export const PersonalIdClaim = (ext: Extension): CredentialListInputDetails<OwlMeansStdPersonalIdClaim> => props => {
   const { t, i18n } = useTranslation(ext.localization?.ns)
   const navigator = useNavigator<BasicNavigator>()
-  const { handler, extensions } = useRegov()
+  const { handler, extensions } = useOwlWallet()
 
   const form = useForm<PresonalIdClaimFields>({
     mode: 'onChange',
@@ -56,7 +56,7 @@ export const PersonalIdClaim = (ext: Extension): CredentialListInputDetails<Rego
       if (!handler.wallet) {
         throw ERROR_WIDGET_AUTHENTICATION
       }
-      const factory = ext.getFactory(REGOV_CRED_PERSONALID)
+      const factory = ext.getFactory(OWLMEANS_CRED_PERSONALID)
 
       const unsignedClaim = await factory.build(handler.wallet, {
         extensions: extensions?.registry,

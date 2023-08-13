@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CommExtConfig, DEFAULT_SERVER_ALIAS } from "@owlmeans/regov-ext-comm"
+import { CommExtConfig, DEFAULT_SERVER_ALIAS } from "@owlmeans/vc-ext-comm"
 
 export const config = {
   DID_PREFIX: process.env.REACT_APP_DID_PREFIX || 'exwaldid',

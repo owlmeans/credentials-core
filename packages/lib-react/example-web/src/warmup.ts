@@ -25,7 +25,7 @@ import identity from './schemas/identity.json'
 import comm from './schemas/comm.json'
 import commRequest from './schemas/comm-request.json'
 
-import { documentWarmer } from '@owlmeans/regov-ssi-core'
+import { documentWarmer } from '@owlmeans/vc-core'
 
 documentWarmer('https://owlmeans.com/schemas/did-schema.json#', JSON.stringify(didSchema))
 documentWarmer('https://owlmeans.com/schemas/did-schema.json', JSON.stringify(didSchema))

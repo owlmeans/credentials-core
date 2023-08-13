@@ -1,4 +1,4 @@
-import { WalletHandler } from '@owlmeans/regov-ssi-core'
+import { WalletHandler } from '@owlmeans/vc-core'
 import { UIExtensionRegistry } from '../../extension'
 
 export interface UneregisterIntegratedWalletPlugin { (): void }

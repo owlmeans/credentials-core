@@ -14,15 +14,15 @@
  *  limitations under the License.
  */
 
-import { BuildMethodParams, Extension } from "@owlmeans/regov-ssi-core"
+import { BuildMethodParams, Extension } from "@owlmeans/vc-core"
 
-export type RegovGroupCredential = typeof REGOV_CREDENTIAL_TYPE_GROUP
-export type RegovGroupMembershipCredential = typeof REGOV_CREDENTIAL_TYPE_MEMBERSHIP
-export type RegovGroupClaim = typeof REGOV_MEMBERSHIP_CLAIM_TYPE
-export type RegovGroupCredentialClaim = typeof REGOV_GROUP_CLAIM_TYPE
+export type OwlMeansGroupCredential = typeof OWLMEANS_CREDENTIAL_TYPE_GROUP
+export type OwlMeansGroupMembershipCredential = typeof OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP
+export type OwlMeansGroupClaim = typeof OWLMEANS_MEMBERSHIP_CLAIM_TYPE
+export type OwlMeansGroupCredentialClaim = typeof OWLMEANS_GROUP_CLAIM_TYPE
 
-export type RegovGroupExtensionTypes = RegovGroupCredential | RegovGroupMembershipCredential 
-  | RegovGroupClaim | RegovGroupCredentialClaim
+export type OwlMeansGroupExtensionTypes = OwlMeansGroupCredential | OwlMeansGroupMembershipCredential 
+  | OwlMeansGroupClaim | OwlMeansGroupCredentialClaim
 
 export type GroupSubject = {
   uuid: string
@@ -32,7 +32,7 @@ export type GroupSubject = {
   depth?: number
 }
 
-export type RegovGroupExtension = Extension
+export type OwlMeansGroupExtension = Extension
 
 export type MembershipSubject = {
   groupId: string
@@ -42,35 +42,35 @@ export type MembershipSubject = {
   createdAt: string
 }
 
-export type ChainedType = typeof REGOV_GROUP_CHAINED_TYPE 
- | typeof REGOV_GROUP_LIMITED_TYPE
- | typeof REGOV_GROUP_ROOT_TYPE
+export type ChainedType = typeof OWLMEANS_GROUP_CHAINED_TYPE 
+ | typeof OWLMEANS_GROUP_LIMITED_TYPE
+ | typeof OWLMEANS_GROUP_ROOT_TYPE
 
 export type GroupBuildMethodParams = BuildMethodParams & {
   chainedType?: ChainedType
   depth?: number
 }
 
-export const REGOV_CREDENTIAL_TYPE_GROUP = 'OwlMeans:Regov:Group'
+export const OWLMEANS_CREDENTIAL_TYPE_GROUP = 'OwlMeans:Credentials:Group'
 
-export const REGOV_CREDENTIAL_TYPE_MEMBERSHIP = 'OwlMeans:Regov:Group:Membership'
+export const OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP = 'OwlMeans:Credentials:Group:Membership'
 
-export const REGOV_GROUP_CLAIM_TYPE = 'OwlMeans:Regov:Group:Entity:Claim'
+export const OWLMEANS_GROUP_CLAIM_TYPE = 'OwlMeans:Credentials:Group:Entity:Claim'
 
-export const REGOV_GROUP_OFFER_TYPE = 'OwlMeans:Regov:Group:Entity:Offer'
+export const OWLMEANS_GROUP_OFFER_TYPE = 'OwlMeans:Credentials:Group:Entity:Offer'
 
-export const REGOV_GROUP_CHAINED_TYPE = 'OwlMeans:Regov:Group:Chained'
+export const OWLMEANS_GROUP_CHAINED_TYPE = 'OwlMeans:Credentials:Group:Chained'
 
-export const REGOV_GROUP_LIMITED_TYPE = 'OwlMeans:Regov:Group:Limited'
+export const OWLMEANS_GROUP_LIMITED_TYPE = 'OwlMeans:Credentials:Group:Limited'
 
-export const REGOV_GROUP_ROOT_TYPE = 'OwlMeans:Regov:Group:Root'
+export const OWLMEANS_GROUP_ROOT_TYPE = 'OwlMeans:Credentials:Group:Root'
 
-export const REGOV_MEMBERSHIP_CLAIM_TYPE = 'OwlMeans:Regov:Group:Claim'
+export const OWLMEANS_MEMBERSHIP_CLAIM_TYPE = 'OwlMeans:Credentials:Group:Claim'
 
-export const REGOV_MEMBERSHIP_OFFER_TYPE = 'OwlMeans:Regov:Group:Offer'
+export const OWLMEANS_MEMBERSHIP_OFFER_TYPE = 'OwlMeans:Credentials:Group:Offer'
 
 export const BASIC_IDENTITY_TYPE = 'Identity'
 
-export const REGOV_EXT_GROUP_NAMESPACE = 'owlmeans-regov-ext-groups'
+export const OWLMEANS_EXT_GROUP_NAMESPACE = 'owlmeans-vc-ext-groups'
 
-export const SERVER_IS_GROUP_OWNER = '/regov-groups/membership/isOwner'
+export const SERVER_IS_GROUP_OWNER = '/groups/membership/isOwner'

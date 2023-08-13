@@ -18,32 +18,32 @@ import { Fragment, FunctionComponent, useEffect, useState } from "react"
 
 import {
   CredentialActionGroup, CredentialSelector, EmptyProps, MainTextOutput, PrimaryForm, MainTextInput,
-  RegovComponentProps, useRegov, WalletFormProvider, withRegov, dateFormatter, PrimaryFormProps
-} from "@owlmeans/regov-lib-react"
+  WalletComponentProps, useOwlWallet, WalletFormProvider, withOwlWallet, dateFormatter, PrimaryFormProps
+} from "@owlmeans/vc-lib-react"
 import {
   Extension, getCompatibleSubject, Presentation, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CLAIMS,
   singleValue, Credential, CredentialWrapper, REGISTRY_TYPE_IDENTITIES, DIDDocument, REGISTRY_SECTION_PEER,
   normalizeValue
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
-  GroupSubject, REGOV_MEMBERSHIP_CLAIM_TYPE, REGOV_CREDENTIAL_TYPE_GROUP, REGOV_CREDENTIAL_TYPE_MEMBERSHIP,
-  REGOV_EXT_GROUP_NAMESPACE, REGOV_GROUP_OFFER_TYPE, REGOV_GROUP_CHAINED_TYPE, REGOV_GROUP_LIMITED_TYPE
+  GroupSubject, OWLMEANS_MEMBERSHIP_CLAIM_TYPE, OWLMEANS_CREDENTIAL_TYPE_GROUP, OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP,
+  OWLMEANS_EXT_GROUP_NAMESPACE, OWLMEANS_GROUP_OFFER_TYPE, OWLMEANS_GROUP_CHAINED_TYPE, OWLMEANS_GROUP_LIMITED_TYPE
 } from "../../../../types"
 import DialogContent from "@mui/material/DialogContent"
 import DialogActions from "@mui/material/DialogActions"
 import Button from "@mui/material/Button"
 import { useForm } from "react-hook-form"
-import { CommConnectionStatusHandler, DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/regov-comm"
+import { CommConnectionStatusHandler, DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/vc-comm"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
-import { REGISTRY_TYPE_INBOX } from '@owlmeans/regov-ext-comm'
+import { REGISTRY_TYPE_INBOX } from '@owlmeans/vc-ext-comm'
 
 
-export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withRegov<GroupClaimViewProps>(
-  { namespace: REGOV_EXT_GROUP_NAMESPACE }, ({
+export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withOwlWallet<GroupClaimViewProps>(
+  { namespace: OWLMEANS_EXT_GROUP_NAMESPACE }, ({
     credential: presentation, navigator, t, i18n, close, ext, conn
   }) => {
-  const { handler } = useRegov()
+  const { handler } = useOwlWallet()
   const cred = singleValue(presentation.verifiableCredential) as Credential
   const groupSubject = getCompatibleSubject<GroupSubject>(cred)
 
@@ -68,7 +68,7 @@ export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withRegov
   useEffect(() => {
     (async () => {
       const identities = (await handler.wallet?.getRegistry(REGISTRY_TYPE_IDENTITIES)
-        .lookupCredentials(REGOV_CREDENTIAL_TYPE_MEMBERSHIP, REGISTRY_SECTION_OWN))
+        .lookupCredentials(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP, REGISTRY_SECTION_OWN))
         ?.filter(identity => identity.credential.id === conn?.sender.id)
 
       if (identities && identities.length) {
@@ -85,7 +85,7 @@ export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withRegov
   let maxDepth = 0
   if (identity) {
     const parentGroup = normalizeValue(identity.evidence).find(
-      evidence => evidence?.type.includes(REGOV_GROUP_CHAINED_TYPE)
+      evidence => evidence?.type.includes(OWLMEANS_GROUP_CHAINED_TYPE)
     ) as Credential<GroupSubject> | undefined
     if (parentGroup) {
       maxDepth = Math.max(0, (parentGroup.credentialSubject.depth || 0) - 1)
@@ -106,16 +106,16 @@ export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withRegov
 
         const cred = JSON.parse(JSON.stringify(credential)) as typeof credential
 
-        if (maxDepth > 0 && cred.type.includes(REGOV_GROUP_LIMITED_TYPE)) {
-          cred.type.splice(cred.type.findIndex(t => t === REGOV_GROUP_LIMITED_TYPE), 1)
+        if (maxDepth > 0 && cred.type.includes(OWLMEANS_GROUP_LIMITED_TYPE)) {
+          cred.type.splice(cred.type.findIndex(t => t === OWLMEANS_GROUP_LIMITED_TYPE), 1)
         }
 
-        const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_GROUP)
+        const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_GROUP)
         const offer = await factory.offer(handler.wallet, {
           claim: presentation,
           credential: cred,
           holder: credential.issuer as DIDDocument,
-          offerType: REGOV_GROUP_OFFER_TYPE,
+          offerType: OWLMEANS_GROUP_OFFER_TYPE,
           subject: {
             ...credential.credentialSubject,
             ...(maxDepth > 0 ? { depth: data.group.groupClaim.depth } : {})
@@ -124,7 +124,7 @@ export const GroupClaimView: FunctionComponent<GroupClaimViewParams> = withRegov
           challenge: presentation.proof.challenge || '',
           domain: presentation.proof.domain || '',
           cryptoKey: await handler.wallet.keys.getCryptoKey(),
-          claimType: REGOV_MEMBERSHIP_CLAIM_TYPE
+          claimType: OWLMEANS_MEMBERSHIP_CLAIM_TYPE
         })
 
         if (conn) {
@@ -189,7 +189,7 @@ export type GroupClaimViewParams = EmptyProps & {
   close?: () => void
 }
 
-export type GroupClaimViewProps = RegovComponentProps<GroupClaimViewParams>
+export type GroupClaimViewProps = WalletComponentProps<GroupClaimViewParams>
 
 export type GroupClaimViewFields = {
   group: {

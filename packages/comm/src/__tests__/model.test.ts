@@ -15,7 +15,7 @@
  */
 
 import 'dotenv/config'
-import { buildWalletWrapper, cryptoHelper, WalletWrapper } from "@owlmeans/regov-ssi-core"
+import { buildWalletWrapper, cryptoHelper, WalletWrapper } from "@owlmeans/vc-core"
 import { createDebugChannel } from "../channel/debug"
 import { buildDidCommHelper } from "../model"
 import { DIDCommConnectMeta, DIDCommHelper, DIDCommListner } from "../types"

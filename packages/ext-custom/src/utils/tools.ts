@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CredentialDescription } from "@owlmeans/regov-ssi-core"
+import { CredentialDescription } from "@owlmeans/vc-core"
 import { CustomDescription, DEFAULT_SUFFIX_CLAIM, DEFAULT_SUFFIX_OFFER, DEFAULT_SUFFIX_REFUSE, DEFAULT_SUFFIX_REQUEST, DEFAULT_SUFFIX_RESPONSE } from "../custom.types"
 
 

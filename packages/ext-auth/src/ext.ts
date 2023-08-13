@@ -14,22 +14,22 @@
  *  limitations under the License.
  */
 
-import { buildExtension, buildExtensionSchema } from "@owlmeans/regov-ssi-core"
+import { buildExtension, buildExtensionSchema } from "@owlmeans/vc-core"
 import { en } from "./i18n"
 import {
-  BASIC_IDENTITY_TYPE, REGOV_AUTH_REQUEST_TYPE, REGOV_AUTH_RESPONSE_TYPE,
-  REGOV_CREDENTIAL_TYPE_AUTH, REGOV_EXT_ATUH_NAMESPACE
+  BASIC_IDENTITY_TYPE, OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_AUTH_RESPONSE_TYPE,
+  OWLMEANS_CREDENTIAL_TYPE_AUTH, OWLMEANS_EXT_ATUH_NAMESPACE
 } from "./types"
 
 
 let authExtensionSchema = buildExtensionSchema({
   name: 'extension.details.name',
-  code: 'owlmeans-regov-auth',
+  code: 'owlmeans-vc-auth',
 }, {
-  [REGOV_CREDENTIAL_TYPE_AUTH]: {
-    mainType: REGOV_CREDENTIAL_TYPE_AUTH,
-    requestType: REGOV_AUTH_REQUEST_TYPE,
-    responseType: REGOV_AUTH_RESPONSE_TYPE,
+  [OWLMEANS_CREDENTIAL_TYPE_AUTH]: {
+    mainType: OWLMEANS_CREDENTIAL_TYPE_AUTH,
+    requestType: OWLMEANS_AUTH_REQUEST_TYPE,
+    responseType: OWLMEANS_AUTH_RESPONSE_TYPE,
     defaultNameKey: 'cred.auth.name',
     contextUrl: 'https://schema.owlmeans.com/auth.json',
     credentialContext: {
@@ -40,11 +40,11 @@ let authExtensionSchema = buildExtensionSchema({
     },
     evidence: { type: BASIC_IDENTITY_TYPE, signing: true }
   },
-  [REGOV_AUTH_REQUEST_TYPE]: {
-    mainType: REGOV_AUTH_REQUEST_TYPE,
-    requestType: REGOV_AUTH_REQUEST_TYPE,
-    responseType: REGOV_AUTH_RESPONSE_TYPE,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_AUTH],
+  [OWLMEANS_AUTH_REQUEST_TYPE]: {
+    mainType: OWLMEANS_AUTH_REQUEST_TYPE,
+    requestType: OWLMEANS_AUTH_REQUEST_TYPE,
+    responseType: OWLMEANS_AUTH_RESPONSE_TYPE,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_AUTH],
     defaultNameKey: 'request.auth.name',
     contextUrl: 'https://schema.owlmeans.com/auth-request.json',
     credentialContext: {
@@ -54,10 +54,10 @@ let authExtensionSchema = buildExtensionSchema({
       createdAt: "http://www.w3.org/2001/XMLSchema#datetime",
     }
   },
-  [REGOV_AUTH_RESPONSE_TYPE]: {
-    mainType: REGOV_AUTH_RESPONSE_TYPE,
-    responseType: REGOV_AUTH_RESPONSE_TYPE,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_AUTH],
+  [OWLMEANS_AUTH_RESPONSE_TYPE]: {
+    mainType: OWLMEANS_AUTH_RESPONSE_TYPE,
+    responseType: OWLMEANS_AUTH_RESPONSE_TYPE,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_AUTH],
     credentialContext: {},
     evidence: { type: BASIC_IDENTITY_TYPE, signing: true }
   }
@@ -67,6 +67,6 @@ let authExtensionSchema = buildExtensionSchema({
 export const authExtension = buildExtension(authExtensionSchema)
 
 authExtension.localization = {
-  ns: REGOV_EXT_ATUH_NAMESPACE,
+  ns: OWLMEANS_EXT_ATUH_NAMESPACE,
   translations: { en }
 }

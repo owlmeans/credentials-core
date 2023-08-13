@@ -1,15 +1,15 @@
 {
-  "name": "@owlmeans/regov-ext-comm",
+  "name": "@owlmeans/vc-ext-comm",
   "version": "0.8.1",
-  "description": "Communication channel Regov SSI",
+  "description": "Communication channel OwlMeans Credentials ecosystem",
   "keywords": [
-    "Regov",
+    "OwlMeans Credentials",
     "SSI",
     "didcomm",
     "networking"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/ext-comm"
   },
   "sources": "src/index.ts",
@@ -36,16 +36,16 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/regov-comm": "^0.8.0",
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-comm": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "i18next": "*",
     "react": "*",
     "react-hook-form": "*",
     "react-i18next": "*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
     "@emotion/react": {

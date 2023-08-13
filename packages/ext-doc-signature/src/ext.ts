@@ -17,30 +17,30 @@
 import {
   addObserverToSchema, buildExtension, buildExtensionSchema, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED,
   IncommigDocumentEventParams
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
-  BASIC_IDENTITY_TYPE, RegovSignatureCredential, REGOV_CLAIM_PRESONALID, REGOV_CLAIM_TYPE_SIGNATURE, 
-  REGOV_CREDENTIAL_TYPE_SIGNATURE, REGOV_CRED_PERSONALID, REGOV_EXT_SIGNATURE_NAMESPACE, 
-  REGOV_OFFER_PRESONALID, REGOV_OFFER_TYPE_SIGNATURE, REGOV_SIGNATURE_CLAIM_TYPE, 
-  REGOV_SIGNATURE_OFFER_TYPE, REGOV_SIGNATURE_REQUEST_TYPE, REGOV_SIGNATURE_RESPONSE_TYPE
+  BASIC_IDENTITY_TYPE, OwlMeansSignatureCredential, OWLMEANS_CLAIM_PRESONALID, OWLMEANS_CLAIM_TYPE_SIGNATURE, 
+  OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, OWLMEANS_CRED_PERSONALID, OWLMEANS_EXT_SIGNATURE_NAMESPACE, 
+  OWLMEANS_OFFER_PRESONALID, OWLMEANS_OFFER_TYPE_SIGNATURE, OWLMEANS_SIGNATURE_CLAIM_TYPE, 
+  OWLMEANS_SIGNATURE_OFFER_TYPE, OWLMEANS_SIGNATURE_REQUEST_TYPE, OWLMEANS_SIGNATURE_RESPONSE_TYPE
 } from "./types"
-import { isCredential, isPresentation, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_REQUESTS } from "@owlmeans/regov-ssi-core"
+import { isCredential, isPresentation, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_REQUESTS } from "@owlmeans/vc-core"
 import enCommon from './i18n/en/common.json'
 import ruCommon from './i18n/ru/common.json'
 import byCommon from './i18n/by/common.json'
-import { normalizeValue } from "@owlmeans/regov-ssi-core"
+import { normalizeValue } from "@owlmeans/vc-core"
 
 
-let signatureExtensionSchema = buildExtensionSchema<RegovSignatureCredential>({
+let signatureExtensionSchema = buildExtensionSchema<OwlMeansSignatureCredential>({
   name: 'extension.details.name',
-  code: 'owlmeans-regov-doc-signature',
+  code: 'owlmeans-vc-doc-signature',
   types: {
-    claim: REGOV_CLAIM_TYPE_SIGNATURE,
-    offer: REGOV_OFFER_TYPE_SIGNATURE
+    claim: OWLMEANS_CLAIM_TYPE_SIGNATURE,
+    offer: OWLMEANS_OFFER_TYPE_SIGNATURE
   }
 }, {
-  [REGOV_CREDENTIAL_TYPE_SIGNATURE]: {
-    mainType: REGOV_CREDENTIAL_TYPE_SIGNATURE,
+  [OWLMEANS_CREDENTIAL_TYPE_SIGNATURE]: {
+    mainType: OWLMEANS_CREDENTIAL_TYPE_SIGNATURE,
     defaultNameKey: 'cred.signature.name',
     contextUrl: 'https://schema.owlmeans.com/doc-signature.json',
     credentialContext: {
@@ -61,15 +61,15 @@ let signatureExtensionSchema = buildExtensionSchema<RegovSignatureCredential>({
       type: BASIC_IDENTITY_TYPE,
       signing: true,
     },
-    requestType: REGOV_SIGNATURE_REQUEST_TYPE,
+    requestType: OWLMEANS_SIGNATURE_REQUEST_TYPE,
     registryType: REGISTRY_TYPE_CREDENTIALS,
-    claimType: REGOV_SIGNATURE_CLAIM_TYPE,
-    offerType: REGOV_SIGNATURE_OFFER_TYPE,
+    claimType: OWLMEANS_SIGNATURE_CLAIM_TYPE,
+    offerType: OWLMEANS_SIGNATURE_OFFER_TYPE,
   },
-  [REGOV_SIGNATURE_REQUEST_TYPE]: {
-    mainType: REGOV_SIGNATURE_REQUEST_TYPE,
-    requestType: REGOV_SIGNATURE_REQUEST_TYPE,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_SIGNATURE],
+  [OWLMEANS_SIGNATURE_REQUEST_TYPE]: {
+    mainType: OWLMEANS_SIGNATURE_REQUEST_TYPE,
+    requestType: OWLMEANS_SIGNATURE_REQUEST_TYPE,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_SIGNATURE],
     defaultNameKey: 'request.signature.name',
     contextUrl: 'https://schema.owlmeans.com/doc-signature-request.json',
     credentialContext: {
@@ -82,14 +82,14 @@ let signatureExtensionSchema = buildExtensionSchema<RegovSignatureCredential>({
     },
     registryType: REGISTRY_TYPE_REQUESTS,
   },
-  [REGOV_SIGNATURE_RESPONSE_TYPE]: {
-    mainType: REGOV_SIGNATURE_RESPONSE_TYPE,
-    responseType: REGOV_SIGNATURE_RESPONSE_TYPE,
+  [OWLMEANS_SIGNATURE_RESPONSE_TYPE]: {
+    mainType: OWLMEANS_SIGNATURE_RESPONSE_TYPE,
+    responseType: OWLMEANS_SIGNATURE_RESPONSE_TYPE,
     credentialContext: {}
   },
-  [REGOV_CRED_PERSONALID]: {
-    mainType: REGOV_CRED_PERSONALID,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_SIGNATURE],
+  [OWLMEANS_CRED_PERSONALID]: {
+    mainType: OWLMEANS_CRED_PERSONALID,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_SIGNATURE],
     defaultNameKey: 'std.personalid.label',
     contextUrl: 'https://schema.owlmeans.com/std/personal-id.json',
     credentialContext: {
@@ -109,24 +109,24 @@ let signatureExtensionSchema = buildExtensionSchema<RegovSignatureCredential>({
       validUntil: {'@id': 'scma:validUntil', '@type': 'scma:validUntil'}
     },
     registryType: REGISTRY_TYPE_CREDENTIALS,
-    claimType: REGOV_CLAIM_PRESONALID,
-    offerType: REGOV_OFFER_PRESONALID,
+    claimType: OWLMEANS_CLAIM_PRESONALID,
+    offerType: OWLMEANS_OFFER_PRESONALID,
     arbitraryEvidence: true
   },
-  [REGOV_CLAIM_PRESONALID]: {
-    mainType: REGOV_CLAIM_PRESONALID,
+  [OWLMEANS_CLAIM_PRESONALID]: {
+    mainType: OWLMEANS_CLAIM_PRESONALID,
     credentialContext: {}
   },
-  [REGOV_OFFER_PRESONALID]: {
-    mainType: REGOV_OFFER_PRESONALID,
+  [OWLMEANS_OFFER_PRESONALID]: {
+    mainType: OWLMEANS_OFFER_PRESONALID,
     credentialContext: {}
   },
-  [REGOV_SIGNATURE_CLAIM_TYPE]: {
-    mainType: REGOV_SIGNATURE_CLAIM_TYPE,
+  [OWLMEANS_SIGNATURE_CLAIM_TYPE]: {
+    mainType: OWLMEANS_SIGNATURE_CLAIM_TYPE,
     credentialContext: {}
   },
-  [REGOV_SIGNATURE_OFFER_TYPE]: {
-    mainType: REGOV_SIGNATURE_OFFER_TYPE,
+  [OWLMEANS_SIGNATURE_OFFER_TYPE]: {
+    mainType: OWLMEANS_SIGNATURE_OFFER_TYPE,
     credentialContext: {}
   }
 })
@@ -135,14 +135,14 @@ signatureExtensionSchema = addObserverToSchema(signatureExtensionSchema, {
   trigger: EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED,
   filter: async (_, params: IncommigDocumentEventParams) => {
     if (isCredential(params.credential)) {
-      return normalizeValue(params.credential.type).includes(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+      return normalizeValue(params.credential.type).includes(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
     }
 
     if (isPresentation(params.credential)) {
-      return normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_REQUEST_TYPE)
-        || normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_RESPONSE_TYPE)
-        || normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_CLAIM_TYPE)
-        || normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_OFFER_TYPE)
+      return normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_REQUEST_TYPE)
+        || normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_RESPONSE_TYPE)
+        || normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_CLAIM_TYPE)
+        || normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_OFFER_TYPE)
     }
 
     return false
@@ -151,17 +151,17 @@ signatureExtensionSchema = addObserverToSchema(signatureExtensionSchema, {
 
 export const signatureExtension = buildExtension(
   signatureExtensionSchema, {
-  [REGOV_CREDENTIAL_TYPE_SIGNATURE]: {},
-  [REGOV_SIGNATURE_REQUEST_TYPE]: {},
-  [REGOV_SIGNATURE_RESPONSE_TYPE]: {},
-  [REGOV_CRED_PERSONALID]: {},
-  [REGOV_CLAIM_PRESONALID]: {},
-  [REGOV_OFFER_PRESONALID]: {},
-  [REGOV_SIGNATURE_CLAIM_TYPE]: {},
-  [REGOV_SIGNATURE_OFFER_TYPE]: {}
+  [OWLMEANS_CREDENTIAL_TYPE_SIGNATURE]: {},
+  [OWLMEANS_SIGNATURE_REQUEST_TYPE]: {},
+  [OWLMEANS_SIGNATURE_RESPONSE_TYPE]: {},
+  [OWLMEANS_CRED_PERSONALID]: {},
+  [OWLMEANS_CLAIM_PRESONALID]: {},
+  [OWLMEANS_OFFER_PRESONALID]: {},
+  [OWLMEANS_SIGNATURE_CLAIM_TYPE]: {},
+  [OWLMEANS_SIGNATURE_OFFER_TYPE]: {}
 })
 signatureExtension.localization = {
-  ns: REGOV_EXT_SIGNATURE_NAMESPACE,
+  ns: OWLMEANS_EXT_SIGNATURE_NAMESPACE,
   translations: {
     en: enCommon,
     ru: ruCommon,

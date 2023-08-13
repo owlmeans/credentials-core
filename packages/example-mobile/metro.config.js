@@ -6,7 +6,7 @@
  */
 
 const path = require('path')
-const { getDefaultMetroConfig } = require('@owlmeans/regov-lib-native/dist/metro')
+const { getDefaultMetroConfig } = require('@owlmeans/vc-lib-native/dist/metro')
 
 
 module.exports = {

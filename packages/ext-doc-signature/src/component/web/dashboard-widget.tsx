@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-import { RegovComponentProps, withRegov } from '@owlmeans/regov-lib-react'
-import { Extension } from '@owlmeans/regov-ssi-core'
+import { WalletComponentProps, withOwlWallet } from '@owlmeans/vc-lib-react'
+import { Extension } from '@owlmeans/vc-core'
 import React, { FC, Fragment, useState } from 'react'
-import { useNavigate } from 'react-router-dom-regov'
-import { REGOV_CREDENTIAL_TYPE_SIGNATURE } from '../../types'
+import { useNavigate } from 'react-router-dom-owlmeans'
+import { OWLMEANS_CREDENTIAL_TYPE_SIGNATURE } from '../../types'
 import Add from '@mui/icons-material/Add'
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline'
 import Drafts from '@mui/icons-material/Drafts'
@@ -34,13 +34,13 @@ import MenuList from '@mui/material/MenuList'
 import Typography from '@mui/material/Typography'
 
 
-export const DashboardWidgetWeb = (ext: Extension): FC<DashboardWidgetParams> => withRegov<DashboardWidgetProps>(
+export const DashboardWidgetWeb = (ext: Extension): FC<DashboardWidgetParams> => withOwlWallet<DashboardWidgetProps>(
   { namespace: ext.localization?.ns }, (props) => {
     const { t } = props
     const navigate = useNavigate()
     const [openMenu, setOpenMenu] = useState<boolean>(false)
-    const pathCreate = `/credential/create/${ext.schema.details.code}/${REGOV_CREDENTIAL_TYPE_SIGNATURE}`
-    const pathRequest = `/credential/request/${ext.schema.details.code}/${REGOV_CREDENTIAL_TYPE_SIGNATURE}`
+    const pathCreate = `/credential/create/${ext.schema.details.code}/${OWLMEANS_CREDENTIAL_TYPE_SIGNATURE}`
+    const pathRequest = `/credential/request/${ext.schema.details.code}/${OWLMEANS_CREDENTIAL_TYPE_SIGNATURE}`
 
     return <Fragment>
       <Grid container height="100%" direction="row" justifyContent="center" alignItems="sretch"
@@ -80,4 +80,4 @@ export const DashboardWidgetWeb = (ext: Extension): FC<DashboardWidgetParams> =>
 type DashboardWidgetParams = {
 }
 
-type DashboardWidgetProps = RegovComponentProps<DashboardWidgetParams>
+type DashboardWidgetProps = WalletComponentProps<DashboardWidgetParams>

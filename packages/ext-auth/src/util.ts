@@ -14,20 +14,20 @@
  *  limitations under the License.
  */
 
-import { Credential, Presentation } from "@owlmeans/regov-ssi-core";
+import { Credential, Presentation } from "@owlmeans/vc-core";
 import { 
-  AuthSubject, REGOV_AUTH_REQUEST_TYPE, REGOV_AUTH_RESPONSE_TYPE, REGOV_CREDENTIAL_TYPE_AUTH 
+  AuthSubject, OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_AUTH_RESPONSE_TYPE, OWLMEANS_CREDENTIAL_TYPE_AUTH 
 } from "./types";
 
 
 export const getAuthFromPresentation = (presentation: Presentation) => {
-  if (!presentation.type.includes(REGOV_AUTH_RESPONSE_TYPE)
-   && !presentation.type.includes(REGOV_AUTH_REQUEST_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_AUTH_RESPONSE_TYPE)
+   && !presentation.type.includes(OWLMEANS_AUTH_REQUEST_TYPE)) {
     return undefined
   }
 
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_AUTH)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_AUTH)
   )
 }
 

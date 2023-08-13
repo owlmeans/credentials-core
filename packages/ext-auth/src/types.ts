@@ -14,16 +14,16 @@
  *  limitations under the License.
  */
 
-import { Credential, Presentation } from '@owlmeans/regov-ssi-core'
+import { Credential, Presentation } from '@owlmeans/vc-core'
 
 
-export const REGOV_EXT_ATUH_NAMESPACE = 'owlmeans-regov-ext-auth'
+export const OWLMEANS_EXT_ATUH_NAMESPACE = 'owlmeans-vc-ext-auth'
 
-export const REGOV_CREDENTIAL_TYPE_AUTH = 'OwlMeans:Regov:Auth'
+export const OWLMEANS_CREDENTIAL_TYPE_AUTH = 'OwlMeans:Credentials:Auth'
 
-export const REGOV_AUTH_REQUEST_TYPE = 'OwlMeans:Regov:Auth:Request'
+export const OWLMEANS_AUTH_REQUEST_TYPE = 'OwlMeans:Credentials:Auth:Request'
 
-export const REGOV_AUTH_RESPONSE_TYPE = 'OwlMeans:Regov:Auth:Response'
+export const OWLMEANS_AUTH_RESPONSE_TYPE = 'OwlMeans:Credentials:Auth:Response'
 
 export const BASIC_IDENTITY_TYPE = 'Identity'
 
@@ -32,9 +32,9 @@ export const ERROR_NO_AUTHENTICATION_FROM_EXTERNAL_WALLET = 'ERROR_NO_AUTHENTICA
 export const ERROR_WRONG_AUTHENTICATION = 'ERROR_WRONG_AUTHENTICATION'
 export const ERROR_NO_CONNECTION = 'ERROR_NO_CONNECTION'
 
-export const SERVER_PROVIDE_AUTH = '/regov-auth/response/provide'
-export const SERVER_REQUEST_AUTH = '/regov-auth/request/produce/:did'
-export const SERVER_VALIDATE_AUTH = '/regov-auth/response/validate'
+export const SERVER_PROVIDE_AUTH = '/auth/response/provide'
+export const SERVER_REQUEST_AUTH = '/auth/request/produce/:did'
+export const SERVER_VALIDATE_AUTH = '/auth/response/validate'
 export const SERVER_INTEGRATION_ALIAS = 'integration'
 
 export type AuthSubject = {

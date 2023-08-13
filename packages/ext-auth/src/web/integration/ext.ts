@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { buildUIExtension } from "@owlmeans/regov-lib-react";
+import { buildUIExtension } from "@owlmeans/vc-lib-react";
 import { authExtension } from "../../ext";
 
 

@@ -19,7 +19,7 @@ import { Credential } from '../../../vc'
 import {
   DIDDocument, DIDPURPOSE_ASSERTION, DIDPURPOSE_AUTHENTICATION, DIDPURPOSE_VERIFICATION
 } from "../../../did"
-import { RespondMethodBuilder, TYPE_REGOV_RESPONSE } from "../types"
+import { RespondMethodBuilder, TYPE_OWLMEANS_RESPONSE } from "../types"
 import { ERROR_FACTORY_NO_IDENTITY } from "./types"
 
 
@@ -60,7 +60,7 @@ export const defaultRespondMethod: RespondMethodBuilder = schema =>
       {
         id: params.request.id,
         holder: did,
-        type: [...(schema.responseType != null ? [schema.responseType] : []), TYPE_REGOV_RESPONSE]
+        type: [...(schema.responseType != null ? [schema.responseType] : []), TYPE_OWLMEANS_RESPONSE]
       }
     )
 

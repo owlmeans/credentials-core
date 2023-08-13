@@ -17,7 +17,7 @@
 import { 
   BASE_CREDENTIAL_TYPE, 
   BASE_PRESENTATION_TYPE 
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 
 export const LIBREACT_HOLDER_ISNT_UNSIGNEDID = 'LIBREACT_HOLDER_ISNT_UNSIGNEDID'
 

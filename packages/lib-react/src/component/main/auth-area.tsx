@@ -15,16 +15,16 @@
  */
 
 import { useEffect, FunctionComponent, Fragment, ReactNode } from 'react'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, WrappedComponentProps } from '../../common/'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps } from '../../common/'
 
 
-export const MainAuthArea: FunctionComponent<MainAuthAreaParams> = withRegov<MainAuthAreaProps>(
+export const MainAuthArea: FunctionComponent<MainAuthAreaParams> = withOwlWallet<MainAuthAreaProps>(
   {
-    name: 'MainAuthArea', namespace: 'regov-wallet-main',
+    name: 'MainAuthArea', namespace: 'owlmeans-wallet-main',
     transformer: wallet => ({ alias: wallet?.store.alias })
   },
   ({ navigator, t, i18n, alias, menu, renderer: Renderer }) => {
-    const { config } = useRegov()
+    const { config } = useOwlWallet()
     useEffect(() => { setImmediate(() => navigator?.assertAuth()) }, [alias])
 
     const _props = {
@@ -44,7 +44,7 @@ export type MainAuthAraeState = {
   alias: string | undefined
 }
 
-export type MainAuthAreaProps = RegovComponentProps<
+export type MainAuthAreaProps = WalletComponentProps<
   MainAuthAreaParams, MainAuthAreaImplProps, MainAuthAraeState
 >
 

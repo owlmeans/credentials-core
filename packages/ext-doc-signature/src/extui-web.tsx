@@ -14,21 +14,21 @@
  *  limitations under the License.
  */
 
-import { EVENT_INIT_CONNECTION, IncommigDocumentWithConn, InitCommEventParams } from "@owlmeans/regov-comm"
+import { EVENT_INIT_CONNECTION, IncommigDocumentWithConn, InitCommEventParams } from "@owlmeans/vc-comm"
 import {
   buildUIExtension, castMainModalHandler, EXRENSION_ITEM_PURPOSE_INPUT_DETAILS, EXTENSION_ITEM_PURPOSE_CLAIM,
   EXTENSION_ITEM_PURPOSE_CREATION, EXTENSION_ITEM_PURPOSE_DASHBOARD_WIDGET,
   EXTENSION_ITEM_PURPOSE_ITEM, EXTENSION_ITEM_PURPOSE_REQUEST, EXTENSION_ITEM_PURPOSE_VALIDATION,
   MainModalAuthenticatedEventParams, PurposeListItemParams, UIExtensionFactoryProduct
-} from "@owlmeans/regov-lib-react"
-import { MENU_TAG_CRED_NEW, MENU_TAG_REQUEST_NEW, MENU_TAG_CLAIM_NEW } from "@owlmeans/regov-lib-react"
-import { EXTENSION_TRIGGER_AUTHENTICATED, normalizeValue } from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-lib-react"
+import { MENU_TAG_CRED_NEW, MENU_TAG_REQUEST_NEW, MENU_TAG_CLAIM_NEW } from "@owlmeans/vc-lib-react"
+import { EXTENSION_TRIGGER_AUTHENTICATED, normalizeValue } from "@owlmeans/vc-core"
 import {
   WalletWrapper, Credential, isCredential, isPresentation, Presentation, REGISTRY_TYPE_IDENTITIES
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
   addObserverToSchema, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import React from "react"
 import {
   SignatureCreationWeb, SignatureItemWeb, SignatureView, SignatureRequestWeb, DashboardWidgetWeb,
@@ -39,8 +39,8 @@ import { ClaimSignatureItemParams, SignatureClaimItem } from "./component/web/cl
 import { OfferSignatureItemParams, SignatureOfferItem } from "./component/web/offer-item"
 import { signatureExtension } from "./ext"
 import {
-  REGOV_CREDENTIAL_TYPE_SIGNATURE, REGOV_CRED_PERSONALID, REGOV_SIGNATURE_CLAIM_TYPE,
-  REGOV_SIGNATURE_OFFER_TYPE, REGOV_SIGNATURE_REQUEST_TYPE, REGOV_SIGNATURE_RESPONSE_TYPE,
+  OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, OWLMEANS_CRED_PERSONALID, OWLMEANS_SIGNATURE_CLAIM_TYPE,
+  OWLMEANS_SIGNATURE_OFFER_TYPE, OWLMEANS_SIGNATURE_REQUEST_TYPE, OWLMEANS_SIGNATURE_RESPONSE_TYPE,
   SignaturePresentation
 } from "./types"
 import { getSignatureRequestFromPresentation, getSignatureRequestOwner } from "./util"
@@ -66,7 +66,7 @@ if (signatureExtension.schema.events) {
             credential={params.credential as Credential} />
         )
       } else if (isPresentation(params.credential)) {
-        if (normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_REQUEST_TYPE)) {
+        if (normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_REQUEST_TYPE)) {
           let isOwner = false
           const request = getSignatureRequestFromPresentation(params.credential)
           if (request) {
@@ -85,19 +85,19 @@ if (signatureExtension.schema.events) {
                 credential={params.credential as Presentation} />
             )
           }
-        } else if (normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_RESPONSE_TYPE)) {
+        } else if (normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_RESPONSE_TYPE)) {
           params.statusHandler.successful = modalHandle.open(
             () => <SignatureRequestResponseWeb ext={signatureExtension} close={modalHandle.close}
               credential={params.credential as Presentation} />
           )
-        } else if (normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_CLAIM_TYPE)) {
+        } else if (normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_CLAIM_TYPE)) {
           if (params.conn) {
             params.statusHandler.successful = modalHandle.open(
               () => params.conn && <SignatureOfferWeb close={modalHandle.close} conn={params.conn}
                 ext={signatureExtension} claim={params.credential as SignaturePresentation} />
             )
           }
-        } else if (normalizeValue(params.credential.type).includes(REGOV_SIGNATURE_OFFER_TYPE)) {
+        } else if (normalizeValue(params.credential.type).includes(OWLMEANS_SIGNATURE_OFFER_TYPE)) {
           params.statusHandler.successful = modalHandle.open(
             () => params.conn && <SignatureOfferReviewWeb offer={params.credential as SignaturePresentation}
               close={modalHandle.close} ext={signatureExtension} />
@@ -137,7 +137,7 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
   switch (purpose) {
     case EXTENSION_ITEM_PURPOSE_CREATION:
       switch (type) {
-        case REGOV_CREDENTIAL_TYPE_SIGNATURE:
+        case OWLMEANS_CREDENTIAL_TYPE_SIGNATURE:
           return [{
             com: SignatureCreationWeb(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureCreation`,
@@ -147,7 +147,7 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
       }
     case EXTENSION_ITEM_PURPOSE_REQUEST:
       switch (type) {
-        case REGOV_CREDENTIAL_TYPE_SIGNATURE:
+        case OWLMEANS_CREDENTIAL_TYPE_SIGNATURE:
           return [{
             com: SignatureRequestWeb(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureRequest`,
@@ -157,7 +157,7 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
       }
     case EXTENSION_ITEM_PURPOSE_CLAIM:
       switch (type) {
-        case REGOV_CREDENTIAL_TYPE_SIGNATURE:
+        case OWLMEANS_CREDENTIAL_TYPE_SIGNATURE:
           return [{
             com: SignatureClaimWeb(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureClaim`,
@@ -167,28 +167,28 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
       }
     case EXTENSION_ITEM_PURPOSE_ITEM:
       switch (type) {
-        case REGOV_SIGNATURE_CLAIM_TYPE:
+        case OWLMEANS_SIGNATURE_CLAIM_TYPE:
           return [{
             com: SignatureClaimItem(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureClaimItem`,
             params: {},
             order: 0
           }] as UIExtensionFactoryProduct<ClaimSignatureItemParams>[]
-        case REGOV_SIGNATURE_OFFER_TYPE:
+        case OWLMEANS_SIGNATURE_OFFER_TYPE:
           return [{
             com: SignatureOfferItem(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureOfferItem`,
             params: {},
             order: 0,
           }] as UIExtensionFactoryProduct<OfferSignatureItemParams>[]
-        case REGOV_CREDENTIAL_TYPE_SIGNATURE:
+        case OWLMEANS_CREDENTIAL_TYPE_SIGNATURE:
           return [{
             com: SignatureItemWeb(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureItem`,
             params: {},
             order: 0
           }] as UIExtensionFactoryProduct<PurposeListItemParams>[]
-        case REGOV_SIGNATURE_REQUEST_TYPE:
+        case OWLMEANS_SIGNATURE_REQUEST_TYPE:
           return [{
             com: SignatureRequestItemWeb(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}SignatureRequestItem`,
@@ -205,7 +205,7 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
       }]
     case EXTENSION_ITEM_PURPOSE_VALIDATION:
       switch (type) {
-        case REGOV_CREDENTIAL_TYPE_SIGNATURE:
+        case OWLMEANS_CREDENTIAL_TYPE_SIGNATURE:
           return [{
             com: ValidationWidget(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}ValidationWidget`,
@@ -215,7 +215,7 @@ export const signatureWebExtension = buildUIExtension(signatureExtension, (purpo
       }
     case EXRENSION_ITEM_PURPOSE_INPUT_DETAILS:
       switch (type) {
-        case REGOV_CRED_PERSONALID:
+        case OWLMEANS_CRED_PERSONALID:
           return [{
             com: PersonalIdClaim(signatureExtension),
             extensionCode: `${signatureExtension.schema.details.code}PersonalIdClaim`,
@@ -237,7 +237,7 @@ signatureWebExtension.menuItems = [
       path: '',
       params: {
         ext: signatureExtension.schema.details.code,
-        type: REGOV_CREDENTIAL_TYPE_SIGNATURE
+        type: OWLMEANS_CREDENTIAL_TYPE_SIGNATURE
       }
     }
   },
@@ -249,7 +249,7 @@ signatureWebExtension.menuItems = [
       path: '',
       params: {
         ext: signatureExtension.schema.details.code,
-        type: REGOV_CREDENTIAL_TYPE_SIGNATURE
+        type: OWLMEANS_CREDENTIAL_TYPE_SIGNATURE
       }
     }
   },
@@ -261,7 +261,7 @@ signatureWebExtension.menuItems = [
       path: '',
       params: {
         ext: signatureExtension.schema.details.code,
-        type: REGOV_CREDENTIAL_TYPE_SIGNATURE
+        type: OWLMEANS_CREDENTIAL_TYPE_SIGNATURE
       }
     }
   }

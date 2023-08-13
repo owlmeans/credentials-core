@@ -18,7 +18,7 @@ import { DIDDocument, DIDDocumentUnsinged, DIDPURPOSE_ASSERTION, DIDPURPOSE_AUTH
 import { Credential } from '../../../vc'
 import { buildWalletLoader } from '../../../wallet/loader'
 import { updateDidIdWithKey } from "../../schema"
-import { RefuseMethodBuilder, TYPE_REGOV_REFUSE } from "../types"
+import { RefuseMethodBuilder, TYPE_OWLMEANS_REFUSE } from "../types"
 
 
 export const defaultRefuseMethod: RefuseMethodBuilder = schema => async (wallet, params) => {
@@ -59,7 +59,7 @@ export const defaultRefuseMethod: RefuseMethodBuilder = schema => async (wallet,
 
   const signed = await wallet.ssi.signCredential(refusedCredential, issuerDid as DIDDocument)
   const refuse = await wallet.ssi.buildPresentation([signed], { 
-    holder: issuerDid, type: [...(refuseType != null ? [refuseType] : []), TYPE_REGOV_REFUSE] , id 
+    holder: issuerDid, type: [...(refuseType != null ? [refuseType] : []), TYPE_OWLMEANS_REFUSE] , id 
   })
 
   return wallet.ssi.signPresentation(refuse, issuerDid as DIDDocument, { challenge, domain })

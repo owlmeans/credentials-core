@@ -15,12 +15,12 @@
  */
 
 import React, { Fragment, FunctionComponent, useMemo } from 'react'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
-import { Extension, normalizeValue } from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
-import { triggerIncommingDocView } from '@owlmeans/regov-comm'
-import { REGOV_SIGNATURE_CLAIM_TYPE, SignaturePresentation, SignatureSubject } from '../../types'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
+import { Extension, normalizeValue } from '@owlmeans/vc-core'
+import { CredentialWrapper } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
+import { triggerIncommingDocView } from '@owlmeans/vc-comm'
+import { OWLMEANS_SIGNATURE_CLAIM_TYPE, SignaturePresentation, SignatureSubject } from '../../types'
 
 
 import BorderColor from '@mui/icons-material/BorderColor'
@@ -34,14 +34,14 @@ import Typography from '@mui/material/Typography'
 
 
 export const SignatureClaimItem = (ext: Extension): FunctionComponent<ClaimSignatureItemParams> =>
-  withRegov<ClaimSignatureItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+  withOwlWallet<ClaimSignatureItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
     const signatureClaim = normalizeValue(
       wrapper.credential.verifiableCredential
     ).find(
-      cred => cred.type.includes(REGOV_SIGNATURE_CLAIM_TYPE)
+      cred => cred.type.includes(OWLMEANS_SIGNATURE_CLAIM_TYPE)
     )
     const subject = signatureClaim?.credentialSubject as SignatureSubject
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -80,4 +80,4 @@ export type ClaimSignatureItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type ClaimSignatureItemProps = RegovComponentProps<ClaimSignatureItemParams>
+export type ClaimSignatureItemProps = WalletComponentProps<ClaimSignatureItemParams>

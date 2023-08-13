@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { cryptoHelper, buildKeyChain, KeyChainWrapper } from "@owlmeans/regov-ssi-core"
+import { cryptoHelper, buildKeyChain, KeyChainWrapper } from "@owlmeans/vc-core"
 import { generateKeyPairFromSeed } from '@stablelib/x25519'
 import { x25519Encrypter, x25519Decrypter, createJWE, decryptJWE, decodeJWT } from 'did-jwt'
 

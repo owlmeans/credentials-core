@@ -14,19 +14,19 @@
  *  limitations under the License.
  */
 
-import { buildUIExtensionRegistry, CryptoLoaderProps } from '@owlmeans/regov-lib-react'
+import { buildUIExtensionRegistry, CryptoLoaderProps } from '@owlmeans/vc-lib-react'
 
-import { buildIdentityExtensionUI } from '@owlmeans/regov-ext-identity'
-import { signatureWebExtension } from '@owlmeans/regov-ext-doc-signature'
-import { groupsUIExtension } from '@owlmeans/regov-ext-groups'
-import { authUIExtension } from '@owlmeans/regov-ext-auth'
-import { buildCommUIExtension } from '@owlmeans/regov-ext-comm'
+import { buildIdentityExtensionUI } from '@owlmeans/vc-ext-identity'
+import { signatureWebExtension } from '@owlmeans/vc-ext-signature'
+import { groupsUIExtension } from '@owlmeans/vc-ext-groups'
+import { authUIExtension } from '@owlmeans/vc-ext-auth'
+import { buildCommUIExtension } from '@owlmeans/vc-ext-comm'
 import {
   customizeExtension, addCredential, USE_CREATE_CLAIM, USE_PREVIEW_CLAIM, addScansContext, USE_ITEM_CLAIM,
   USE_CREATE_OFFER, USE_CLAIM_VIEW, USE_ITEM_OFFER, USE_VIEW_OFFER, USE_ITEM_CRED, USE_CRED_VIEW, addLocalization
-} from "@owlmeans/regov-ext-custom/dist/web"
+} from "@owlmeans/vc-ext-custom/dist/web"
 
-import { WalletApp } from '@owlmeans/regov-lib-react'
+import { WalletApp } from '@owlmeans/vc-lib-react'
 
 import { config, commConfig } from './config'
 import React, { FC } from 'react'

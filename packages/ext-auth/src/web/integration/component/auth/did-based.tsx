@@ -16,28 +16,28 @@
 
 import { FunctionComponent, useMemo } from 'react'
 import {
-  RegovComponentProps, withRegov, PrimaryForm, AlertOutput, FormMainAction, MainTextInput,
+  WalletComponentProps, withOwlWallet, PrimaryForm, AlertOutput, FormMainAction, MainTextInput,
   didValidation, ERROR_NO_SERVER_CLIENT, ERROR_NO_EXTENSION_REGISTRY, ERROR_NO_WALLET_HANDLER_AUTH,
   EmptyProps, MainTextOutput, NavigatorLoading
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import { FormProvider, useForm, UseFormProps, UseFormReturn } from 'react-hook-form'
 import {
   ERROR_NO_AUTHENTICATION_FROM_EXTERNAL_WALLET, ERROR_WRONG_AUTHENTICATION,
-  REGOV_AUTH_REQUEST_TYPE, REGOV_CREDENTIAL_TYPE_AUTH, REGOV_EXT_ATUH_NAMESPACE,
+  OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_CREDENTIAL_TYPE_AUTH, OWLMEANS_EXT_ATUH_NAMESPACE,
   SERVER_INTEGRATION_ALIAS, SERVER_PROVIDE_AUTH
 } from '../../../../types'
 import {
   EVENT_INIT_CONNECTION, ERROR_COMM_CANT_SEND, InitCommEventParams, DIDCommListner, CommConnectionStatusHandler
-} from '@owlmeans/regov-comm'
-import { DIDDocument, ERROR_NO_IDENTITY, Presentation, REGISTRY_SECTION_PEER, ValidationResult } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-comm'
+import { DIDDocument, ERROR_NO_IDENTITY, Presentation, REGISTRY_SECTION_PEER, ValidationResult } from '@owlmeans/vc-core'
 import { ERROR_INTEGRATED_AUTH_WRONG_PIN, ERROR_INTEGRATED_SERVER_CANT_LOGIN } from '../../types'
 import { getAuthFromPresentation, getAuthSubject } from '../../../../util'
-import { REGISTRY_TYPE_INBOX } from '@owlmeans/regov-ext-comm'
+import { REGISTRY_TYPE_INBOX } from '@owlmeans/vc-ext-comm'
 
 
 export const IntegratedDIDBasedAuth: FunctionComponent<IntegratedDIDBasedAuthParams>
-  = withRegov<IntegratedDIDBasedAuthProps>(
-    { namespace: REGOV_EXT_ATUH_NAMESPACE },
+  = withOwlWallet<IntegratedDIDBasedAuthProps>(
+    { namespace: OWLMEANS_EXT_ATUH_NAMESPACE },
     ({ auth, i18n, t, navigator, client, extensions, handler, valideteResponseUrl }) => {
       const pin = useMemo(
         () => Array(4).fill(0).map(_ => Math.round(Math.random() * 9)).join(''), []
@@ -69,8 +69,8 @@ export const IntegratedDIDBasedAuth: FunctionComponent<IntegratedDIDBasedAuthPar
 
             const sender = senderIdentity?.issuer as unknown as DIDDocument
 
-            const factory = extensions.getExtension(REGOV_CREDENTIAL_TYPE_AUTH)
-              .extension.getFactory(REGOV_AUTH_REQUEST_TYPE)
+            const factory = extensions.getExtension(OWLMEANS_CREDENTIAL_TYPE_AUTH)
+              .extension.getFactory(OWLMEANS_AUTH_REQUEST_TYPE)
             const unsigned = await factory.build(handler.wallet, {
               subjectData: {
                 did: data.auth.did,
@@ -192,4 +192,4 @@ export type IntegratedDIDBasedAuthParams = EmptyProps & {
   valideteResponseUrl?: string
 }
 
-export type IntegratedDIDBasedAuthProps = RegovComponentProps<IntegratedDIDBasedAuthParams>
+export type IntegratedDIDBasedAuthProps = WalletComponentProps<IntegratedDIDBasedAuthParams>

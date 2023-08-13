@@ -17,13 +17,13 @@
 import { Fragment, FunctionComponent, useState } from 'react'
 import {
   EmptyProps, EXTENSION_ITEM_PURPOSE_EVIDENCE, generalNameVlidation, PurposeEvidenceWidgetParams,
-  RegovComponentProps, useRegov, withRegov
+  WalletComponentProps, useOwlWallet, withOwlWallet
 } from '../../../../../common'
-import { Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/regov-ssi-core'
+import { Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
 import {
   EvidenceValidationResult, EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams,
   ValidationResult
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { StandardEvidenceWidget } from './standard'
 import { MainTextInput } from '../../../common'
 import { useForm, FormProvider } from 'react-hook-form'
@@ -39,11 +39,11 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 
-export const EvidenceTrust: FunctionComponent<EvidenceTrustParams> = withRegov<EvidenceTrustProps>(
-  { namespace: 'regov-wallet-credential' },
+export const EvidenceTrust: FunctionComponent<EvidenceTrustParams> = withOwlWallet<EvidenceTrustProps>(
+  { namespace: 'owlmeans-wallet-credential' },
   (props) => {
     const { handle, t, navigator } = props
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
     const [open, setOpen] = useState<boolean>(false)
     const [credential, setCredential] = useState<Credential | undefined>(undefined)
     const [result, setResult] = useState<ValidationResult | undefined>(undefined)
@@ -173,7 +173,7 @@ export type EvidenceTrustHandle = {
   reload?: () => void
 }
 
-export type EvidenceTrustProps = RegovComponentProps<EvidenceTrustParams>
+export type EvidenceTrustProps = WalletComponentProps<EvidenceTrustParams>
 
 export type EvidenceTrustFields = {
   trust: {

@@ -16,17 +16,17 @@
 
 require('dotenv').config()
 import cors from "cors"
-import { buildApp, buildFileStore, buildRotuer, buildServerExtensionRegistry, ServerAppConfig } from "@owlmeans/regov-lib-node"
-import { createWalletHandler } from "@owlmeans/regov-ssi-core"
-import { buildIdentityExtensionServer } from "@owlmeans/regov-ext-identity/dist/index.server"
-import { authServerExtension } from "@owlmeans/regov-ext-auth/dist/index.server"
-import { groupsServerExtension } from "@owlmeans/regov-ext-groups/dist/index.server"
-import { addCredential } from "@owlmeans/regov-ext-custom/dist/utils"
-import { updateFactories } from "@owlmeans/regov-ext-custom/dist/utils/extension"
+import { buildApp, buildFileStore, buildRotuer, buildServerExtensionRegistry, ServerAppConfig } from "@owlmeans/vc-lib-node"
+import { createWalletHandler } from "@owlmeans/vc-core"
+import { buildIdentityExtensionServer } from "@owlmeans/vc-ext-identity/dist/index.server"
+import { authServerExtension } from "@owlmeans/vc-ext-auth/dist/index.server"
+import { groupsServerExtension } from "@owlmeans/vc-ext-groups/dist/index.server"
+import { addCredential } from "@owlmeans/vc-ext-custom/dist/utils"
+import { updateFactories } from "@owlmeans/vc-ext-custom/dist/utils/extension"
 import {
   USE_CLAIM_VIEW, USE_CREATE_CLAIM, USE_CREATE_OFFER, USE_ITEM_OFFER, USE_PREVIEW_CLAIM,
   USE_VIEW_OFFER
-} from "@owlmeans/regov-ext-custom/dist/custom.types"
+} from "@owlmeans/vc-ext-custom/dist/custom.types"
 import './warmup'
 
 import util from 'util'
@@ -45,7 +45,7 @@ const config: ServerAppConfig = {
 }
 
 const identity = buildIdentityExtensionServer(
-  EXAMPLE_IDENTITY_TYPE, { appName: 'Regov example server wallet' },
+  EXAMPLE_IDENTITY_TYPE, { appName: 'OwlMeans ID Bot example server wallet' },
   {
     name: '',
     code: 'example-identity',

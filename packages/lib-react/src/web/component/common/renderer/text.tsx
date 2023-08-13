@@ -16,7 +16,7 @@
 
 import { Fragment } from 'react'
 import { EntityItemProps, EntityContextConsumer } from './types'
-import { getDeepValue } from '@owlmeans/regov-ssi-core'
+import { getDeepValue } from '@owlmeans/vc-core'
 import { OutputFieldFormatter } from '../field'
 import { TFunction } from 'i18next'
 import FormControl from '@mui/material/FormControl'

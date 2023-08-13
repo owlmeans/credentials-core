@@ -15,7 +15,7 @@
  */
 
 import { Fragment } from 'react'
-import { MainFooterImplProps, useRegov } from '../../../common'
+import { MainFooterImplProps, useOwlWallet } from '../../../common'
 import AppBar from '@mui/material/AppBar'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
@@ -23,7 +23,7 @@ import Toolbar from '@mui/material/Toolbar'
 
 
 export const MainFooterWeb = ({ t }: MainFooterImplProps) => {
-  const { config } = useRegov()
+  const { config } = useOwlWallet()
 
   return config.urls ? <AppBar position="fixed" color="default" sx={{ top: 'auto', bottom: 0 }}>
     <Toolbar>

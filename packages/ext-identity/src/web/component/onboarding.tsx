@@ -16,10 +16,10 @@
 
 import { FunctionComponent, useState, Fragment } from 'react'
 import {
-  EmptyProps, FormHeaderButton, MainModalAuthenticatedEventParams, RegovComponentProps, useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
-import { REGOV_IDENTITY_DEFAULT_NAMESPACE } from '../../types'
-import { FormMainButton } from '@owlmeans/regov-lib-react'
+  EmptyProps, FormHeaderButton, MainModalAuthenticatedEventParams, WalletComponentProps, useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
+import { OWLMEANS_IDENTITY_DEFAULT_NAMESPACE } from '../../types'
+import { FormMainButton } from '@owlmeans/vc-lib-react'
 import { IdentityCreation, IdentityCreationProceedHandle } from './identity'
 import { isMobile, isBrowser } from 'react-device-detect'
 import Grid from '@mui/material/Grid'
@@ -34,8 +34,8 @@ import MobileStepper from '@mui/material/MobileStepper'
 
 
 export const Onboarding: FunctionComponent<OnboardingParams> =
-  withRegov<OnboardingProps>({ namespace: REGOV_IDENTITY_DEFAULT_NAMESPACE }, props => {
-    const { handler } = useRegov()
+  withOwlWallet<OnboardingProps>({ namespace: OWLMEANS_IDENTITY_DEFAULT_NAMESPACE }, props => {
+    const { handler } = useOwlWallet()
     const { t, ns, handle } = props
 
     const [activeStep, setActiveStep] = useState(0)
@@ -113,4 +113,4 @@ export const Onboarding: FunctionComponent<OnboardingParams> =
 
 export type OnboardingParams = MainModalAuthenticatedEventParams & EmptyProps
 
-export type OnboardingProps = RegovComponentProps<OnboardingParams>
+export type OnboardingProps = WalletComponentProps<OnboardingParams>

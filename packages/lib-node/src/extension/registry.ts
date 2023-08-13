@@ -16,7 +16,7 @@
 
 import {
   buildExtensionRegistry, CredentialDescription, EventParams, ExtensionRegistry, MaybeArray, WalletWrapper
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { ServerExtension } from "./types"
 
 

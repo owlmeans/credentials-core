@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Text, View } from 'react-native'
-import { DebugSSIView } from '@owlmeans/regov-lib-native'
+import { DebugSSIView } from '@owlmeans/vc-lib-native'
 
 
 const App = () => {

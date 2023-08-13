@@ -20,7 +20,7 @@ import { Controller, useFormContext } from "react-hook-form"
 import { TFunction } from "i18next"
 import Paper from "@mui/material/Paper"
 import { useDropzone } from "react-dropzone"
-import { useNavigator } from "@owlmeans/regov-lib-react"
+import { useNavigator } from "@owlmeans/vc-lib-react"
 import { FileInfo } from '../../../../picture.types'
 import Typography from '@mui/material/Typography'
 

@@ -16,17 +16,17 @@
 
 import { FunctionComponent } from 'react'
 import {
-  BasicNavigator, EmptyProps, EmptyState, RegovComponentProps, useRegov,
-  WalletNavigatorMenuMethod, withRegov, WrappedComponentProps
+  BasicNavigator, EmptyProps, EmptyState, WalletComponentProps, useOwlWallet,
+  WalletNavigatorMenuMethod, withOwlWallet, WrappedComponentProps
 } from '../../common/'
 import { castMenuItemParams } from '../../extension/helper'
 import { ManuItemParams } from '../../extension/types'
 
 
-export const MainMenu: FunctionComponent<MainMenuParams> = withRegov<MainMenuProps>(
+export const MainMenu: FunctionComponent<MainMenuParams> = withOwlWallet<MainMenuProps>(
   'MainMenu',
   ({ t, i18n, defaultItems, navigator, renderer: Renderer }) => {
-    const { extensions } = useRegov()
+    const { extensions } = useOwlWallet()
 
     const items = [
       ...defaultItems || [],
@@ -41,14 +41,14 @@ export const MainMenu: FunctionComponent<MainMenuParams> = withRegov<MainMenuPro
 
     return <Renderer i18n={i18n} t={t} items={items} />
   },
-  { namespace: 'regov-wallet-main' }
+  { namespace: 'owlmeans-wallet-main' }
 )
 
 export type MainMenuParams = {
   defaultItems?: ManuItemParams[]
 } & EmptyProps
 
-export type MainMenuProps = RegovComponentProps<
+export type MainMenuProps = WalletComponentProps<
   MainMenuParams, MainMenuImplParams, EmptyState, MainMenuNavigation
 >
 

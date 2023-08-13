@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CredentialWrapper } from '@owlmeans/regov-ssi-core'
+import { CredentialWrapper } from '@owlmeans/vc-core'
 import { TFunction } from 'i18next'
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'

@@ -16,12 +16,12 @@
 
 import React, { Fragment, FunctionComponent, PropsWithChildren, useEffect, useState } from "react"
 import {
-  AlertOutput, basicNavigator, EmptyProps, PrimaryForm, useNavigator, useRegov,
+  AlertOutput, basicNavigator, EmptyProps, PrimaryForm, useNavigator, useOwlWallet,
   WalletFormProvider
-} from "@owlmeans/regov-lib-react"
+} from "@owlmeans/vc-lib-react"
 import {
-  ERROR_INVALID_SIGNATURE_TO_ACCEPT, REGOV_CREDENTIAL_TYPE_SIGNATURE,
-  REGOV_EXT_SIGNATURE_NAMESPACE, SignaturePresentation
+  ERROR_INVALID_SIGNATURE_TO_ACCEPT, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE,
+  OWLMEANS_EXT_SIGNATURE_NAMESPACE, SignaturePresentation
 } from "../../types"
 import { getSignatureCredentialOfferFromPresentation } from "../../util"
 import { useTranslation } from "react-i18next"
@@ -30,16 +30,16 @@ import { SignatureViewFieldsWeb } from "./view/fields"
 import DialogActions from "@mui/material/DialogActions"
 import DialogContent from "@mui/material/DialogContent"
 import { Button } from "@mui/material"
-import { Extension, singleValue, VALIDATION_KIND_OFFER } from "@owlmeans/regov-ssi-core"
-import { useInboxRegistry } from "@owlmeans/regov-ext-comm"
+import { Extension, singleValue, VALIDATION_KIND_OFFER } from "@owlmeans/vc-core"
+import { useInboxRegistry } from "@owlmeans/vc-ext-comm"
 import { useForm } from "react-hook-form"
 
 
 export const SignatureOfferReviewWeb: FunctionComponent<SignatureOfferReviewWebProps> = props => {
-  const { handler, extensions } = useRegov()
+  const { handler, extensions } = useOwlWallet()
   const cred = getSignatureCredentialOfferFromPresentation(props.offer)
   const inbox = useInboxRegistry()
-  const { t, i18n } = useTranslation(props.ns || REGOV_EXT_SIGNATURE_NAMESPACE)
+  const { t, i18n } = useTranslation(props.ns || OWLMEANS_EXT_SIGNATURE_NAMESPACE)
   const [valid, setValid] = useState<boolean>(false)
   const navigator = useNavigator(basicNavigator)
 
@@ -55,7 +55,7 @@ export const SignatureOfferReviewWeb: FunctionComponent<SignatureOfferReviewWebP
         return
       }
 
-      const factory = props.ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+      const factory = props.ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
       const result = await factory.validate(handler.wallet, {
         extensions: extensions.registry, credential: cred,
         presentation: props.offer, kind: VALIDATION_KIND_OFFER

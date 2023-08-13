@@ -16,8 +16,8 @@
 
 import { Fragment, FunctionComponent, useState } from 'react'
 import {
-  castMenuItemParams, CredentialListNavigator, EmptyProps, ManuItemParams, MenuActionResult, RegovComponentProps,
-  useNavigator, useRegov, withRegov
+  castMenuItemParams, CredentialListNavigator, EmptyProps, ManuItemParams, MenuActionResult, WalletComponentProps,
+  useNavigator, useOwlWallet, withOwlWallet
 } from '../../../common'
 import { MENU_TAG_CLAIM_NEW, MENU_TAG_CRED_NEW, MENU_TAG_REQUEST_NEW, NewCredentailMenuItem } from '../../extension/types'
 import { TFunction } from 'i18next'
@@ -37,13 +37,13 @@ import MenuList from '@mui/material/MenuList'
 
 type SvgIconComponent = typeof SvgIcon
 
-export const CredentialHeader = withRegov<
+export const CredentialHeader = withOwlWallet<
   CredentialHeaderProps, CredentialListNavigator
->({ namespace: 'regov-wallet-credential' }, ({
+>({ namespace: 'owlmeans-wallet-credential' }, ({
   t
 }) => {
   const navigator = useNavigator<CredentialListNavigator>()
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const createMenuList = extensions?.getMenuItems(MENU_TAG_CRED_NEW)
   const requestMenuList = extensions?.getMenuItems(MENU_TAG_REQUEST_NEW)
   const claimMenuList = extensions?.getMenuItems(MENU_TAG_CLAIM_NEW)
@@ -129,4 +129,4 @@ type HeaderMenuProps = {
 }
 
 
-export type CredentialHeaderProps = RegovComponentProps<EmptyProps>
+export type CredentialHeaderProps = WalletComponentProps<EmptyProps>

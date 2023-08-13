@@ -14,21 +14,21 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
 import {
   AlertOutput, CredentialActionGroup, CredentialSelector, dateFormatter, EntityRenderer,
   EntityTextRenderer, LongOutput, MainTextOutput, PrimaryForm, WalletFormProvider
-} from '@owlmeans/regov-lib-react'
-import { singleValue } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-lib-react'
+import { singleValue } from '@owlmeans/vc-core'
 import {
   getCompatibleSubject, Presentation, Credential, REGISTRY_TYPE_CREDENTIALS, CredentialWrapper
-} from '@owlmeans/regov-ssi-core'
-import { Extension } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { Extension } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
-  REGOV_EXT_SIGNATURE_NAMESPACE, SignatureRequestSubject, REGOV_CREDENTIAL_TYPE_SIGNATURE, SignatureSubject,
-  ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION, REGOV_SIGNATURE_RESPONSE_TYPE
+  OWLMEANS_EXT_SIGNATURE_NAMESPACE, SignatureRequestSubject, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, SignatureSubject,
+  ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION, OWLMEANS_SIGNATURE_RESPONSE_TYPE
 } from '../../types'
 import { getSignatureRequestFromPresentation } from '../../util'
 import { typeFormatterFacotry } from '../formatter'
@@ -39,9 +39,9 @@ import DialogContent from '@mui/material/DialogContent'
 
 
 export const SignatureResponseWeb: FunctionComponent<SignatureResponseParams> =
-  withRegov<SignatureResponseProps>({ namespace: REGOV_EXT_SIGNATURE_NAMESPACE },
+  withOwlWallet<SignatureResponseProps>({ namespace: OWLMEANS_EXT_SIGNATURE_NAMESPACE },
     ({ t, i18n, ext, navigator, close, credential: presentation }) => {
-      const { handler, extensions } = useRegov()
+      const { handler, extensions } = useOwlWallet()
       const credential = getSignatureRequestFromPresentation(presentation) as Credential
       const subject = getCompatibleSubject<SignatureRequestSubject>(credential)
 
@@ -97,7 +97,7 @@ export const SignatureResponseWeb: FunctionComponent<SignatureResponseParams> =
           }
 
           const signatures = await handler.wallet.getRegistry(REGISTRY_TYPE_CREDENTIALS)
-            .lookupCredentials(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+            .lookupCredentials(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
           setSignatures(signatures || [])
           const signatureAlike = signatures?.find(wrapper => {
             const credSubject = wrapper.credential.credentialSubject as unknown as SignatureSubject
@@ -156,7 +156,7 @@ export const SignatureResponseWeb: FunctionComponent<SignatureResponseParams> =
             throw new Error('signature.response.noSignature')
           }
 
-          const factory = ext.getFactory(REGOV_SIGNATURE_RESPONSE_TYPE)
+          const factory = ext.getFactory(OWLMEANS_SIGNATURE_RESPONSE_TYPE)
           const response = await factory.respond(handler.wallet, {
             request: presentation,
             credential: currentSignature.credential
@@ -235,7 +235,7 @@ export type SignatureResponseParams = EmptyProps & {
   close?: () => void
 }
 
-export type SignatureResponseProps = RegovComponentProps<SignatureResponseParams>
+export type SignatureResponseProps = WalletComponentProps<SignatureResponseParams>
 
 export type SignatureResponseFields = {
   signature: {

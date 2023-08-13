@@ -16,7 +16,7 @@
 
 import { WalletAppParams } from '../app/types'
 import {
-  i18nDefaultOptions, i18nSetup, BasicNavigator, RegovProvider, MainLoading
+  i18nDefaultOptions, i18nSetup, BasicNavigator, OwlWalletProvider, MainLoading
 } from '../../common'
 import { PropsWithChildren, useEffect, useMemo, useState } from 'react'
 import { buildStorageHelper } from '../storage'
@@ -25,7 +25,7 @@ import { webComponentMap } from '../component'
 import { 
   buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, 
   WalletHandler, cryptoHelper 
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { DEFAULT_GUEST_WALLET_ALIAS } from '../types'
 import CircularProgress from '@mui/material/CircularProgress'
 
@@ -87,10 +87,10 @@ export const WalletIntegrationReact = (
   }, [storage])
   
   return loaded
-    ? <RegovProvider i18n={i18n} map={webComponentMap} handler={handler}
+    ? <OwlWalletProvider i18n={i18n} map={webComponentMap} handler={handler}
       config={config} navigator={navigator} extensions={extensions} serverClient={serverClient}>
       {children}
       <MainLoading nav={navigator} />
-    </RegovProvider>
+    </OwlWalletProvider>
     : <CircularProgress color="inherit" />
 }

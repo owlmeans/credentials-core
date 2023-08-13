@@ -15,7 +15,7 @@
  */
 
 import { Config } from '../../common'
-import { EncryptedStore, WalletHandler } from '@owlmeans/regov-ssi-core'
+import { EncryptedStore, WalletHandler } from '@owlmeans/vc-core'
 import localforage from 'localforage'
 
 

@@ -17,19 +17,19 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
-  EmptyProps, generalNameVlidation, MainModalAuthenticatedEventParams, RegovComponentProps,
-  useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
-import { MainTextInput, MainTextOutput, PrimaryForm, WalletFormProvider, dateFormatter, AlertOutput } from '@owlmeans/regov-lib-react'
-import { REGISTRY_TYPE_IDENTITIES, UnsignedCredential } from '@owlmeans/regov-ssi-core'
-import { IdentitySubject, REGOV_IDENTITY_DEFAULT_NAMESPACE } from '../../../types'
+  EmptyProps, generalNameVlidation, MainModalAuthenticatedEventParams, WalletComponentProps,
+  useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
+import { MainTextInput, MainTextOutput, PrimaryForm, WalletFormProvider, dateFormatter, AlertOutput } from '@owlmeans/vc-lib-react'
+import { REGISTRY_TYPE_IDENTITIES, UnsignedCredential } from '@owlmeans/vc-core'
+import { IdentitySubject, OWLMEANS_IDENTITY_DEFAULT_NAMESPACE } from '../../../types'
 import { BASIC_IDENTITY_TYPE } from '../../../ext'
 import { ERROR_CREATION_AUTHENTICATION, ERROR_CREATION_EXTENSION, ERROR_CREATION_READYTO_SIGN } from './types'
 
 
-export const IdentityCreation: FunctionComponent<IdentityCreationParams> = withRegov<IdentityCreationProps>(
-  { namespace: REGOV_IDENTITY_DEFAULT_NAMESPACE }, ({ t, i18n, ext, navigator, proceedHandle }) => {
-    const { handler, extensions } = useRegov()
+export const IdentityCreation: FunctionComponent<IdentityCreationParams> = withOwlWallet<IdentityCreationProps>(
+  { namespace: OWLMEANS_IDENTITY_DEFAULT_NAMESPACE }, ({ t, i18n, ext, navigator, proceedHandle }) => {
+    const { handler, extensions } = useOwlWallet()
     const props = {
       t, i18n,
       rules: {
@@ -146,7 +146,7 @@ export type IdentityCreationProceedHandle = {
   proceed?: (next: () => void) => Promise<void>
 }
 
-export type IdentityCreationProps = RegovComponentProps<IdentityCreationParams>
+export type IdentityCreationProps = WalletComponentProps<IdentityCreationParams>
 
 export type IdentityCreationFields = {
   creation: {

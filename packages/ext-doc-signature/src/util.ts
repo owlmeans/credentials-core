@@ -14,53 +14,53 @@
  *  limitations under the License.
  */
 
-import { MaybeArray, normalizeValue } from "@owlmeans/regov-ssi-core"
-import { Presentation, Credential } from "@owlmeans/regov-ssi-core"
+import { MaybeArray, normalizeValue } from "@owlmeans/vc-core"
+import { Presentation, Credential } from "@owlmeans/vc-core"
 import {
-  BASIC_IDENTITY_TYPE, REGOV_SIGNATURE_REQUEST_TYPE, REGOV_SIGNATURE_RESPONSE_TYPE,
-  REGOV_CREDENTIAL_TYPE_SIGNATURE, SignaturePresentation, REGOV_SIGNATURE_CLAIM_TYPE,
+  BASIC_IDENTITY_TYPE, OWLMEANS_SIGNATURE_REQUEST_TYPE, OWLMEANS_SIGNATURE_RESPONSE_TYPE,
+  OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, SignaturePresentation, OWLMEANS_SIGNATURE_CLAIM_TYPE,
   SignatureCredential
 } from "./types"
 
 
 export const getSignatureRequestFromPresentation = (presentation: Presentation) => {
-  if (!presentation.type.includes(REGOV_SIGNATURE_REQUEST_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_SIGNATURE_REQUEST_TYPE)) {
     return undefined
   }
 
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_SIGNATURE_REQUEST_TYPE)
+    credential => credential.type.includes(OWLMEANS_SIGNATURE_REQUEST_TYPE)
   )
 }
 
 export const getSignatureCredentialClaimFromPresentation = (presentation: SignaturePresentation) => {
-  if (!presentation.type.includes(REGOV_SIGNATURE_CLAIM_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_SIGNATURE_CLAIM_TYPE)) {
     return undefined
   }
 
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_SIGNATURE_CLAIM_TYPE)
+    credential => credential.type.includes(OWLMEANS_SIGNATURE_CLAIM_TYPE)
   )
 }
 
 export const getSignatureCredentialOfferFromPresentation = (presentaton: SignaturePresentation) => {
   return presentaton.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
   ) as SignatureCredential
 }
 
 export const getSignatureResponseFromPresentation = (presentation: Presentation) => {
-  if (!presentation.type.includes(REGOV_SIGNATURE_RESPONSE_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_SIGNATURE_RESPONSE_TYPE)) {
     return undefined
   }
 
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
   )
 }
 
 export const getSignatureRequestOwner = (crednetial: Credential) => {
-  if (!crednetial.type.includes(REGOV_SIGNATURE_REQUEST_TYPE)) {
+  if (!crednetial.type.includes(OWLMEANS_SIGNATURE_REQUEST_TYPE)) {
     return undefined
   }
 

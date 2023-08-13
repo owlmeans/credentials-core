@@ -18,10 +18,10 @@ import React, { Fragment, FunctionComponent, PropsWithChildren, useEffect, useSt
 
 import {
   basicNavigator, EmptyProps, generalDidIdValidation, generalIdVlidation, generalNameVlidation,
-  humanReadableVersion, PrimaryForm, trySubmit, urlVlidation, useNavigator, useRegov, WalletFormProvider
-} from "@owlmeans/regov-lib-react"
+  humanReadableVersion, PrimaryForm, trySubmit, urlVlidation, useNavigator, useOwlWallet, WalletFormProvider
+} from "@owlmeans/vc-lib-react"
 import {
-  ERROR_WIDGET_AUTHENTICATION, REGOV_CREDENTIAL_TYPE_SIGNATURE, REGOV_EXT_SIGNATURE_NAMESPACE,
+  ERROR_WIDGET_AUTHENTICATION, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, OWLMEANS_EXT_SIGNATURE_NAMESPACE,
   SignatureCredential, SignaturePresentation
 } from "../../types"
 import { useTranslation } from "react-i18next"
@@ -29,13 +29,13 @@ import { getSignatureCredentialClaimFromPresentation } from "../../util"
 import { SignatureCreationFields } from "./creation"
 import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
 import { SignatureCreationFieldsWeb } from './creation/fields'
-import { useInboxRegistry } from '@owlmeans/regov-ext-comm'
+import { useInboxRegistry } from '@owlmeans/vc-ext-comm'
 
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from "@mui/material/DialogActions"
 import Button from "@mui/material/Button"
-import { DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/regov-comm"
-import { addToValue, DIDDocument, ERROR_NO_IDENTITY, Extension } from "@owlmeans/regov-ssi-core"
+import { DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/vc-comm"
+import { addToValue, DIDDocument, ERROR_NO_IDENTITY, Extension } from "@owlmeans/vc-core"
 import { isCreationMetaFields } from "./creation/types"
 
 
@@ -43,8 +43,8 @@ export const SignatureOfferWeb: FunctionComponent<SignatureOfferWebProps> = prop
   const { claim, ext, conn } = props
   const navigator = useNavigator(basicNavigator)
   const inboxRegistry = useInboxRegistry()
-  const { t, i18n } = useTranslation(props.ns || REGOV_EXT_SIGNATURE_NAMESPACE)
-  const { handler } = useRegov()
+  const { t, i18n } = useTranslation(props.ns || OWLMEANS_EXT_SIGNATURE_NAMESPACE)
+  const { handler } = useOwlWallet()
 
   const cred = getSignatureCredentialClaimFromPresentation(claim)
 
@@ -93,7 +93,7 @@ export const SignatureOfferWeb: FunctionComponent<SignatureOfferWebProps> = prop
       throw ERROR_NO_IDENTITY
     }
 
-    const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+    const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
     unsigned.evidence = addToValue(unsigned.evidence, identity)
 
     const offer = await factory.offer(handler.wallet, {

@@ -16,8 +16,8 @@
 
 import { FunctionComponent } from "react"
 import { useForm } from "react-hook-form"
-import { AlertOutput, BasicNavigator, FormMainAction, MainTextInput, MainTextOutput, PrimaryForm, useNavigator, useRegov, WalletFormProvider } from "@owlmeans/regov-lib-react"
-import { REGISTRY_TYPE_CLAIMS } from "@owlmeans/regov-ssi-core"
+import { AlertOutput, BasicNavigator, FormMainAction, MainTextInput, MainTextOutput, PrimaryForm, useNavigator, useOwlWallet, WalletFormProvider } from "@owlmeans/vc-lib-react"
+import { REGISTRY_TYPE_CLAIMS } from "@owlmeans/vc-core"
 import Grid from "@mui/material/Grid"
 
 import { CustomDescription, DefaultPresentation, DefaultSubject, UseFieldAt } from "../../../custom.types"
@@ -31,7 +31,7 @@ import { buildClaimSend } from './helpers'
 export const ClaimView = (descr: CustomDescription): FunctionComponent<ClaimViewParams> =>
   (props) => {
     const { id, lockIssuer } = props
-    const { handler } = useRegov()
+    const { handler } = useOwlWallet()
     const { t, i18n } = useTranslation(descr.ns)
     const navigator = useNavigator<BasicNavigator>()
     const claim = handler.wallet?.getRegistry(REGISTRY_TYPE_CLAIMS)

@@ -14,31 +14,31 @@
  *  limitations under the License.
  */
 
-import { Presentation, Credential } from "@owlmeans/regov-ssi-core"
+import { Presentation, Credential } from "@owlmeans/vc-core"
 
 
-export const REGOV_CREDENTIAL_TYPE_SIGNATURE = 'OwlMeans:Regov:Signature'
+export const OWLMEANS_CREDENTIAL_TYPE_SIGNATURE = 'OwlMeans:Credentials:Signature'
 
-export const REGOV_CLAIM_TYPE_SIGNATURE = 'OwlMeans:Regov:Signature:Claim'
-export const REGOV_OFFER_TYPE_SIGNATURE = 'OwlMeans:Regov:Signature:Offer'
+export const OWLMEANS_CLAIM_TYPE_SIGNATURE = 'OwlMeans:Credentials:Signature:Claim'
+export const OWLMEANS_OFFER_TYPE_SIGNATURE = 'OwlMeans:Credentials:Signature:Offer'
 
-export const REGOV_CRED_PERSONALID = 'OwlMeans:RegovStd:PersonalId'
-export const REGOV_CLAIM_PRESONALID = 'OwlMeans:RegovStd:PersonalId:Claim'
-export const REGOV_OFFER_PRESONALID = 'OwlMeans:RegovStd:PersonalId:Offer'
+export const OWLMEANS_CRED_PERSONALID = 'OwlMeans:Std:PersonalId'
+export const OWLMEANS_CLAIM_PRESONALID = 'OwlMeans:Std:PersonalId:Claim'
+export const OWLMEANS_OFFER_PRESONALID = 'OwlMeans:Std:PersonalId:Offer'
 
-export const REGOV_SIGNATURE_REQUEST_TYPE = 'OwlMeans:Regov:Signature:Request'
-export const REGOV_SIGNATURE_RESPONSE_TYPE = 'OwlMeans:Regov:Signature:Response'
+export const OWLMEANS_SIGNATURE_REQUEST_TYPE = 'OwlMeans:Credentials:Signature:Request'
+export const OWLMEANS_SIGNATURE_RESPONSE_TYPE = 'OwlMeans:Credentials:Signature:Response'
 
-export const REGOV_SIGNATURE_CLAIM_TYPE = 'OwlMeans:Regov:Signature:Claim'
-export const REGOV_SIGNATURE_OFFER_TYPE = 'OwlMeans:Regov:Signature:Offer'
+export const OWLMEANS_SIGNATURE_CLAIM_TYPE = 'OwlMeans:Credentials:Signature:Claim'
+export const OWLMEANS_SIGNATURE_OFFER_TYPE = 'OwlMeans:Credentials:Signature:Offer'
 
 export const BASIC_IDENTITY_TYPE = 'Identity'
 
-export const REGOV_EXT_SIGNATURE_NAMESPACE = 'owlmeans-regov-ext-doc-signature'
+export const OWLMEANS_EXT_SIGNATURE_NAMESPACE = 'owlmeans-vc-ext-doc-signature'
 
-export type RegovSignatureCredential = typeof REGOV_CREDENTIAL_TYPE_SIGNATURE
+export type OwlMeansSignatureCredential = typeof OWLMEANS_CREDENTIAL_TYPE_SIGNATURE
 
-export type RegovStdPersonalIdClaim = Presentation<Credential<PersonalIdSubject>>
+export type OwlMeansStdPersonalIdClaim = Presentation<Credential<PersonalIdSubject>>
 
 export type SignatureCredential = Credential<SignatureSubject>
 

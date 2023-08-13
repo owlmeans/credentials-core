@@ -16,17 +16,17 @@
 
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import {
-  EmptyImplProps, EmptyProps, RegovComponentProps, useRegov, withRegov, WrappedComponentProps
+  EmptyImplProps, EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps
 } from '../../../common/'
-import { Credential } from '@owlmeans/regov-ssi-core'
-import { normalizeValue } from '@owlmeans/regov-ssi-core'
-import { EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams } from '@owlmeans/regov-ssi-core'
+import { Credential } from '@owlmeans/vc-core'
+import { normalizeValue } from '@owlmeans/vc-core'
+import { EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams } from '@owlmeans/vc-core'
 
 
-export const CredentialEvidenceWidget: FunctionComponent<EvidenceWidgetParams> = withRegov<EvidenceWidgetProps>(
+export const CredentialEvidenceWidget: FunctionComponent<EvidenceWidgetParams> = withOwlWallet<EvidenceWidgetProps>(
   'CredentialEvidenceWidget', ({ t, i18n, credential, isChild, renderer: Renderer }) => {
     const evidence = normalizeValue(credential.evidence)
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
     const [names, setNames] = useState<string[]>(new Array(evidence.length).fill(''))
     useEffect(() => {
       (async () => {
@@ -58,14 +58,14 @@ export const CredentialEvidenceWidget: FunctionComponent<EvidenceWidgetParams> =
     }
 
     return <Fragment />
-  }, { namespace: 'regov-wallet-credential' })
+  }, { namespace: 'owlmeans-wallet-credential' })
 
 export type EvidenceWidgetParams = EmptyProps & {
   credential: Credential
   isChild?: boolean
 }
 
-export type EvidenceWidgetProps = RegovComponentProps<EvidenceWidgetParams, EvidenceWidgetImplParams>
+export type EvidenceWidgetProps = WalletComponentProps<EvidenceWidgetParams, EvidenceWidgetImplParams>
 
 export type EvidenceWidgetImplParams = EmptyImplProps & {
   tabs: EvidenceTab[]

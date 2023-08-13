@@ -14,12 +14,12 @@
  *  limitations under the License.
  */
 
-import { EventParams, ExtensionRegistry, WalletHandler, WalletOptions } from '@owlmeans/regov-ssi-core'
+import { EventParams, ExtensionRegistry, WalletHandler, WalletOptions } from '@owlmeans/vc-core'
 import { Application } from 'express'
 import { ServerExtensionRegistry } from '../extension'
 
 
-export type RegovServerApp = {
+export type OwlMeansBotApp = {
   app: Application
   extensions: ServerExtensionRegistry
   handler: WalletHandler

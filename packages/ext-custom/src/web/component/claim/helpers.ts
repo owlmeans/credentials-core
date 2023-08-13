@@ -14,9 +14,9 @@
  *  limitations under the License.
  */
 
-import { BASIC_IDENTITY_TYPE, DIDCommConnectMeta, getDIDCommUtils } from '@owlmeans/regov-comm'
-import { BasicNavigator, ClaimNavigator, trySubmit, UIExtensionRegistry } from '@owlmeans/regov-lib-react'
-import { DIDDocument, ERROR_NO_IDENTITY, Extension, Identity, normalizeValue, WalletHandler } from '@owlmeans/regov-ssi-core'
+import { BASIC_IDENTITY_TYPE, DIDCommConnectMeta, getDIDCommUtils } from '@owlmeans/vc-comm'
+import { BasicNavigator, ClaimNavigator, trySubmit, UIExtensionRegistry } from '@owlmeans/vc-lib-react'
+import { DIDDocument, ERROR_NO_IDENTITY, Extension, Identity, normalizeValue, WalletHandler } from '@owlmeans/vc-core'
 import { UseFormReturn } from 'react-hook-form'
 import { CustomDescription, DefaultCredential, DefaultPresentation, UseFieldAt } from '../../../custom.types'
 import { ERROR_WIDGET_AUTHENTICATION } from '../../ui.types'

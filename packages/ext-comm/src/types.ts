@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-import { DIDCommConnectMeta, DIDCommHelper, WSClientConfig } from "@owlmeans/regov-comm"
-import { Extension, Presentation, Credential, CredentialWrapperMetadata, CredentialWrapper } from "@owlmeans/regov-ssi-core"
+import { DIDCommConnectMeta, DIDCommHelper, WSClientConfig } from "@owlmeans/vc-comm"
+import { Extension, Presentation, Credential, CredentialWrapperMetadata, CredentialWrapper } from "@owlmeans/vc-core"
 
 
-export const REGOV_EXT_COMM_NAMESPACE = 'owlmeans-regov-ext-comm'
+export const OWLMEANS_EXT_COMM_NAMESPACE = 'owlmeans-vc-ext-comm'
 
 export type CommExtConfig = {
   wsConfig: { [alias: string]: WSClientConfig }

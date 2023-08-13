@@ -14,12 +14,12 @@
  *  limitations under the License.
  */
 
-import { buildUIExtension, castMainModalHandler, ExtensionItemPurpose, EXTENSION_ITEM_PURPOSE_ITEM, MainModalAuthenticatedEventParams, PurposeListItemParams, UIExtensionFactoryProduct } from "@owlmeans/regov-lib-react"
-import { addObserverToSchema, EXTENSION_TRIGGER_AUTHENTICATED, isPresentation } from "@owlmeans/regov-ssi-core"
+import { buildUIExtension, castMainModalHandler, ExtensionItemPurpose, EXTENSION_ITEM_PURPOSE_ITEM, MainModalAuthenticatedEventParams, PurposeListItemParams, UIExtensionFactoryProduct } from "@owlmeans/vc-lib-react"
+import { addObserverToSchema, EXTENSION_TRIGGER_AUTHENTICATED, isPresentation } from "@owlmeans/vc-core"
 import { authExtension } from "../../ext"
 import { DIDAuthResponse } from './component'
-import { REGOV_AUTH_REQUEST_TYPE } from "../../types"
-import { EVENT_INIT_CONNECTION, InitCommEventParams } from "@owlmeans/regov-comm"
+import { OWLMEANS_AUTH_REQUEST_TYPE } from "../../types"
+import { EVENT_INIT_CONNECTION, InitCommEventParams } from "@owlmeans/vc-comm"
 import { AuthRequestItem } from "../component"
 
 
@@ -42,7 +42,7 @@ authExtension.schema = addObserverToSchema(authExtension.schema, {
         }
 
         if (isPresentation(doc)) {
-          if (doc.type.includes(REGOV_AUTH_REQUEST_TYPE)) {
+          if (doc.type.includes(OWLMEANS_AUTH_REQUEST_TYPE)) {
             modalHandler.handle.getContent = () =>
               <DIDAuthResponse request={doc} conn={conn} connection={statusHandle} close={close} />
 
@@ -64,7 +64,7 @@ export const authUIExtension = buildUIExtension(authExtension,
     switch (purpose) {
       case EXTENSION_ITEM_PURPOSE_ITEM:
         switch (type) {
-          case REGOV_AUTH_REQUEST_TYPE:
+          case OWLMEANS_AUTH_REQUEST_TYPE:
             return [{
               com: AuthRequestItem(authExtension),
               extensionCode: `${authExtension.schema.details.code}AuthRequestItem`,

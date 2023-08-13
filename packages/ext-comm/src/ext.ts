@@ -17,15 +17,15 @@
 import {
   buildDidCommHelper, commDidHelperBuilder, createWSChannel, DIDCommChannel, DIDCommHelper,
   ERROR_COMM_CONNECTION_UNKNOWN, EVENT_INIT_CONNECTION, InitCommEventParams
-} from '@owlmeans/regov-comm'
+} from '@owlmeans/vc-comm'
 import {
   addObserverToSchema, buildExtension, buildExtensionSchema, EXTENSION_TRIGGER_ADD_CREDENTIAL,
   CredentialEventParams, EVENT_EXTENSION_AFTER_BULIDING_DID, REGISTRY_TYPE_IDENTITIES,
   REGISTRY_SECTION_OWN, ExtensionEventAfterBuildingDid, EXTENSION_TRIGGER_UNAUTHENTICATED
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { localizations } from './i18n'
 import {
-  CommExtConfig, DEFAULT_SERVER_ALIAS, REGOV_EXT_COMM_NAMESPACE, CommExtension, BASIC_IDENTITY_TYPE
+  CommExtConfig, DEFAULT_SERVER_ALIAS, OWLMEANS_EXT_COMM_NAMESPACE, CommExtension, BASIC_IDENTITY_TYPE
 } from './types'
 
 
@@ -33,7 +33,7 @@ export const buildCommExtension = (config: CommExtConfig) => {
 
   let commExtensionSchema = buildExtensionSchema({
     name: 'extension.details.name',
-    code: 'owlmeans-regov-comm'
+    code: 'owlmeans-vc-comm'
   }, {})
 
   const _didComm: { [walletAlias: string]: DIDCommHelper } = {}
@@ -153,7 +153,7 @@ export const buildCommExtension = (config: CommExtConfig) => {
   commExtension.didComm = _didComm
 
   commExtension.localization = {
-    ns: REGOV_EXT_COMM_NAMESPACE,
+    ns: OWLMEANS_EXT_COMM_NAMESPACE,
     translations: localizations
   }
 

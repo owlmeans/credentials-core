@@ -15,14 +15,14 @@
  */
 
 import { Fragment, FunctionComponent, useMemo } from 'react'
-import { GroupSubject, MembershipSubject, REGOV_CREDENTIAL_TYPE_GROUP } from '../../../../types'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
+import { GroupSubject, MembershipSubject, OWLMEANS_CREDENTIAL_TYPE_GROUP } from '../../../../types'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
 import {
   Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams
-} from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper, Credential, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
-import { normalizeValue } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { CredentialWrapper, Credential, getCompatibleSubject } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
+import { normalizeValue } from '@owlmeans/vc-core'
 import Person from '@mui/icons-material/Person'
 import Avatar from '@mui/material/Avatar'
 import ListItem from '@mui/material/ListItem'
@@ -34,12 +34,12 @@ import Typography from '@mui/material/Typography'
 
 
 export const MembershipItem = (ext: Extension): FunctionComponent<MembershipItemParams> =>
-  withRegov<MembershipItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+  withOwlWallet<MembershipItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
     const subject = getCompatibleSubject<MembershipSubject>(wrapper.credential)
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const group = normalizeValue(wrapper.credential.evidence).find(
-      evidence => evidence?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+      evidence => evidence?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
     )
 
     const groupSubject = getCompatibleSubject<GroupSubject>(group as Credential)
@@ -89,5 +89,5 @@ export type MembershipItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type MembershipItemProps = RegovComponentProps<MembershipItemParams>
+export type MembershipItemProps = WalletComponentProps<MembershipItemParams>
 

@@ -15,17 +15,17 @@
  */
 
 import {
-  GroupSubject, MembershipSubject, RegovGroupExtension, REGOV_CREDENTIAL_TYPE_GROUP,
-  REGOV_EXT_GROUP_NAMESPACE
+  GroupSubject, MembershipSubject, OwlMeansGroupExtension, OWLMEANS_CREDENTIAL_TYPE_GROUP,
+  OWLMEANS_EXT_GROUP_NAMESPACE
 } from '../../../../types'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
 import {
   dateFormatter, MainTextOutput, PrimaryForm, WalletFormProvider, CredentialActionGroup
-} from '@owlmeans/regov-lib-react'
-import { normalizeValue } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-lib-react'
+import { normalizeValue } from '@owlmeans/vc-core'
 import {
   getCompatibleSubject, Presentation, Credential, REGISTRY_TYPE_CLAIMS, REGISTRY_SECTION_OWN
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { Fragment, FunctionComponent } from 'react'
 import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
@@ -34,14 +34,14 @@ import DialogContent  from '@mui/material/DialogContent'
 
 
 export const MembershipClaimView: FunctionComponent<ClaimViewParams> =
-  withRegov<ClaimViewProps>({
-    namespace: REGOV_EXT_GROUP_NAMESPACE
+  withOwlWallet<ClaimViewProps>({
+    namespace: OWLMEANS_EXT_GROUP_NAMESPACE
   }, ({ credential: presentation, t, i18n, close }) => {
     const subject = getCompatibleSubject<MembershipSubject>(presentation.verifiableCredential[0])
-    const { handler } = useRegov()
+    const { handler } = useOwlWallet()
 
     const group = normalizeValue(presentation.verifiableCredential[0].evidence).find(
-      cred => cred?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+      cred => cred?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
     ) as Credential | undefined
 
     const groupSubject = group ? getCompatibleSubject<GroupSubject>(group) : undefined
@@ -85,12 +85,12 @@ export const MembershipClaimView: FunctionComponent<ClaimViewParams> =
   })
 
 export type ClaimViewParams = EmptyProps & {
-  ext: RegovGroupExtension
+  ext: OwlMeansGroupExtension
   credential: Presentation
   close?: () => void
 }
 
-export type ClaimViewProps = RegovComponentProps<ClaimViewParams>
+export type ClaimViewProps = WalletComponentProps<ClaimViewParams>
 
 export type ClaimViewFields = {
   membership: {

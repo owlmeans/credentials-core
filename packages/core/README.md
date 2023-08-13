@@ -1,3 +1,3 @@
-# OwlMeans Re:gov library: Core
+# OwlMeans Credentials library: Core
 
 Required for creation, signing and verifying credentials. Based on w3c did and vc standarts.

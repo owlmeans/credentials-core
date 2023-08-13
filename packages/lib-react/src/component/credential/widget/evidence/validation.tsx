@@ -15,12 +15,12 @@
  */
 
 import { Fragment, FunctionComponent } from 'react'
-import { EmptyProps, RegovComponentProps, withRegov, WrappedComponentProps } from '../../../../common/'
-import { EvidenceValidationResult } from '@owlmeans/regov-ssi-core'
+import { EmptyProps, WalletComponentProps, withOwlWallet, WrappedComponentProps } from '../../../../common/'
+import { EvidenceValidationResult } from '@owlmeans/vc-core'
 
 
-export const ValidationResultWidget: FunctionComponent<ResultWidgetParams> = withRegov<ResultWidgetProps>(
-  { namespace: 'regov-wallet-credential' },
+export const ValidationResultWidget: FunctionComponent<ResultWidgetParams> = withOwlWallet<ResultWidgetProps>(
+  { namespace: 'owlmeans-wallet-credential' },
   ({ t, i18n, result, reload, com: Renderer }) => {
     const props = {
       t, i18n, result, reload
@@ -36,7 +36,7 @@ export type ResultWidgetParams = EmptyProps & {
   com?: FunctionComponent<ResultWidgetImplProps>
 }
 
-export type ResultWidgetProps = RegovComponentProps<ResultWidgetParams, ResultWidgetImplParams>
+export type ResultWidgetProps = WalletComponentProps<ResultWidgetParams, ResultWidgetImplParams>
 
 export type ResultWidgetImplParams = {
   reload?: () => void

@@ -15,17 +15,17 @@
  */
 
 import { Fragment, PropsWithChildren, useEffect, useMemo, useState } from 'react'
-import { buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_AUTHENTICATED, EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, WalletHandler, cryptoHelper, Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/regov-ssi-core'
+import { buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_AUTHENTICATED, EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, WalletHandler, cryptoHelper, Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
 
 import { i18n as I18n } from 'i18next'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import { i18nDefaultOptions, i18nSetup } from '../../i18n'
 import { UIExtensionRegistry } from '../../extension'
-import { BasicNavigator, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, RegovProvider } from '../../common'
+import { BasicNavigator, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider } from '../../common'
 import { buildStorageHelper } from '../storage'
 import { WalletAppParams } from '../app/types'
-import { getRegovPassword, isRegovPasswordSet } from './utils'
+import { getOwlWalletPassword, isOwlWalletPasswordSet } from './utils'
 import { webComponentMap } from '../component'
 import { IntegratedWalletPlugin, UneregisterIntegratedWalletPlugin } from './types'
 
@@ -64,14 +64,14 @@ export const WalletPersistentIntegrationReact = (
   )
   const [pluginDestructors, setPluginDestructors] = useState<undefined | UneregisterIntegratedWalletPlugin[]>(undefined)
 
-  const [loaded, setLoaded] = useState<PasswordState>(isRegovPasswordSet() ? PasswordState.LOADING : PasswordState.NO)
+  const [loaded, setLoaded] = useState<PasswordState>(isOwlWalletPasswordSet() ? PasswordState.LOADING : PasswordState.NO)
   const navigator = navigatorBuilder(handler)
 
   const [_stateSeed, updateState] = useState(0)
   useEffect(() => handler.observe(updateState, () => _stateSeed + 1))
 
   useEffect(() => {
-    if (loaded === PasswordState.NO && isRegovPasswordSet()) {
+    if (loaded === PasswordState.NO && isOwlWalletPasswordSet()) {
       setLoaded(PasswordState.LOADING)
     }
   }, [source, renderSeed])
@@ -80,13 +80,13 @@ export const WalletPersistentIntegrationReact = (
 
   // useEffect(() => {
 
-  // }, [source, isRegovPasswordSet(), storage])
+  // }, [source, isOwlWalletPasswordSet(), storage])
 
   switch (loaded) {
     case PasswordState.LOADING:
       return <>
-        <CryptoLoader deps={[source, isRegovPasswordSet(), storage]} onFinish={() => {
-          if (!isRegovPasswordSet()) {
+        <CryptoLoader deps={[source, isOwlWalletPasswordSet(), storage]} onFinish={() => {
+          if (!isOwlWalletPasswordSet()) {
             return
           }
           if (passedHandler && passedHandler.wallet && handler.wallet) {
@@ -105,7 +105,7 @@ export const WalletPersistentIntegrationReact = (
               if (!handler.stores['default']) {
                 const wallet = await buildWalletWrapper(
                   { crypto: cryptoHelper, extensions: extensions?.registry },
-                  getRegovPassword() ?? '',
+                  getOwlWalletPassword() ?? '',
                   {
                     name: 'Default wallet',
                     alias: 'default',
@@ -126,7 +126,7 @@ export const WalletPersistentIntegrationReact = (
               await handler.loadStore(async (handler) => {
                 return await buildWalletWrapper(
                   { crypto: cryptoHelper, extensions: extensions?.registry },
-                  getRegovPassword() ?? '',
+                  getOwlWalletPassword() ?? '',
                   handler.stores['default'],
                   {
                     prefix: config.DID_PREFIX,
@@ -196,12 +196,12 @@ export const WalletPersistentIntegrationReact = (
       </>
     case PasswordState.LOADED:
       return (
-        <RegovProvider i18n={i18n} map={webComponentMap} handler={handler}
+        <OwlWalletProvider i18n={i18n} map={webComponentMap} handler={handler}
           config={config} navigator={navigator} extensions={extensions} serverClient={serverClient}
         >
           {children}
           <MainLoading nav={navigator} />
-        </RegovProvider>
+        </OwlWalletProvider>
       )
   }
 

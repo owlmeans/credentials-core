@@ -1,4 +1,4 @@
-import '@owlmeans/regov-lib-native/dist/init'
+import '@owlmeans/vc-lib-native/dist/init'
 
 import { AppRegistry } from 'react-native'
 

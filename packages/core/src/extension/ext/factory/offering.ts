@@ -18,7 +18,7 @@ import { DIDDocument, DIDDocumentUnsinged, DIDPURPOSE_ASSERTION, DIDPURPOSE_AUTH
 import { Credential } from '../../../vc'
 import { buildWalletLoader } from '../../../wallet/loader'
 import { updateDidIdWithKey, validateVerifiableId } from "../../schema"
-import { OfferMethodBuilder, TYPE_REGOV_OFFER } from "../types"
+import { OfferMethodBuilder, TYPE_OWLMEANS_OFFER } from "../types"
 
 
 export const defaultOfferMethod: OfferMethodBuilder = schema => async (wallet, params) => {
@@ -62,7 +62,7 @@ export const defaultOfferMethod: OfferMethodBuilder = schema => async (wallet, p
 
   const signed = await wallet.ssi.signCredential(offeredCredential, issuerDid as DIDDocument)
   const offer = await wallet.ssi.buildPresentation([signed], {
-    holder: issuerDid, type: [...(offerType != null ? [offerType] : []), TYPE_REGOV_OFFER], id
+    holder: issuerDid, type: [...(offerType != null ? [offerType] : []), TYPE_OWLMEANS_OFFER], id
   })
 
   return wallet.ssi.signPresentation(offer, issuerDid as DIDDocument, { challenge, domain })

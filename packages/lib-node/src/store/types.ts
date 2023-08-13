@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { WalletHandler } from "@owlmeans/regov-ssi-core"
+import { WalletHandler } from "@owlmeans/vc-core"
 
 
 export type ServerStore = {

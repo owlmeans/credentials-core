@@ -1,9 +1,9 @@
 {
-  "name": "@owlmeans/regov-ssi-core",
+  "name": "@owlmeans/vc-core",
   "version": "0.8.2",
-  "description": "It's core package for OwlMeans Regov SSI",
+  "description": "It's core package for OwlMeans Credentials SSI library",
   "author": "Igor Tkachenk <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/core"
   },
   "scripts": {
@@ -24,7 +24,7 @@
     "review:compact": "ts-node --project tsconfig.json --cwd-mode --ignore .js ./src/debug/compactssi.ts"
   },
   "bugs": {
-    "url": "https://github.com/owlmeans/regov-ssi-mono/issues"
+    "url": "https://github.com/owlmeans/credentials-core/issues"
   },
   "devDependencies": {
     "@types/crypto-ld": "^7.0.0",

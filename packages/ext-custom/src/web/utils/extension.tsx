@@ -17,18 +17,18 @@
 import {
   EXTENSION_ITEM_PURPOSE_CLAIM, EXTENSION_ITEM_PURPOSE_ITEM, EXTENSION_ITEM_PURPOSE_ROUTE, ManuItemParams,
   MENU_TAG_CLAIM_NEW, MENU_TAG_REQUEST_NEW, UIExtension, UIExtensionFactoryProduct, castMainModalHandler
-} from "@owlmeans/regov-lib-react"
+} from "@owlmeans/vc-lib-react"
 import {
   addObserverToSchema, Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, isPresentation, META_ROLE_CLAIM,
   META_ROLE_OFFER, singleValue
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { CustomDescription, DefaultCredential, DefaultDescription, DefaultPresentation, isCustom } from "../../custom.types"
 import { updateFactories } from "../../utils/extension"
 import { ClaimCreate } from "../component/claim/create"
 import { ClaimView } from "../component/claim/view"
 import { ClaimItem } from "../component/claim/item"
 import { makeClaimPreviewPath } from "./router"
-import { IncommigDocumentWithConn } from "@owlmeans/regov-comm"
+import { IncommigDocumentWithConn } from "@owlmeans/vc-comm"
 import { OfferCreate } from "../component/offer/create"
 import { OfferItem } from '../component/offer/item'
 import { OfferView } from '../component/offer/view'

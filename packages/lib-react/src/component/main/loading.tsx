@@ -16,11 +16,11 @@
 
 import { FunctionComponent } from 'react'
 import { 
-  BasicNavigator, EmptyProps, NavigatorLoading, RegovComponentProps, withRegov, WrappedComponentProps
+  BasicNavigator, EmptyProps, NavigatorLoading, WalletComponentProps, withOwlWallet, WrappedComponentProps
 } from '../../common/'
 
 
-export const MainLoading: FunctionComponent<MainLoadingParams> = withRegov<MainLoadingProps>(
+export const MainLoading: FunctionComponent<MainLoadingParams> = withOwlWallet<MainLoadingProps>(
   'MainLoading',
   ({ t, i18n, nav, renderer: Renderer }) => {
     const handle: LoadingHandle = {}
@@ -58,11 +58,11 @@ export const MainLoading: FunctionComponent<MainLoadingParams> = withRegov<MainL
 
     return <Renderer t={t} i18n={i18n} handle={handle} />
   },
-  { namespace: 'regov-wallet-main' }
+  { namespace: 'owlmeans-wallet-main' }
 )
 
 
-export type MainLoadingProps = RegovComponentProps<MainLoadingParams, MainLoadingImplProps>
+export type MainLoadingProps = WalletComponentProps<MainLoadingParams, MainLoadingImplProps>
 
 export type MainLoadingParams = {
   nav: BasicNavigator

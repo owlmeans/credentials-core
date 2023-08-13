@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-import { addObserverToSchema, ExtensionDetails, REGISTRY_TYPE_IDENTITIES } from "@owlmeans/regov-ssi-core"
-import { APP_EVENT_PRODUCE_IDENTITY, buildServerExtension, ServerEventProduceIdentityParams } from "@owlmeans/regov-lib-node"
+import { addObserverToSchema, ExtensionDetails, REGISTRY_TYPE_IDENTITIES } from "@owlmeans/vc-core"
+import { APP_EVENT_PRODUCE_IDENTITY, buildServerExtension, ServerEventProduceIdentityParams } from "@owlmeans/vc-lib-node"
 import { BASIC_IDENTITY_TYPE, BuildExtensionParams, buildIdentityExtension } from "./ext"
-import { REGOV_IDENTITY_DEFAULT_NAMESPACE } from "./types"
+import { OWLMEANS_IDENTITY_DEFAULT_NAMESPACE } from "./types"
 import { ERROR_NO_EXENSION, buildRouter } from "./server"
 
 
@@ -25,7 +25,7 @@ export const buildIdentityExtensionServer = (
   type: string,
   params: BuildExtensionParams,
   details: ExtensionDetails,
-  ns = REGOV_IDENTITY_DEFAULT_NAMESPACE
+  ns = OWLMEANS_IDENTITY_DEFAULT_NAMESPACE
 ) => {
   const extension = buildIdentityExtension(type, params, {
     ...details,

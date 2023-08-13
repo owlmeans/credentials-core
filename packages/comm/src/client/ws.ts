@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { makeRandomUuid } from '@owlmeans/regov-ssi-core'
+import { makeRandomUuid } from '@owlmeans/vc-core'
 import { client as WSClient, connection as WSConnection, w3cwebsocket as BrowserClient } from 'websocket'
 import {
   COMM_WS_PREFIX_CONFIRMED, COMM_WS_PREFIX_DIDDOC, COMM_WS_PREFIX_ERROR, COMM_WS_SUBPROTOCOL, ERROR_COMM_WS_TIMEOUT

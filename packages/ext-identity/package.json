@@ -1,14 +1,14 @@
 {
-  "name": "@owlmeans/regov-ext-identity",
+  "name": "@owlmeans/vc-ext-identity",
   "version": "0.8.2",
-  "description": "Simple Identity Extension for Regov SSI",
+  "description": "Simple Identity Extension for OwlMeans Crednetials Library",
   "keywords": [
-    "Regov",
+    "OwlMeans Credentials",
     "identity",
     "SSI"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/ext-identity"
   },
   "sources": "src/index.ts",
@@ -35,9 +35,9 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/regov-lib-node": "^0.8.0",
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-lib-node": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "express": "*",
     "i18next": "*",
     "react": "*",
@@ -46,10 +46,10 @@
     "react-i18next": "*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
-    "@owlmeans/regov-lib-node": {
+    "@owlmeans/vc-lib-node": {
       "optional": true
     },
     "express": {

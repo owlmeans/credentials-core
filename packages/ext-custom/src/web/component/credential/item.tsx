@@ -21,20 +21,20 @@ import { CustomDescription, DefaultPresentation, DefaultSubject, UseFieldAt } fr
 // import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import { CredentialWrapper, getDeepValue } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, ListItemMeta, MenuIconButton, useRegov } from '@owlmeans/regov-lib-react'
+import { CredentialWrapper, getDeepValue } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, ListItemMeta, MenuIconButton, useOwlWallet } from '@owlmeans/vc-lib-react'
 import { castSectionKey } from '../../utils/tools'
 import Typography from '@mui/material/Typography'
 import { getSubject } from '../../utils/cred'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { triggerIncommingDocView } from '@owlmeans/regov-comm'
+import { triggerIncommingDocView } from '@owlmeans/vc-comm'
 
 
 export const CredentialItem = (descr: CustomDescription<DefaultSubject>): FunctionComponent<CredentialItemProps> =>
   ({ action, wrapper, meta, trigger }) => {
     const { t, i18n } = useTranslation(descr.ns)
     const sectionKey = castSectionKey(descr)
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
     action = action || (

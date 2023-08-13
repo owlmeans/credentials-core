@@ -17,44 +17,44 @@
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 
 import {
-  GroupSubject, MembershipSubject, RegovGroupExtension, REGOV_CREDENTIAL_TYPE_GROUP,
-  REGOV_CREDENTIAL_TYPE_MEMBERSHIP, REGOV_EXT_GROUP_NAMESPACE, REGOV_GROUP_CHAINED_TYPE,
-  REGOV_GROUP_CLAIM_TYPE, REGOV_MEMBERSHIP_OFFER_TYPE
+  GroupSubject, MembershipSubject, OwlMeansGroupExtension, OWLMEANS_CREDENTIAL_TYPE_GROUP,
+  OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP, OWLMEANS_EXT_GROUP_NAMESPACE, OWLMEANS_GROUP_CHAINED_TYPE,
+  OWLMEANS_GROUP_CLAIM_TYPE, OWLMEANS_MEMBERSHIP_OFFER_TYPE
 } from '../../../../types'
 import { getGroupFromMembershipClaimPresentation, getMembershipClaim, getMembershipClaimHolder } from '../../../../util'
-import { EmptyProps, generalNameVlidation, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
+import { EmptyProps, generalNameVlidation, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
 import {
   getCompatibleSubject, Presentation, Credential, normalizeValue, REGISTRY_SECTION_OWN,
   REGISTRY_TYPE_IDENTITIES, REGISTRY_SECTION_PEER
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import {
   AlertOutput, CredentialActionGroup, dateFormatter, LongTextInput, MainTextInput, MainTextOutput,
   PrimaryForm, WalletFormProvider
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import { useForm } from 'react-hook-form'
 import { ERROR_MEMBERSHIP_READYTO_CLAIM, ERROR_WIDGET_AUTHENTICATION } from '../../types'
-import { EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams } from '@owlmeans/regov-ssi-core'
-import { singleValue, addToValue } from '@owlmeans/regov-ssi-core'
+import { EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams } from '@owlmeans/vc-core'
+import { singleValue, addToValue } from '@owlmeans/vc-core'
 
 import Button from '@mui/material/Button'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
-import { CommConnectionStatusHandler, DIDCommConnectMeta, getDIDCommUtils } from '@owlmeans/regov-comm'
-import { REGISTRY_TYPE_INBOX } from '@owlmeans/regov-ext-comm'
+import { CommConnectionStatusHandler, DIDCommConnectMeta, getDIDCommUtils } from '@owlmeans/vc-comm'
+import { REGISTRY_TYPE_INBOX } from '@owlmeans/vc-ext-comm'
 
 
-export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withRegov<MembershipOfferProps>(
-  { namespace: REGOV_EXT_GROUP_NAMESPACE }, (props) => {
+export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withOwlWallet<MembershipOfferProps>(
+  { namespace: OWLMEANS_EXT_GROUP_NAMESPACE }, (props) => {
     const { credential: presentation, navigator, ext, close, t, i18n, conn } = props
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
 
     const membershipClaim = normalizeValue(presentation.verifiableCredential)
       .find(credential => credential.type.includes(
-        REGOV_CREDENTIAL_TYPE_MEMBERSHIP
+        OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP
       ))
 
     let group: Credential = normalizeValue(membershipClaim?.evidence).find(
-      evidence => (evidence as Credential).type.includes(REGOV_GROUP_CHAINED_TYPE)
+      evidence => (evidence as Credential).type.includes(OWLMEANS_GROUP_CHAINED_TYPE)
     ) as Credential
 
     if (!group) {
@@ -66,7 +66,7 @@ export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withReg
         .getCredential(conn.sender.id, REGISTRY_SECTION_OWN)
       group = normalizeValue(ownerMembership?.credential.evidence)
         .find(
-          evidence => (evidence as Credential).type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+          evidence => (evidence as Credential).type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
         ) as Credential
     }
     const credential = presentation.verifiableCredential[0]
@@ -106,7 +106,7 @@ export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withReg
         if (
           !normalizeValue(unsignedMembership.evidence)
             .find(evidence => (evidence as Credential).type.includes(
-              REGOV_CREDENTIAL_TYPE_GROUP
+              OWLMEANS_CREDENTIAL_TYPE_GROUP
             ))
         ) {
           unsignedMembership.evidence = addToValue(unsignedMembership.evidence, group)
@@ -114,14 +114,14 @@ export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withReg
           methods.setValue('membership.offer.groupId', group.id)
         }
 
-        const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+        const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
         const offer = await factory.offer(handler.wallet, {
           claim: presentation,
           credential: unsignedMembership,
           holder: getMembershipClaimHolder(presentation),
           cryptoKey: await handler.wallet.keys.getCryptoKey(),
-          claimType: REGOV_GROUP_CLAIM_TYPE,
-          offerType: REGOV_MEMBERSHIP_OFFER_TYPE,
+          claimType: OWLMEANS_GROUP_CLAIM_TYPE,
+          offerType: OWLMEANS_MEMBERSHIP_OFFER_TYPE,
           subject: {
             ...subject, ...(
               subject.groupId ? { groupId: subject.groupId } : { groupId: group.id }
@@ -150,7 +150,7 @@ export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withReg
         if (!handler.wallet || !extensions) {
           return
         }
-        const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+        const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
         const result = await factory.validate(handler.wallet, {
           presentation, credential, extensions: extensions.registry
         })
@@ -244,14 +244,14 @@ export const MembershipOffer: FunctionComponent<MembershipOfferParams> = withReg
   })
 
 export type MembershipOfferParams = EmptyProps & {
-  ext: RegovGroupExtension
+  ext: OwlMeansGroupExtension
   credential: Presentation
   conn?: DIDCommConnectMeta
   connection?: CommConnectionStatusHandler
   close?: () => void
 }
 
-export type MembershipOfferProps = RegovComponentProps<MembershipOfferParams>
+export type MembershipOfferProps = WalletComponentProps<MembershipOfferParams>
 
 export type OfferFields = {
   membership: {

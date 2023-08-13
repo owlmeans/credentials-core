@@ -15,26 +15,26 @@
  */
 
 import { FunctionComponent, useEffect, useState, } from 'react'
-import { Extension } from '@owlmeans/regov-ssi-core'
-import { REGOV_CREDENTIAL_TYPE_GROUP, GroupSubject, REGOV_GROUP_ROOT_TYPE } from '../../../../types'
+import { Extension } from '@owlmeans/vc-core'
+import { OWLMEANS_CREDENTIAL_TYPE_GROUP, GroupSubject, OWLMEANS_GROUP_ROOT_TYPE } from '../../../../types'
 import {
-  EmptyProps, generalNameVlidation, RegovComponentProps, RegovValidationRules, SwitchInput, useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
+  EmptyProps, generalNameVlidation, WalletComponentProps, OwlWalletValidationRules, SwitchInput, useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import { useForm } from 'react-hook-form'
 import {
   AlertOutput, dateFormatter, FormMainAction, LongTextInput, MainTextInput, MainTextOutput,
   PrimaryForm, WalletFormProvider
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import {
   ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION, ERROR_CREATION_READYTO_SIGN
 } from '../../types'
-import { REGISTRY_TYPE_CREDENTIALS, UnsignedCredential } from '@owlmeans/regov-ssi-core'
+import { REGISTRY_TYPE_CREDENTIALS, UnsignedCredential } from '@owlmeans/vc-core'
 
 
 export const GroupCreation = (ext: Extension): FunctionComponent<GroupCreationParams> =>
-  withRegov<GroupCreationProps>({ namespace: ext.localization?.ns }, ({ t, i18n, navigator, next }) => {
-    const { handler, extensions } = useRegov()
-    const rules: RegovValidationRules = {
+  withOwlWallet<GroupCreationProps>({ namespace: ext.localization?.ns }, ({ t, i18n, navigator, next }) => {
+    const { handler, extensions } = useOwlWallet()
+    const rules: OwlWalletValidationRules = {
       'group.creation.credentialName': generalNameVlidation(true),
       'group.name': {
         required: true, maxLength: 192, validate: {
@@ -57,7 +57,7 @@ export const GroupCreation = (ext: Extension): FunctionComponent<GroupCreationPa
           if (!ext) {
             throw ERROR_WIDGET_EXTENSION
           }
-          const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_GROUP)
+          const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_GROUP)
           const unsginedGroup = await factory.build(handler.wallet, {
             extensions: extensions?.registry, subjectData: {}
           })
@@ -127,7 +127,7 @@ export const GroupCreation = (ext: Extension): FunctionComponent<GroupCreationPa
           extensions: extensions?.registry,
           subjectData: unsginedGroup.credentialSubject,
           depth: Math.floor(data.group.depth || 0),
-          chainedType: REGOV_GROUP_ROOT_TYPE,
+          chainedType: OWLMEANS_GROUP_ROOT_TYPE,
         }) : unsginedGroup
         const credential = await factory.sign(handler.wallet, { unsigned })
 
@@ -175,7 +175,7 @@ export const GroupCreation = (ext: Extension): FunctionComponent<GroupCreationPa
 
 export type GroupCreationParams = EmptyProps & { next: () => void }
 
-export type GroupCreationProps = RegovComponentProps<GroupCreationParams>
+export type GroupCreationProps = WalletComponentProps<GroupCreationParams>
 
 export type GroupCreationFields = {
   group: {

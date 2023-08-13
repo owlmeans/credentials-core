@@ -16,14 +16,14 @@
 
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import {
-  CredentialEvidenceWidget, EmptyProps, RegovComponentProps, useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
+  CredentialEvidenceWidget, EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import {
-  REGOV_EXT_GROUP_NAMESPACE, RegovGroupExtension, GroupSubject, REGOV_CREDENTIAL_TYPE_GROUP
+  OWLMEANS_EXT_GROUP_NAMESPACE, OwlMeansGroupExtension, GroupSubject, OWLMEANS_CREDENTIAL_TYPE_GROUP
 } from '../../../../types'
-import { Credential, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { EntityRenderer, EntityTextRenderer, ValidationResultWidgetWeb } from '@owlmeans/regov-lib-react'
-import { ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/regov-ssi-core'
+import { Credential, getCompatibleSubject } from '@owlmeans/vc-core'
+import { EntityRenderer, EntityTextRenderer, ValidationResultWidgetWeb } from '@owlmeans/vc-lib-react'
+import { ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/vc-core'
 import { MembershipClaim } from '../membership'
 import Close from '@mui/icons-material/Close'
 import People from '@mui/icons-material/People'
@@ -38,12 +38,12 @@ import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 
 
-export const GroupView: FunctionComponent<GroupViewParams> = withRegov<GroupViewProps>({
-  namespace: REGOV_EXT_GROUP_NAMESPACE
+export const GroupView: FunctionComponent<GroupViewParams> = withOwlWallet<GroupViewProps>({
+  namespace: OWLMEANS_EXT_GROUP_NAMESPACE
 }, ({ t, credential, close, ext }) => {
   const subject = getCompatibleSubject<GroupSubject>(credential)
-  const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_GROUP)
-  const { handler, extensions } = useRegov()
+  const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_GROUP)
+  const { handler, extensions } = useOwlWallet()
   const [counter, setCounter] = useState<number>(0)
 
   const reload = () => setCounter(counter + 1)
@@ -131,10 +131,10 @@ export const GroupView: FunctionComponent<GroupViewParams> = withRegov<GroupView
 })
 
 export type GroupViewParams = EmptyProps & {
-  ext: RegovGroupExtension,
+  ext: OwlMeansGroupExtension,
   credential: Credential
   close?: () => void
 }
 
-export type GroupViewProps = RegovComponentProps<GroupViewParams>
+export type GroupViewProps = WalletComponentProps<GroupViewParams>
 

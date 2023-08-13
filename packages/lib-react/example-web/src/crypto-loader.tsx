@@ -15,9 +15,9 @@
  */
 
 import { FC, useEffect } from 'react'
-import { CryptoLoaderProps } from '@owlmeans/regov-lib-react'
+import { CryptoLoaderProps } from '@owlmeans/vc-lib-react'
 import { encodeBase58, decodeBase58, toBeArray, getBytes, sha256, randomBytes, HDNodeWallet } from 'ethers'
-import { getCryptoAdapter } from '@owlmeans/regov-ssi-core'
+import { getCryptoAdapter } from '@owlmeans/vc-core'
 import { signSync, verify } from '@noble/secp256k1'
 
 const aes = require('browserify-aes/browser')

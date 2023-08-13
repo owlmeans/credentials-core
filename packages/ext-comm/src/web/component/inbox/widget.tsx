@@ -15,8 +15,8 @@
  */
 
 import { Fragment, FunctionComponent } from "react"
-import { CredentialList, EmptyProps, RegovComponentProps, withRegov } from "@owlmeans/regov-lib-react"
-import { Extension, REGISTRY_SECTION_PEER } from "@owlmeans/regov-ssi-core"
+import { CredentialList, EmptyProps, WalletComponentProps, withOwlWallet } from "@owlmeans/vc-lib-react"
+import { Extension, REGISTRY_SECTION_PEER } from "@owlmeans/vc-core"
 import { REGISTRY_TYPE_INBOX } from "../../../types"
 
 import Button from '@mui/material/Button'
@@ -29,7 +29,7 @@ import Close from '@mui/icons-material/Close'
 
 
 export const InboxWidget = (ext: Extension): FunctionComponent<InboxWidgetParams> =>
-  withRegov<InboxWidgetProps>({ namespace: ext.localization?.ns }, props => {
+  withOwlWallet<InboxWidgetProps>({ namespace: ext.localization?.ns }, props => {
     const { close, t } = props
 
     return <Fragment>
@@ -66,4 +66,4 @@ export type InboxWidgetParams = EmptyProps & {
   close: () => void
 }
 
-export type InboxWidgetProps = RegovComponentProps<InboxWidgetParams>
+export type InboxWidgetProps = WalletComponentProps<InboxWidgetParams>

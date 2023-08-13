@@ -16,11 +16,11 @@
 
 import { Fragment, FunctionComponent } from 'react'
 
-import { EmptyProps, ListItemMeta, useRegov } from '@owlmeans/regov-lib-react'
-import { CredentialWrapper, getDeepValue } from '@owlmeans/regov-ssi-core'
+import { EmptyProps, ListItemMeta, useOwlWallet } from '@owlmeans/vc-lib-react'
+import { CredentialWrapper, getDeepValue } from '@owlmeans/vc-core'
 import { CustomDescription, DefaultPresentation, DefaultSubject, UseFieldAt } from '../../../custom.types'
 
-import { triggerIncommingDocView } from '@owlmeans/regov-comm'
+import { triggerIncommingDocView } from '@owlmeans/vc-comm'
 import { useTranslation } from 'react-i18next'
 import { castSectionKey } from '../../utils/tools'
 import { getSubject } from '../../utils/cred'
@@ -36,7 +36,7 @@ export const OfferItem = (descr: CustomDescription<DefaultSubject>): FunctionCom
 ) => {
   const { t } = useTranslation(descr.ns)
   const sectionKey = castSectionKey(descr)
-  const { extensions, handler } = useRegov()
+  const { extensions, handler } = useOwlWallet()
 
   action = action || (
     async () => extensions && handler.wallet

@@ -3,15 +3,15 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import { useTranslation } from 'react-i18next'
 import { CredentialListItemInputRenderer } from '../types'
-import { useRegov } from '../../../../../../common'
-import { singleValue } from '@owlmeans/regov-ssi-core'
+import { useOwlWallet } from '../../../../../../common'
+import { singleValue } from '@owlmeans/vc-core'
 
 
 export const CredentialListItemInputSimpleRenderer: CredentialListItemInputRenderer = props => {
   const prefix = `input.${props.config.prefix ? `${props.config.prefix}.` : ''}`
 
   const { t } = useTranslation(props.ns)
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
 
   const itemControl = props.control.getItemControl(props.config.field, props.index)
   const type = singleValue(itemControl.getType())

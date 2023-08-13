@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-import { MaybeArray, normalizeValue } from "@owlmeans/regov-ssi-core"
-import { WalletWrapper } from "@owlmeans/regov-ssi-core"
+import { MaybeArray, normalizeValue } from "@owlmeans/vc-core"
+import { WalletWrapper } from "@owlmeans/vc-core"
 import {
   buildExtensionRegistry, CredentialDescription, ExtensionRegistry, EventParams
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { EmptyProps } from "../common"
 import { MENU_TAG_MAIN } from "../component"
 import { UIExtension, UIExtensionFactory } from "./extension"

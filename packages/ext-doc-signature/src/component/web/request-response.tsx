@@ -15,21 +15,21 @@
  */
 
 import {
-  CredentialEvidenceWidget, EmptyProps, RegovComponentProps, useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
+  CredentialEvidenceWidget, EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import {
   AlertOutput, dateFormatter, EntityRenderer, EntityTextRenderer, ValidationResultWidgetWeb,
   WalletFormProvider
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import {
   getCompatibleSubject, Presentation, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CREDENTIALS, 
   REGISTRY_TYPE_REQUESTS
-} from '@owlmeans/regov-ssi-core'
-import { Extension, ValidationResult, VALIDATION_FAILURE_CHECKING, VALIDATION_KIND_RESPONSE } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { Extension, ValidationResult, VALIDATION_FAILURE_CHECKING, VALIDATION_KIND_RESPONSE } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
-  REGOV_EXT_SIGNATURE_NAMESPACE, REGOV_CREDENTIAL_TYPE_SIGNATURE, SignatureSubject,
+  OWLMEANS_EXT_SIGNATURE_NAMESPACE, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, SignatureSubject,
   SignatureRequestSubject, ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION
 } from '../../types'
 import { getSignatureResponseFromPresentation, getSignatureRequestFromPresentation } from '../../util'
@@ -47,10 +47,10 @@ import Paper from '@mui/material/Paper'
 
 
 export const SignatureRequestResponseWeb: FunctionComponent<SignatureRequestResponseParams> =
-  withRegov<SignatureRequestResponseProps>({ namespace: REGOV_EXT_SIGNATURE_NAMESPACE }, ({
+  withOwlWallet<SignatureRequestResponseProps>({ namespace: OWLMEANS_EXT_SIGNATURE_NAMESPACE }, ({
     t, i18n, close, ext, navigator, credential: presentation
   }) => {
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const request = handler.wallet && handler.wallet.getRegistry(REGISTRY_TYPE_REQUESTS)
       .getCredential<{}, Presentation>(presentation.id)
 
@@ -79,7 +79,7 @@ export const SignatureRequestResponseWeb: FunctionComponent<SignatureRequestResp
     const [counter, setCounter] = useState<number>(0)
     const reload = () => setCounter(counter + 1)
 
-    const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+    const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
 
     useEffect(() => {
       if (!request) {
@@ -231,7 +231,7 @@ export type SignatureRequestResponseParams = EmptyProps & {
   close?: () => void
 }
 
-export type SignatureRequestResponseProps = RegovComponentProps<SignatureRequestResponseParams>
+export type SignatureRequestResponseProps = WalletComponentProps<SignatureRequestResponseParams>
 
 export type SignatureReuqestResponseFields = {
   signature: {

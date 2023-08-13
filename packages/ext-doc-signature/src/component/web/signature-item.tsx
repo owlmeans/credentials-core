@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
-import { ItemMenu, ItemMenuHandle, MenuIconButton, ListItemMeta } from '@owlmeans/regov-lib-react'
-import { CredentialWrapper, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams } from '@owlmeans/regov-ssi-core'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
+import { ItemMenu, ItemMenuHandle, MenuIconButton, ListItemMeta } from '@owlmeans/vc-lib-react'
+import { CredentialWrapper, getCompatibleSubject } from '@owlmeans/vc-core'
+import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useMemo, useEffect } from 'react'
 import { SignatureSubject } from '../../types'
 import BorderColor from '@mui/icons-material/BorderColor'
@@ -32,10 +32,10 @@ import Typography from '@mui/material/Typography'
 
 
 export const SignatureItemWeb = (ext: Extension): FunctionComponent<SignatureItemParams> =>
-  withRegov<SignatureItemProps>({ namespace: ext.localization?.ns }, ({
+  withOwlWallet<SignatureItemProps>({ namespace: ext.localization?.ns }, ({
     t, i18n, meta, wrapper, action, trigger
   }) => {
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const subject = getCompatibleSubject<SignatureSubject>(wrapper.credential)
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -84,4 +84,4 @@ export type SignatureItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type SignatureItemProps = RegovComponentProps<SignatureItemParams>
+export type SignatureItemProps = WalletComponentProps<SignatureItemParams>

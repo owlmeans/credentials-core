@@ -14,10 +14,10 @@
  *  limitations under the License.
  */
 
-import { DIDCommConnectMeta } from '@owlmeans/regov-comm'
-import { useInboxRegistry } from '@owlmeans/regov-ext-comm'
-import { AlertOutput, basicNavigator, CredentialSelector, FormMainButton, PrimaryForm, useNavigator, useRegov, WalletFormProvider } from '@owlmeans/regov-lib-react'
-import { Extension } from '@owlmeans/regov-ssi-core'
+import { DIDCommConnectMeta } from '@owlmeans/vc-comm'
+import { useInboxRegistry } from '@owlmeans/vc-ext-comm'
+import { AlertOutput, basicNavigator, CredentialSelector, FormMainButton, PrimaryForm, useNavigator, useOwlWallet, WalletFormProvider } from '@owlmeans/vc-lib-react'
+import { Extension } from '@owlmeans/vc-core'
 import { Fragment, FunctionComponent } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -36,7 +36,7 @@ import { buildOffer, buildRefuse } from './helpers'
 
 
 export const OfferCreate: FunctionComponent<OfferCreateProps> = ({ descr, claim, conn, ext, close }) => {
-  const { handler } = useRegov()
+  const { handler } = useOwlWallet()
   const navigator = useNavigator(basicNavigator)
   const inboxRegistry = useInboxRegistry()
   const credential = getCredential(descr, claim)

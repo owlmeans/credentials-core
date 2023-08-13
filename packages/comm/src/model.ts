@@ -19,7 +19,7 @@ import {
   isPresentation, KEYCHAIN_ERROR_NO_KEY, Presentation, REGISTRY_SECTION_OWN, REGISTRY_TYPE_IDENTITIES, UnsignedCredential,
   VERIFICATION_KEY_CONTROLLER,
   VERIFICATION_KEY_HOLDER, WalletWrapper
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
   COMM_CHANNEL_BROADCAST, COMM_CHANNEL_DEFAULT, DIDCommChannel, DIDCommConnectMeta, DIDCommHelper,
   DIDCommListner, ERROR_COMM_ALIAN_SENDER, ERROR_COMM_DID_WRONG_SIGNATURE,

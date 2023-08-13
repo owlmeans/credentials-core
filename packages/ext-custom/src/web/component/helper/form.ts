@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { PrimaryFormProps, RegovValidationRules } from "@owlmeans/regov-lib-react"
+import { PrimaryFormProps, OwlWalletValidationRules } from "@owlmeans/vc-lib-react"
 import { UseFormReturn, useForm, DefaultValues, FieldValues } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 
@@ -74,7 +74,7 @@ export const produceDefaults = (
 
 export const produceValidation = (
   purpose: UseFieldAt, descr: CustomDescription<Record<string, any>>
-): RegovValidationRules =>
+): OwlWalletValidationRules =>
   Object.fromEntries(Object.entries(descr.subjectMeta)
     .filter(([, field]) => field.useAt.includes(purpose) && field.validation)
     .map(([key, field]) => [

@@ -1,12 +1,12 @@
 import {
-  EmptyProps, ItemMenu, ItemMenuHandle, ListItemMeta, MenuIconButton, RegovComponentProps,
-  useRegov, withRegov
-} from "@owlmeans/regov-lib-react"
+  EmptyProps, ItemMenu, ItemMenuHandle, ListItemMeta, MenuIconButton, WalletComponentProps,
+  useOwlWallet, withOwlWallet
+} from "@owlmeans/vc-lib-react"
 import {
   CredentialWrapper, Extension, IncommigDocumentEventParams, Presentation, Credential,
   EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED,
   singleValue
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { Fragment, FunctionComponent, useEffect, useMemo } from "react"
 
 import BorderColor from '@mui/icons-material/BorderColor'
@@ -21,9 +21,9 @@ import { AuthSubject } from "../../../../types"
 
 
 export const AuthRequestItem = (ext: Extension): FunctionComponent =>
-  withRegov<SignatureRequestItemProps>({ namespace: ext.localization?.ns },
+  withOwlWallet<SignatureRequestItemProps>({ namespace: ext.localization?.ns },
     ({ t, i18n, meta, wrapper, action, trigger }) => {
-      const { handler, extensions } = useRegov()
+      const { handler, extensions } = useOwlWallet()
       const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
       const presentation = wrapper.credential as Presentation<Credential<AuthSubject>>
@@ -78,4 +78,4 @@ export type AuthRequestItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type SignatureRequestItemProps = RegovComponentProps<AuthRequestItemParams>
+export type SignatureRequestItemProps = WalletComponentProps<AuthRequestItemParams>

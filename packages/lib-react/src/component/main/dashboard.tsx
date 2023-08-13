@@ -15,10 +15,10 @@
  */
 
 import { FunctionComponent } from 'react'
-import { RegovComponentProps, withRegov, WrappedComponentProps } from '../../common/'
+import { WalletComponentProps, withOwlWallet, WrappedComponentProps } from '../../common/'
 
 
-export const MainDashboard: FunctionComponent<MainDashboardParams> = withRegov<
+export const MainDashboard: FunctionComponent<MainDashboardParams> = withOwlWallet<
   MainDashboardProps
 >('MainDashboard', props => {
   const { t, i18n } = props
@@ -27,9 +27,9 @@ export const MainDashboard: FunctionComponent<MainDashboardParams> = withRegov<
   }
 
   return <props.renderer {..._props} />
-}, { namespace: 'regov-wallet-main' })
+}, { namespace: 'owlmeans-wallet-main' })
 
-export type MainDashboardProps = RegovComponentProps<MainDashboardParams, MainDashboardImplParams>
+export type MainDashboardProps = WalletComponentProps<MainDashboardParams, MainDashboardImplParams>
 
 export type MainDashboardParams = {}
 

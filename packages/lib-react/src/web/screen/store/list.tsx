@@ -16,7 +16,7 @@
 
 
 import { useNavigator, NavigatorContextProvider, StoreList, StoreListNavigator } from '../../../common'
-import { useNavigate } from 'react-router-dom-regov'
+import { useNavigate } from 'react-router-dom-owlmeans'
 
 
 export const WalletStoreList = () => {

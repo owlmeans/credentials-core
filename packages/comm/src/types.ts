@@ -16,7 +16,7 @@
 
 import {
   Credential, CredentialWrapperMetadata, DIDDocument, EventParams, IncommigDocumentEventParams, Presentation, WalletWrapper
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { JWE } from 'did-jwt'
 
 
@@ -101,7 +101,7 @@ export const ERROR_COMM_ALIAN_SENDER = 'ERROR_COMM_ALIAN_SENDER'
 
 export const COMM_CHANNEL_DEFAULT = '_default'
 export const COMM_CHANNEL_BROADCAST = '__broadcast'
-export const COMM_WS_SUBPROTOCOL = 'owlmeans-regov-ws-did-com'
+export const COMM_WS_SUBPROTOCOL = 'owlmeans-vc-ws-did-com'
 
 export const COMM_WS_PREFIX_CONFIRMED = 'ok'
 export const COMM_WS_PREFIX_HANDSHAKE = 'handshake'
@@ -118,11 +118,11 @@ export const COMM_DID_AGREEMENT_KEY_DEFAULT = 'comm'
 export const COMM_VERIFICATION_TYPE = 'X25519KeyAgreementKey2020'
 
 
-export const EVENT_INIT_CONNECTION = 'regov:comm:init'
+export const EVENT_INIT_CONNECTION = 'owlmeans:comm:init'
 
-export const REGOV_CREDENTIAL_TYPE_COMM = 'OwlMeans:Regov:Comm'
-export const REGOV_COMM_REQUEST_TYPE = 'OwlMeans:Regov:Comm:Request'
-export const REGOV_COMM_RESPONSE_TYPE = 'OwlMeans:Regov:Comm:Response'
+export const OWLMEANS_CREDENTIAL_TYPE_COMM = 'OwlMeans:Credentials:Comm'
+export const OWLMEANS_COMM_REQUEST_TYPE = 'OwlMeans:Credentials:Comm:Request'
+export const OWLMEANS_COMM_RESPONSE_TYPE = 'OwlMeans:Credentials:Comm:Response'
 
 export const BASIC_IDENTITY_TYPE = 'Identity'
 

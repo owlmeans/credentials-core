@@ -15,7 +15,7 @@
  */
 
 import * as React from 'react'
-import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/regov-ssi-core'
+import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
 import { useEffect, useMemo } from 'react'
 import { View, Text } from 'react-native'
 

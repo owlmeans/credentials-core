@@ -1,8 +1,8 @@
-import { CredentialListInputDetailsProps } from "@owlmeans/regov-lib-react"
-import { PersonalIdSubject, RegovStdPersonalIdClaim } from "../../../../types"
+import { CredentialListInputDetailsProps } from "@owlmeans/vc-lib-react"
+import { PersonalIdSubject, OwlMeansStdPersonalIdClaim } from "../../../../types"
 
 
-export type PersonalIdClaimProps = CredentialListInputDetailsProps<RegovStdPersonalIdClaim>
+export type PersonalIdClaimProps = CredentialListInputDetailsProps<OwlMeansStdPersonalIdClaim>
 
 export type PresonalIdClaimFields = {
   std: {

@@ -18,7 +18,7 @@ import {
   Presentation, singleValue, ERROR_NO_EXTENSION, REGISTRY_TYPE_IDENTITIES,
   REGISTRY_SECTION_PEER, RegistryType, REGISTRY_TYPE_CREDENTIALS, defaultRequestMethod,
   UnsignedCredential, MaybeArray, defaultBuildMethod, normalizeValue, ValidationResult
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { Router } from 'express'
 import { ERROR_NO_WALLET, getAppContext } from '../app'
 import {

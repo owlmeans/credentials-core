@@ -15,13 +15,13 @@
  */
 
 import { Fragment, FunctionComponent } from "react"
-import { EntityRenderer, EntityTextRenderer } from "@owlmeans/regov-lib-react"
+import { EntityRenderer, EntityTextRenderer } from "@owlmeans/vc-lib-react"
 import { useTranslation } from "react-i18next"
 
 import { CustomDescription, DefaultSubject, UseFieldAt } from "../../../custom.types"
 import { FileInfo, isTermPictures } from "../../../picture.types"
 import { castSectionKey } from "../../utils/tools"
-import { getDeepValue } from '@owlmeans/regov-ssi-core'
+import { getDeepValue } from '@owlmeans/vc-core'
 import Link from '@mui/material/Link'
 
 export const FieldsRenderer: FunctionComponent<FieldsRendererProps> = ({ subject, descr, purpose }) => {

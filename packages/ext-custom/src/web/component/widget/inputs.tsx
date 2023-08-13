@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { MainTextInput, PrimaryFormProps } from "@owlmeans/regov-lib-react"
+import { MainTextInput, PrimaryFormProps } from "@owlmeans/vc-lib-react"
 import { Fragment, FunctionComponent } from "react"
 
 import { CustomDescription, UseFieldAt } from "../../../custom.types"

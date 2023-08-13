@@ -1,9 +1,9 @@
 {
-  "name": "@owlmeans/regov-lib-node",
+  "name": "@owlmeans/vc-lib-node",
   "version": "0.8.2",
-  "description": "This is the server stored and managed wallet framework for OwlMeans Re:gov SSI",
+  "description": "This is the server stored and managed wallet framework for OwlMeans Credentials library",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/lib-node"
   },
   "scripts": {
@@ -22,20 +22,20 @@
     "build:watch": "tsc -b -w --preserveWatchOutput --pretty"
   },
   "bugs": {
-    "url": "https://github.com/owlmeans/regov-ssi-mono/issues"
+    "url": "https://github.com/owlmeans/credentials-core/issues"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
     "dotenv": "^16.0.3"
   },
   "peerDependencies": {
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "body-parser": "^1.20.2",
     "express": "*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
     "body-parser": {

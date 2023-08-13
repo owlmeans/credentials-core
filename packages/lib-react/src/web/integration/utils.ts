@@ -1,8 +1,8 @@
 
 let _password: string | undefined = undefined
 
-export const isRegovPasswordSet = () => _password !== undefined
+export const isOwlWalletPasswordSet = () => _password !== undefined
 
-export const setRegovPassword = (password: string) => (_password = password)
+export const setOwlWalletPassword = (password: string) => (_password = password)
 
-export const getRegovPassword = () => _password
+export const getOwlWalletPassword = () => _password

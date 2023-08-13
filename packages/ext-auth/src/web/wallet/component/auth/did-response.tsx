@@ -16,21 +16,21 @@
 
 import { FunctionComponent } from "react"
 
-import { DIDCommConnectMeta, CommConnectionStatusHandler, ERROR_COMM_SEND_FAILED } from "@owlmeans/regov-comm"
+import { DIDCommConnectMeta, CommConnectionStatusHandler, ERROR_COMM_SEND_FAILED } from "@owlmeans/vc-comm"
 import {
   AlertOutput, EmptyProps, ERROR_NO_WALLET_HANDLER_AUTH, FormMainAction, MainTextInput, MainTextOutput,
-  PrimaryForm, RegovComponentProps, withRegov
-} from "@owlmeans/regov-lib-react"
-import { Presentation, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from "@owlmeans/regov-ssi-core"
-import { ERROR_NO_CONNECTION, REGOV_CREDENTIAL_TYPE_AUTH, REGOV_EXT_ATUH_NAMESPACE } from "../../../../types"
+  PrimaryForm, WalletComponentProps, withOwlWallet
+} from "@owlmeans/vc-lib-react"
+import { Presentation, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from "@owlmeans/vc-core"
+import { ERROR_NO_CONNECTION, OWLMEANS_CREDENTIAL_TYPE_AUTH, OWLMEANS_EXT_ATUH_NAMESPACE } from "../../../../types"
 import { FormProvider, UseFormProps, useForm, UseFormReturn } from "react-hook-form"
 import { getAuthFromPresentation, getAuthSubject, pinValidation } from "../../../../util"
 import { ERROR_NO_AUTH_REQUEST, ERROR_NO_REQUESTED_IDENTITY } from "../../types"
-import { REGISTRY_TYPE_INBOX } from "@owlmeans/regov-ext-comm"
+import { REGISTRY_TYPE_INBOX } from "@owlmeans/vc-ext-comm"
 
 
-export const DIDAuthResponse: FunctionComponent<DIDAuthResponseParams> = withRegov<DIDAuthResponseProps>(
-  { namespace: REGOV_EXT_ATUH_NAMESPACE }, ({
+export const DIDAuthResponse: FunctionComponent<DIDAuthResponseParams> = withOwlWallet<DIDAuthResponseProps>(
+  { namespace: OWLMEANS_EXT_ATUH_NAMESPACE }, ({
     handler, i18n, t, request, conn, connection, navigator, extensions, close
   }) => {
   const cred = getAuthFromPresentation(request)
@@ -64,8 +64,8 @@ export const DIDAuthResponse: FunctionComponent<DIDAuthResponseParams> = withReg
         if (!identity) {
           throw ERROR_NO_REQUESTED_IDENTITY
         }
-        const ext = extensions.getExtension(REGOV_CREDENTIAL_TYPE_AUTH)
-        const factory = ext.extension.getFactory(REGOV_CREDENTIAL_TYPE_AUTH)
+        const ext = extensions.getExtension(OWLMEANS_CREDENTIAL_TYPE_AUTH)
+        const factory = ext.extension.getFactory(OWLMEANS_CREDENTIAL_TYPE_AUTH)
         const unsigned = await factory.build(handler.wallet, {
           subjectData: { ...subject, pinCode: data.authResponse.pin }
         })
@@ -122,4 +122,4 @@ export type DIDAuthResponseParams = EmptyProps & {
   close: () => void
 }
 
-export type DIDAuthResponseProps = RegovComponentProps<DIDAuthResponseParams>
+export type DIDAuthResponseProps = WalletComponentProps<DIDAuthResponseParams>

@@ -17,7 +17,7 @@
 import {
   CredentialDescription, Extension, ExtensionSchema, MultiSchema, buildExtension, META_ROLE_CREDENTIAL,
   META_ROLE_CLAIM, META_ROLE_OFFER, META_ROLE_REQUEST, META_ROLE_RESPONSE, ExtensionLocalization, normalizeValue
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { Resource, ResourceKey } from "i18next"
 import { CustomDescription, DefaultSubject, isCustom, SubjectFieldMeta, SubjectMeta } from "../custom.types"
 import { castSectionKey } from "../web/utils/tools"

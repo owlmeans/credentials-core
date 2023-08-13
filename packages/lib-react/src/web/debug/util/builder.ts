@@ -15,8 +15,8 @@
  */
 
 import { Config } from "../../../common"
-import { ExtensionRegistry, cryptoHelper } from "@owlmeans/regov-ssi-core"
-import { buildWalletWrapper } from "@owlmeans/regov-ssi-core"
+import { ExtensionRegistry, cryptoHelper } from "@owlmeans/vc-core"
+import { buildWalletWrapper } from "@owlmeans/vc-core"
 
 
 export const buildDevWallet = async (config: Config, extensions?: ExtensionRegistry, alias = DEFAULT_DEVELOPMENT_VOICE_ALIAS) =>

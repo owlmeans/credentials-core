@@ -17,12 +17,12 @@
 import { Router } from 'express'
 import {
   buildServerExtension, ERROR_NO_WALLET, getAppContext
-} from '@owlmeans/regov-lib-node'
+} from '@owlmeans/vc-lib-node'
 import { authExtension } from './ext'
 import {
-  ERROR_NO_AUTHENTICATION_FROM_EXTERNAL_WALLET, REGOV_AUTH_REQUEST_TYPE, REGOV_AUTH_RESPONSE_TYPE, REGOV_CREDENTIAL_TYPE_AUTH, SERVER_PROVIDE_AUTH, SERVER_REQUEST_AUTH, SERVER_VALIDATE_AUTH
+  ERROR_NO_AUTHENTICATION_FROM_EXTERNAL_WALLET, OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_AUTH_RESPONSE_TYPE, OWLMEANS_CREDENTIAL_TYPE_AUTH, SERVER_PROVIDE_AUTH, SERVER_REQUEST_AUTH, SERVER_VALIDATE_AUTH
 } from './types'
-import { Presentation, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_REQUESTS, VALIDATION_KIND_RESPONSE } from '@owlmeans/regov-ssi-core'
+import { Presentation, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_REQUESTS, VALIDATION_KIND_RESPONSE } from '@owlmeans/vc-core'
 import { getAuthFromPresentation } from './util'
 
 export * from './types'
@@ -45,7 +45,7 @@ export const authServerExtension = buildServerExtension(authExtension, () => {
         throw ERROR_NO_AUTHENTICATION_FROM_EXTERNAL_WALLET
       }
 
-      const factory = authExtension.getFactory(REGOV_CREDENTIAL_TYPE_AUTH)
+      const factory = authExtension.getFactory(OWLMEANS_CREDENTIAL_TYPE_AUTH)
       const result = await factory.validate(handler.wallet, {
         presentation, credential, extensions: extensions.registry
       })
@@ -63,7 +63,7 @@ export const authServerExtension = buildServerExtension(authExtension, () => {
         throw ERROR_NO_WALLET
       }
 
-      const factory = authExtension.getFactory(REGOV_AUTH_REQUEST_TYPE)
+      const factory = authExtension.getFactory(OWLMEANS_AUTH_REQUEST_TYPE)
       const unsigned = await factory.build(handler.wallet, {
         subjectData: {
           did: req.params.did, createdAt: (new Date()).toISOString()
@@ -93,7 +93,7 @@ export const authServerExtension = buildServerExtension(authExtension, () => {
 
       const presentation: Presentation = req.body
 
-      const factory = authExtension.getFactory(REGOV_AUTH_RESPONSE_TYPE)
+      const factory = authExtension.getFactory(OWLMEANS_AUTH_RESPONSE_TYPE)
       const result = await factory.validate(handler.wallet, {
         presentation,
         extensions: extensions.registry,

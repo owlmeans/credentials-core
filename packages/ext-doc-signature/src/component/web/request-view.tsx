@@ -14,15 +14,15 @@
  *  limitations under the License.
  */
 
-import { EmptyProps, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
-import { CredentialActionGroup, LongOutput, MainTextOutput, PrimaryForm, WalletFormProvider } from '@owlmeans/regov-lib-react'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
+import { CredentialActionGroup, LongOutput, MainTextOutput, PrimaryForm, WalletFormProvider } from '@owlmeans/vc-lib-react'
 import {
   getCompatibleSubject, Presentation, Credential, REGISTRY_TYPE_REQUESTS, REGISTRY_SECTION_OWN
-} from '@owlmeans/regov-ssi-core'
-import { Extension } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { Extension } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent } from 'react'
 import { useForm } from 'react-hook-form'
-import { REGOV_EXT_SIGNATURE_NAMESPACE, SignatureRequestSubject } from '../../types'
+import { OWLMEANS_EXT_SIGNATURE_NAMESPACE, SignatureRequestSubject } from '../../types'
 import { getSignatureRequestFromPresentation } from '../../util'
 
 import Button from '@mui/material/Button'
@@ -31,10 +31,10 @@ import DialogContent from '@mui/material/DialogContent'
 
 
 export const SignatureRequestViewWeb: FunctionComponent<SignatureRequestViewParams> =
-  withRegov<SignatureRequestViewProps>({
-    namespace: REGOV_EXT_SIGNATURE_NAMESPACE
+  withOwlWallet<SignatureRequestViewProps>({
+    namespace: OWLMEANS_EXT_SIGNATURE_NAMESPACE
   }, ({ t, i18n, close, credential: presentation }) => {
-    const { handler } = useRegov()
+    const { handler } = useOwlWallet()
     const credential = getSignatureRequestFromPresentation(presentation) as Credential
     const subject = getCompatibleSubject<SignatureRequestSubject>(credential)
 
@@ -85,7 +85,7 @@ export type SignatureRequestViewParams = EmptyProps & {
   close?: () => void
 }
 
-export type SignatureRequestViewProps = RegovComponentProps<SignatureRequestViewParams>
+export type SignatureRequestViewProps = WalletComponentProps<SignatureRequestViewParams>
 
 export type SignatureRequestViewFields = {
   signature: {

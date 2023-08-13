@@ -1,14 +1,14 @@
 {
-  "name": "@owlmeans/regov-lib-native",
+  "name": "@owlmeans/vc-lib-native",
   "version": "0.8.2",
-  "description": "Re:gov SSI UI package for mobile wallet applications",
+  "description": "OwlMeans Credentials UI package for mobile wallet applications",
   "keywords": [
     "SSI",
     "wallet",
     "mobile"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://www.owlmeans.com/regov",
+  "homepage": "https://www.owlmeans.com",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "directories": {
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/lib-native"
   },
   "scripts": {
@@ -30,10 +30,10 @@
     "build:watch": "tsc -b -w --preserveWatchOutput --pretty"
   },
   "bugs": {
-    "url": "https://github.com/owlmeans/regov-ssi-mono/issues"
+    "url": "https://github.com/owlmeans/credentials-core/issues"
   },
   "dependencies": {
-    "@owlmeans/regov-ssi-core": "^0.8.2",
+    "@owlmeans/vc-core": "^0.8.2",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
     "process": "^0.11.10",

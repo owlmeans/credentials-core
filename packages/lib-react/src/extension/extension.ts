@@ -15,10 +15,10 @@
  */
 
 import { FunctionComponent } from "react"
-import { Extension } from "@owlmeans/regov-ssi-core"
+import { Extension } from "@owlmeans/vc-core"
 import { EmptyProps } from "../common"
 import { ManuItemParams, ExtensionItemPurpose } from "./types"
-import { MaybeArray } from "@owlmeans/regov-ssi-core"
+import { MaybeArray } from "@owlmeans/vc-core"
 
 
 export const buildUIExtension = (

@@ -1,6 +1,6 @@
-import { CommConnectionStatusHandler } from '@owlmeans/regov-comm'
-import { IntegratedWalletPlugin, UneregisterIntegratedWalletPlugin } from '@owlmeans/regov-lib-react'
-import { REGISTRY_SECTION_PEER } from '@owlmeans/regov-ssi-core'
+import { CommConnectionStatusHandler } from '@owlmeans/vc-comm'
+import { IntegratedWalletPlugin, UneregisterIntegratedWalletPlugin } from '@owlmeans/vc-lib-react'
+import { REGISTRY_SECTION_PEER } from '@owlmeans/vc-core'
 import { REGISTRY_TYPE_INBOX } from '../../types'
 import { handleIncommingCommDocuments } from '../../utils'
 

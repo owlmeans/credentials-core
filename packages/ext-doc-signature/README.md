@@ -1,3 +1,3 @@
-# OwlMeans Re:gov library: Document signature
+# OwlMeans Credentials library: Document signature
 
 Required for creation of digital signatures.

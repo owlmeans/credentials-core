@@ -1,9 +1,9 @@
 {
-  "name": "@owlmeans/regov-mold-wallet-native-example",
+  "name": "@owlmeans/vc-mold-wallet-native-example",
   "version": "0.8.2",
   "description": "> TODO: description",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "private": true,
   "main": "dist/index.js",
@@ -27,7 +27,7 @@
     "react-native-eject": "^0.2.0"
   },
   "dependencies": {
-    "@owlmeans/regov-lib-native": "^0.8.2",
+    "@owlmeans/vc-lib-native": "^0.8.2",
     "react": "^18.2.0",
     "react-native": "^0.71.8",
     "react-native-crypto": "^2.2.0",

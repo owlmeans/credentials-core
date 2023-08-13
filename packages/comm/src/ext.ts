@@ -14,18 +14,18 @@
  *  limitations under the License.
  */
 
-import { buildExtension, buildExtensionSchema } from "@owlmeans/regov-ssi-core"
-import { REGOV_COMM_REQUEST_TYPE, REGOV_COMM_RESPONSE_TYPE, REGOV_CREDENTIAL_TYPE_COMM, BASIC_IDENTITY_TYPE } from "./types"
+import { buildExtension, buildExtensionSchema } from "@owlmeans/vc-core"
+import { OWLMEANS_COMM_REQUEST_TYPE, OWLMEANS_COMM_RESPONSE_TYPE, OWLMEANS_CREDENTIAL_TYPE_COMM, BASIC_IDENTITY_TYPE } from "./types"
 
 
 let extensionSchema = buildExtensionSchema({
   name: 'extension.details.name',
-  code: 'owlmeans-regov-comm',
+  code: 'owlmeans-vc-comm',
 }, {
-  [REGOV_CREDENTIAL_TYPE_COMM]: {
-    mainType: REGOV_CREDENTIAL_TYPE_COMM,
-    requestType: REGOV_COMM_REQUEST_TYPE,
-    responseType: REGOV_COMM_RESPONSE_TYPE,
+  [OWLMEANS_CREDENTIAL_TYPE_COMM]: {
+    mainType: OWLMEANS_CREDENTIAL_TYPE_COMM,
+    requestType: OWLMEANS_COMM_REQUEST_TYPE,
+    responseType: OWLMEANS_COMM_RESPONSE_TYPE,
     defaultNameKey: 'cred.comm.name',
     contextUrl: 'https://schema.owlmeans.com/comm.json',
     credentialContext: {
@@ -36,11 +36,11 @@ let extensionSchema = buildExtensionSchema({
     },
     evidence: { type: BASIC_IDENTITY_TYPE, signing: true }
   },
-  [REGOV_COMM_REQUEST_TYPE]: {
-    mainType: REGOV_COMM_REQUEST_TYPE,
-    requestType: REGOV_COMM_REQUEST_TYPE,
-    responseType: REGOV_COMM_RESPONSE_TYPE,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_COMM],
+  [OWLMEANS_COMM_REQUEST_TYPE]: {
+    mainType: OWLMEANS_COMM_REQUEST_TYPE,
+    requestType: OWLMEANS_COMM_REQUEST_TYPE,
+    responseType: OWLMEANS_COMM_RESPONSE_TYPE,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_COMM],
     defaultNameKey: 'request.comm.name',
     contextUrl: 'https://schema.owlmeans.com/comm-request.json',
     credentialContext: {
@@ -50,10 +50,10 @@ let extensionSchema = buildExtensionSchema({
       createdAt: "http://www.w3.org/2001/XMLSchema#datetime",
     }
   },
-  [REGOV_COMM_RESPONSE_TYPE]: {
-    mainType: REGOV_COMM_RESPONSE_TYPE,
-    responseType: REGOV_COMM_RESPONSE_TYPE,
-    mandatoryTypes: [REGOV_CREDENTIAL_TYPE_COMM],
+  [OWLMEANS_COMM_RESPONSE_TYPE]: {
+    mainType: OWLMEANS_COMM_RESPONSE_TYPE,
+    responseType: OWLMEANS_COMM_RESPONSE_TYPE,
+    mandatoryTypes: [OWLMEANS_CREDENTIAL_TYPE_COMM],
     credentialContext: {
       '@version': 1.1,
       did: "https://www.w3.org/ns/did/v1#id",

@@ -16,7 +16,7 @@
 
 import { 
   buildWalletLoader, Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES, WalletWrapper 
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import { ERROR_NO_PEER_VCS, ServerAppConfig } from "./types"
 import fs from 'fs'
 import { reviveJson } from "../utils"

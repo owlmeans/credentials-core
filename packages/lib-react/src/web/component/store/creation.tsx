@@ -17,7 +17,7 @@
 
 import { StoreCreationFields, StoreCreationImplProps, MainFooter } from '../../../common'
 import { useForm, FormProvider, UseFormProps, } from 'react-hook-form'
-import { cryptoHelper } from '@owlmeans/regov-ssi-core'
+import { cryptoHelper } from '@owlmeans/vc-core'
 import {
   PrimaryForm, FormHeaderButton, MainTextInput, NewPasswordInput, FormMainAction
 } from '../../component/common'

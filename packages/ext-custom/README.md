@@ -1,9 +1,9 @@
-# `@owlmeans/regov-ext-custom`
+# `@owlmeans/vc-ext-custom`
 
 ## Usage
 
 ```
-npm install @owlmeans/regov-ext-custom
+npm install @owlmeans/vc-ext-custom
 ```
 
 How to use:

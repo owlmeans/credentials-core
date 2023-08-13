@@ -14,4 +14,4 @@
  *  limitations under the License.
  */
 
-export const EXTENSION_TRIGGER_OPEN_INBOX = 'regov:comm:inbox-open'
+export const EXTENSION_TRIGGER_OPEN_INBOX = 'owlmeans:comm:inbox-open'

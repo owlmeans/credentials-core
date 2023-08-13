@@ -15,9 +15,9 @@
  */
 
 import React, { Fragment } from 'react'
-import { Outlet } from 'react-router-dom-regov'
+import { Outlet } from 'react-router-dom-owlmeans'
 import { EXTENSION_ITEM_PURPOSE_TOP_ACTION, MainAuthAreaImplProps, MainFooter } from '../../../common'
-import { useRegov } from '../../../common/context'
+import { useOwlWallet } from '../../../common/context'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Grid from '@mui/material/Grid'
@@ -32,9 +32,9 @@ import IconButton from '@mui/material/IconButton'
 const drawerWidth = 240;
 
 export const MainAuthAreaWeb = ({ name, menu }: MainAuthAreaImplProps) => {
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const [mobileOpen, setMobileOpen] = React.useState(false)
-  const { config } = useRegov()
+  const { config } = useOwlWallet()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)

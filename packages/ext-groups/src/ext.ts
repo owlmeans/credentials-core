@@ -18,31 +18,31 @@ import {
   addObserverToSchema, addToValue, buildExtension, buildExtensionSchema, CredentialType, defaultBuildMethod, defaultSignMethod,
   defaultValidateMethod, DIDDocument, DIDPURPOSE_VERIFICATION, ERROR_NO_CREDENTIAL_PROVIDED, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, EXTENSION_TRIGGER_RETRIEVE_NAME,
   IncommigDocumentEventParams, MaybeArray, RetreiveNameEventParams, singleValue, VERIFICATION_KEY_HOLDER
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
   REGISTRY_TYPE_IDENTITIES, REGISTRY_TYPE_CREDENTIALS, UnsignedCredential, getCompatibleSubject,
   isPresentation
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import {
   BASIC_IDENTITY_TYPE, ChainedType, GroupBuildMethodParams, GroupSubject, MembershipSubject,
-  REGOV_CREDENTIAL_TYPE_GROUP, REGOV_CREDENTIAL_TYPE_MEMBERSHIP, REGOV_EXT_GROUP_NAMESPACE,
-  REGOV_GROUP_CHAINED_TYPE, RegovGroupExtensionTypes, REGOV_MEMBERSHIP_CLAIM_TYPE, REGOV_GROUP_CLAIM_TYPE,
-  REGOV_GROUP_LIMITED_TYPE, REGOV_GROUP_ROOT_TYPE, REGOV_MEMBERSHIP_OFFER_TYPE, REGOV_GROUP_OFFER_TYPE
+  OWLMEANS_CREDENTIAL_TYPE_GROUP, OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP, OWLMEANS_EXT_GROUP_NAMESPACE,
+  OWLMEANS_GROUP_CHAINED_TYPE, OwlMeansGroupExtensionTypes, OWLMEANS_MEMBERSHIP_CLAIM_TYPE, OWLMEANS_GROUP_CLAIM_TYPE,
+  OWLMEANS_GROUP_LIMITED_TYPE, OWLMEANS_GROUP_ROOT_TYPE, OWLMEANS_MEMBERSHIP_OFFER_TYPE, OWLMEANS_GROUP_OFFER_TYPE
 } from "./types"
-import { makeRandomUuid, normalizeValue } from "@owlmeans/regov-ssi-core"
+import { makeRandomUuid, normalizeValue } from "@owlmeans/vc-core"
 import { localization } from "./i18n"
 
 
-let groupsExtensionSchema = buildExtensionSchema<RegovGroupExtensionTypes>({
+let groupsExtensionSchema = buildExtensionSchema<OwlMeansGroupExtensionTypes>({
   name: 'extension.details.name',
-  code: 'owlmeans-regov-groups',
+  code: 'owlmeans-vc-groups',
   types: {
-    claim: REGOV_MEMBERSHIP_CLAIM_TYPE,
-    offer: REGOV_MEMBERSHIP_OFFER_TYPE
+    claim: OWLMEANS_MEMBERSHIP_CLAIM_TYPE,
+    offer: OWLMEANS_MEMBERSHIP_OFFER_TYPE
   }
 }, {
-  [REGOV_CREDENTIAL_TYPE_GROUP]: {
-    mainType: REGOV_CREDENTIAL_TYPE_GROUP,
+  [OWLMEANS_CREDENTIAL_TYPE_GROUP]: {
+    mainType: OWLMEANS_CREDENTIAL_TYPE_GROUP,
     defaultNameKey: 'cred.group.name',
     contextUrl: 'https://schema.owlmeans.com/group.json',
     credentialContext: {
@@ -57,11 +57,11 @@ let groupsExtensionSchema = buildExtensionSchema<RegovGroupExtensionTypes>({
       type: BASIC_IDENTITY_TYPE,
       signing: true,
     },
-    claimType: REGOV_GROUP_CLAIM_TYPE,
+    claimType: OWLMEANS_GROUP_CLAIM_TYPE,
     registryType: REGISTRY_TYPE_CREDENTIALS,
   },
-  [REGOV_CREDENTIAL_TYPE_MEMBERSHIP]: {
-    mainType: REGOV_CREDENTIAL_TYPE_MEMBERSHIP,
+  [OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP]: {
+    mainType: OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP,
     mandatoryTypes: [BASIC_IDENTITY_TYPE],
     defaultNameKey: 'cred.membership.name',
     contextUrl: 'https://schema.owlmeans.com/group-membership.json',
@@ -73,7 +73,7 @@ let groupsExtensionSchema = buildExtensionSchema<RegovGroupExtensionTypes>({
       description: "http://www.w3.org/2001/XMLSchema#string",
       createdAt: "http://www.w3.org/2001/XMLSchema#datetime",
     },
-    claimType: REGOV_MEMBERSHIP_CLAIM_TYPE,
+    claimType: OWLMEANS_MEMBERSHIP_CLAIM_TYPE,
     registryType: REGISTRY_TYPE_IDENTITIES,
     verfiableId: {
       fields: ['groupId', 'role', 'createdAt']
@@ -84,24 +84,24 @@ let groupsExtensionSchema = buildExtensionSchema<RegovGroupExtensionTypes>({
         signing: true
       },
       {
-        type: REGOV_CREDENTIAL_TYPE_GROUP
+        type: OWLMEANS_CREDENTIAL_TYPE_GROUP
       }
     ]
   },
-  [REGOV_MEMBERSHIP_CLAIM_TYPE]: {
-    mainType: REGOV_MEMBERSHIP_CLAIM_TYPE,
+  [OWLMEANS_MEMBERSHIP_CLAIM_TYPE]: {
+    mainType: OWLMEANS_MEMBERSHIP_CLAIM_TYPE,
     credentialContext: {}
   },
-  [REGOV_GROUP_CLAIM_TYPE]: {
-    mainType: REGOV_GROUP_CLAIM_TYPE,
+  [OWLMEANS_GROUP_CLAIM_TYPE]: {
+    mainType: OWLMEANS_GROUP_CLAIM_TYPE,
     credentialContext: {}
   },
-  [REGOV_MEMBERSHIP_OFFER_TYPE]: {
-    mainType: REGOV_MEMBERSHIP_OFFER_TYPE,
+  [OWLMEANS_MEMBERSHIP_OFFER_TYPE]: {
+    mainType: OWLMEANS_MEMBERSHIP_OFFER_TYPE,
     credentialContext: {}
   },
-  [REGOV_GROUP_OFFER_TYPE]: {
-    mainType: REGOV_GROUP_OFFER_TYPE,
+  [OWLMEANS_GROUP_OFFER_TYPE]: {
+    mainType: OWLMEANS_GROUP_OFFER_TYPE,
     credentialContext: {}
   }
 })
@@ -110,7 +110,7 @@ groupsExtensionSchema = addObserverToSchema(groupsExtensionSchema, {
   trigger: EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED,
   filter: async (_, params: IncommigDocumentEventParams) => {
     if (isPresentation(params.credential)) {
-      if ([REGOV_MEMBERSHIP_CLAIM_TYPE, REGOV_GROUP_CLAIM_TYPE, REGOV_MEMBERSHIP_OFFER_TYPE]
+      if ([OWLMEANS_MEMBERSHIP_CLAIM_TYPE, OWLMEANS_GROUP_CLAIM_TYPE, OWLMEANS_MEMBERSHIP_OFFER_TYPE]
         .some(type => params.credential.type.includes(type))) {
         return true
       }
@@ -120,7 +120,7 @@ groupsExtensionSchema = addObserverToSchema(groupsExtensionSchema, {
       return false
     }
 
-    return params.credential.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+    return params.credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
   },
 })
 
@@ -131,7 +131,7 @@ groupsExtensionSchema = addObserverToSchema(groupsExtensionSchema, {
       return false
     }
 
-    return params.credential.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+    return params.credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
   },
 
   method: async (_, { credential, setName }: RetreiveNameEventParams) => {
@@ -147,7 +147,7 @@ groupsExtensionSchema = addObserverToSchema(groupsExtensionSchema, {
       return false
     }
 
-    return params.credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    return params.credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   },
 
   method: async (_, { credential, setName }: RetreiveNameEventParams) => {
@@ -157,7 +157,7 @@ groupsExtensionSchema = addObserverToSchema(groupsExtensionSchema, {
 })
 
 export const groupsExtension = buildExtension(groupsExtensionSchema, {
-  [REGOV_CREDENTIAL_TYPE_GROUP]: {
+  [OWLMEANS_CREDENTIAL_TYPE_GROUP]: {
     produceBuildMethod: (credSchema) => async (wallet, params: GroupBuildMethodParams) => {
       const inputData = params.subjectData as GroupSubject
       const updatedSubjectData = {
@@ -181,19 +181,19 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
       let depth: number | undefined
 
       switch (params.chainedType) {
-        case REGOV_GROUP_ROOT_TYPE:
+        case OWLMEANS_GROUP_ROOT_TYPE:
           depth = params.depth
-          type = [REGOV_GROUP_ROOT_TYPE, REGOV_GROUP_CHAINED_TYPE]
+          type = [OWLMEANS_GROUP_ROOT_TYPE, OWLMEANS_GROUP_CHAINED_TYPE]
           break
-        case REGOV_GROUP_CHAINED_TYPE:
-          type = [REGOV_GROUP_CHAINED_TYPE]
+        case OWLMEANS_GROUP_CHAINED_TYPE:
+          type = [OWLMEANS_GROUP_CHAINED_TYPE]
           depth = params.depth
           if (!depth) {
-            type.push(REGOV_GROUP_LIMITED_TYPE)
+            type.push(OWLMEANS_GROUP_LIMITED_TYPE)
           }
           break
-        case REGOV_GROUP_LIMITED_TYPE:
-          type = [REGOV_GROUP_LIMITED_TYPE, REGOV_GROUP_CHAINED_TYPE]
+        case OWLMEANS_GROUP_LIMITED_TYPE:
+          type = [OWLMEANS_GROUP_LIMITED_TYPE, OWLMEANS_GROUP_CHAINED_TYPE]
           break
       }
 
@@ -225,23 +225,23 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
       }
 
       const membershipEvidence = normalizeValue(result.evidence).find(
-        evidence => evidence.instance?.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+        evidence => evidence.instance?.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
       )
 
-      if (params.credential.type.includes(REGOV_GROUP_ROOT_TYPE)) {
+      if (params.credential.type.includes(OWLMEANS_GROUP_ROOT_TYPE)) {
         if (membershipEvidence) {
           result.valid = false
           result.cause = 'rootShouldBeSelfSigned'
-        } else if (!params.credential.type.includes(REGOV_GROUP_CHAINED_TYPE)) {
+        } else if (!params.credential.type.includes(OWLMEANS_GROUP_CHAINED_TYPE)) {
           result.valid = false
           result.cause = 'wrongGroupType'
         }
-      } else if (params.credential.type.includes(REGOV_GROUP_CHAINED_TYPE)) {
+      } else if (params.credential.type.includes(OWLMEANS_GROUP_CHAINED_TYPE)) {
         const issuer = normalizeValue(membershipEvidence?.result.evidence).find(
           evidence => evidence?.instance?.type.includes(BASIC_IDENTITY_TYPE)
         )
         const group = normalizeValue(membershipEvidence?.result.evidence).find(
-          evidence => evidence?.instance?.type.includes(REGOV_GROUP_CHAINED_TYPE)
+          evidence => evidence?.instance?.type.includes(OWLMEANS_GROUP_CHAINED_TYPE)
         )
         const issuerDID = issuer?.instance?.issuer as DIDDocument
         const groupDID = group?.instance?.issuer as DIDDocument
@@ -259,18 +259,18 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
         } else if (credDepth < 0 || credDepth >= groupDepth) {
           result.valid = false
           result.cause = 'wrongDepth'
-        } if (credDepth < 0 || group?.instance?.type.includes(REGOV_GROUP_LIMITED_TYPE)) {
+        } if (credDepth < 0 || group?.instance?.type.includes(OWLMEANS_GROUP_LIMITED_TYPE)) {
           result.valid = false
           result.cause = 'terminationFailure'
         }
       } else {
         const issuer = normalizeValue(membershipEvidence?.result.evidence).find(
-          evidence => evidence?.instance?.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+          evidence => evidence?.instance?.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
         )
         if (issuer) {
           result.valid = false
           result.cause = 'ordinaryGroupIssuedByMember'
-        } else if (params.credential.type.includes(REGOV_GROUP_LIMITED_TYPE)) {
+        } else if (params.credential.type.includes(OWLMEANS_GROUP_LIMITED_TYPE)) {
           result.valid = false
           result.cause = 'wrongGroupType'
         }
@@ -279,7 +279,7 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
       return result
     }
   },
-  [REGOV_CREDENTIAL_TYPE_MEMBERSHIP]: {
+  [OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP]: {
     produceBuildMethod: (credSchema) => async (wallet, params) => {
       const inputData = params.subjectData as MembershipSubject
       const updatedSubjectData = {
@@ -310,7 +310,7 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
       const result = await defaultValidateMethod(credSchema)(wallet, params)
 
       const groupEvidence = normalizeValue(result.evidence).find(
-        evidence => evidence.instance?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+        evidence => evidence.instance?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
       )
 
       const identityEvidence = normalizeValue(result.evidence).find(
@@ -325,13 +325,13 @@ export const groupsExtension = buildExtension(groupsExtensionSchema, {
       return result
     }
   },
-  [REGOV_MEMBERSHIP_CLAIM_TYPE]: {},
-  [REGOV_GROUP_CLAIM_TYPE]: {},
-  [REGOV_MEMBERSHIP_OFFER_TYPE]: {},
-  [REGOV_GROUP_OFFER_TYPE]: {}
+  [OWLMEANS_MEMBERSHIP_CLAIM_TYPE]: {},
+  [OWLMEANS_GROUP_CLAIM_TYPE]: {},
+  [OWLMEANS_MEMBERSHIP_OFFER_TYPE]: {},
+  [OWLMEANS_GROUP_OFFER_TYPE]: {}
 })
 
 groupsExtension.localization = {
-  ns: REGOV_EXT_GROUP_NAMESPACE,
+  ns: OWLMEANS_EXT_GROUP_NAMESPACE,
   translations: localization
 }

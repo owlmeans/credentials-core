@@ -1,15 +1,15 @@
 {
-  "name": "@owlmeans/regov-mold-comm-server-example",
+  "name": "@owlmeans/vc-mold-comm-server-example",
   "version": "0.1.0",
-  "description": "Node.js Re:gov server wallet agent for SSI",
+  "description": "Node.js OwlMeans Credentials server wallet agent for SSI",
   "main": "build/index.js",
   "author": "Igor Tkachenko",
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@owlmeans/regov-comm": "link:../",
-    "@owlmeans/regov-ext-identity": "link:../../ext-identity/",
-    "@owlmeans/regov-ssi-core": "link:../../core/",
+    "@owlmeans/vc-comm": "link:../",
+    "@owlmeans/vc-ext-identity": "link:../../ext-identity/",
+    "@owlmeans/vc-core": "link:../../core/",
     "dotenv": "^16.0.3",
     "ethers": "^6.4.0"
   },

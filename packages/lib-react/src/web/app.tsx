@@ -16,9 +16,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { i18nDefaultOptions, i18nSetup } from '../common'
-import { createWalletHandler } from '@owlmeans/regov-ssi-core'
+import { createWalletHandler } from '@owlmeans/vc-core'
 import { NavigationRoot, createRootNavigator } from './router'
-import { HashRouter } from 'react-router-dom-regov'
+import { HashRouter } from 'react-router-dom-owlmeans'
 import { buildStorageHelper } from './storage'
 import { WalletAppParams, AppProvider } from './app/'
 import { i18nRegisterExtensions } from '../i18n/util'

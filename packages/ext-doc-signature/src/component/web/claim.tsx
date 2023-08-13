@@ -17,8 +17,8 @@
 import {
   basicNavigator, MainTextInput, trySubmit, generalDidIdValidation,
   EmptyProps, FormMainAction, generalIdVlidation, generalNameVlidation, humanReadableVersion,
-  PrimaryForm, urlVlidation, useNavigator, useRegov, WalletFormProvider
-} from "@owlmeans/regov-lib-react"
+  PrimaryForm, urlVlidation, useNavigator, useOwlWallet, WalletFormProvider
+} from "@owlmeans/vc-lib-react"
 import React, { Fragment, FunctionComponent, PropsWithChildren, useEffect, useState } from "react"
 import { SignatureCreationFieldsWeb } from "./creation/fields"
 import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
@@ -26,17 +26,17 @@ import { SignatureCreationFields } from "./creation"
 import { useTranslation } from "react-i18next"
 import {
   DIDDocument, ERROR_NO_IDENTITY, Extension, REGISTRY_SECTION_OWN, REGISTRY_TYPE_IDENTITIES
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
-  ERROR_WIDGET_AUTHENTICATION, REGOV_CREDENTIAL_TYPE_SIGNATURE, REGOV_EXT_SIGNATURE_NAMESPACE
+  ERROR_WIDGET_AUTHENTICATION, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, OWLMEANS_EXT_SIGNATURE_NAMESPACE
 } from "../../types"
-import { DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/regov-comm"
+import { DIDCommConnectMeta, getDIDCommUtils } from "@owlmeans/vc-comm"
 import { isCreationMetaFields } from "./creation/types"
 
 
 export const SignatureClaimWeb = (ext: Extension): FunctionComponent<SignatureClaimWebProps> => props => {
-  const { t, i18n } = useTranslation(props.ns || REGOV_EXT_SIGNATURE_NAMESPACE)
-  const { handler, extensions } = useRegov()
+  const { t, i18n } = useTranslation(props.ns || OWLMEANS_EXT_SIGNATURE_NAMESPACE)
+  const { handler, extensions } = useOwlWallet()
   const navigator = useNavigator(basicNavigator)
 
   const methods = useForm<SignatureClaimFields>({
@@ -109,7 +109,7 @@ export const SignatureClaimWeb = (ext: Extension): FunctionComponent<SignatureCl
       throw ERROR_NO_IDENTITY
     }
 
-    const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+    const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
     const unsignedClaim = await factory.build(handler.wallet, {
       extensions: extensions?.registry, identity, 
       subjectData: { ...subject, signedAt: new Date().toISOString() },

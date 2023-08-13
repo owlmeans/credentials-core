@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { Presentation, Credential, normalizeValue, MaybeArray, isPresentation } from "@owlmeans/regov-ssi-core"
+import { Presentation, Credential, normalizeValue, MaybeArray, isPresentation } from "@owlmeans/vc-core"
 import { CustomDescription } from "../../custom.types"
 
 

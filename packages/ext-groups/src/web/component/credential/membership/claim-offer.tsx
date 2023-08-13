@@ -15,19 +15,19 @@
  */
 
 import {
-  GroupSubject, MembershipSubject, BASIC_IDENTITY_TYPE, RegovGroupExtension, REGOV_EXT_GROUP_NAMESPACE,
-  REGOV_CREDENTIAL_TYPE_MEMBERSHIP
+  GroupSubject, MembershipSubject, BASIC_IDENTITY_TYPE, OwlMeansGroupExtension, OWLMEANS_EXT_GROUP_NAMESPACE,
+  OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP
 } from '../../../../types'
 import { getGroupFromMembershipOfferPresentation, getMembershipOffer } from '../../../../util'
-import { EmptyProps, generalNameVlidation, RegovComponentProps, useRegov, withRegov } from '@owlmeans/regov-lib-react'
+import { EmptyProps, generalNameVlidation, WalletComponentProps, useOwlWallet, withOwlWallet } from '@owlmeans/vc-lib-react'
 import {
   AlertOutput, dateFormatter, MainTextInput, MainTextOutput, PrimaryForm, WalletFormProvider
-} from '@owlmeans/regov-lib-react'
-import { normalizeValue, singleValue } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-lib-react'
+import { normalizeValue, singleValue } from '@owlmeans/vc-core'
 import {
   getCompatibleSubject, Presentation, Credential, REGISTRY_TYPE_CLAIMS, REGISTRY_TYPE_IDENTITIES
-} from '@owlmeans/regov-ssi-core'
-import { VALIDATION_KIND_OFFER } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { VALIDATION_KIND_OFFER } from '@owlmeans/vc-core'
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { OfferFields } from './offer'
@@ -37,10 +37,10 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 
 
-export const MembershipClaimOffer: FunctionComponent<ClaimOfferParams> = withRegov<ClaimOfferProps>(
-  { namespace: REGOV_EXT_GROUP_NAMESPACE }, (props) => {
+export const MembershipClaimOffer: FunctionComponent<ClaimOfferParams> = withOwlWallet<ClaimOfferProps>(
+  { namespace: OWLMEANS_EXT_GROUP_NAMESPACE }, (props) => {
     const { credential: presentation, navigator, close, t, ext, i18n } = props
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const [claim, setClaim] = useState<Presentation | undefined>(undefined)
     const group = getGroupFromMembershipOfferPresentation(presentation)
     const groupSubject = getCompatibleSubject<GroupSubject>(group as Credential)
@@ -61,7 +61,7 @@ export const MembershipClaimOffer: FunctionComponent<ClaimOfferParams> = withReg
             return
           }
 
-          const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+          const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
           const result = await factory.validate(handler.wallet, {
             presentation, credential: membership, extensions: extensions.registry,
             kind: VALIDATION_KIND_OFFER
@@ -172,12 +172,12 @@ export const MembershipClaimOffer: FunctionComponent<ClaimOfferParams> = withReg
   })
 
 export type ClaimOfferParams = EmptyProps & {
-  ext: RegovGroupExtension
+  ext: OwlMeansGroupExtension
   credential: Presentation
   close?: () => void
 }
 
-export type ClaimOfferProps = RegovComponentProps<ClaimOfferParams>
+export type ClaimOfferProps = WalletComponentProps<ClaimOfferParams>
 
 export type ClaimOfferFields = OfferFields & {
   membership: {

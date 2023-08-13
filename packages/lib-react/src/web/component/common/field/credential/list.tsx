@@ -3,14 +3,14 @@ import { buildCredentialListControl } from "./control"
 import { CredentialListInputPopup } from './popup'
 import { CredentialListInputProps, isCredentialListControl } from "./types"
 import List from '@mui/material/List'
-import { useRegov } from "../../../../../common"
+import { useOwlWallet } from "../../../../../common"
 import { useFormContext } from "react-hook-form"
 
 
 export const CredentialListInput: FunctionComponent<CredentialListInputProps> =
   ({ field, config, ns }: CredentialListInputProps) => {
     const { setValue, getValues } = useFormContext()
-    const { extensions } = useRegov()
+    const { extensions } = useOwlWallet()
     const [notification, setNotification] = useState(0)
 
     const control = useMemo(

@@ -17,7 +17,7 @@
 import {
   addObserverToSchema, ExtensionDetails, EXTENSION_TRIGGER_AUTHENTICATED,
   EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams, isCredential
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { BASIC_IDENTITY_TYPE, BuildExtensionParams, buildIdentityExtension } from '../ext'
 import {
   buildUIExtension, UIExtensionFactoryProduct, MainModalAuthenticatedEventParams,
@@ -25,21 +25,21 @@ import {
   EXTENSION_ITEM_PURPOSE_EVIDENCE, EXTENSION_ITEM_PURPOSE_VALIDATION, MainModalHandle,
   EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainModalShareEventParams,
   EXTENSION_ITEM_PURPOSE_ITEM
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import { DashboardWidget, EvidenceWidget, Onboarding, ValidationWidget } from './component'
-import { REGISTRY_TYPE_IDENTITIES, Credential, WalletWrapper } from '@owlmeans/regov-ssi-core'
+import { REGISTRY_TYPE_IDENTITIES, Credential, WalletWrapper } from '@owlmeans/vc-core'
 import { IdentityView } from './component/identity/view'
 import { IdentityItem } from './component/identity/item'
-import { REGOV_IDENTITY_DEFAULT_NAMESPACE, REGOV_IDENTITY_DEFAULT_TYPE } from '../types'
+import { OWLMEANS_IDENTITY_DEFAULT_NAMESPACE, OWLMEANS_IDENTITY_DEFAULT_TYPE } from '../types'
 
 
 export const buildIdentityExtensionUI = (
   type: string,
   params: BuildExtensionParams,
   details: ExtensionDetails,
-  ns = REGOV_IDENTITY_DEFAULT_NAMESPACE
+  ns = OWLMEANS_IDENTITY_DEFAULT_NAMESPACE
 ) => {
-  const identityType = type || REGOV_IDENTITY_DEFAULT_TYPE
+  const identityType = type || OWLMEANS_IDENTITY_DEFAULT_TYPE
   type IdentityCredentials = typeof identityType
 
   const extension = buildIdentityExtension(type, params, {

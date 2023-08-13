@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { CredentialListItemInputProps, CredentialListItemInputRendererProps } from "./types"
-import { EXRENSION_ITEM_PURPOSE_INPUT_ITEM, UIExtensionFactoryProduct, useRegov } from "../../../../../common"
+import { EXRENSION_ITEM_PURPOSE_INPUT_ITEM, UIExtensionFactoryProduct, useOwlWallet } from "../../../../../common"
 import { CredentialListItemInputSimpleRenderer } from "./item/simple"
 import { CredentialListItemTypeSelector } from "./item/selector"
 
@@ -8,7 +8,7 @@ import { CredentialListItemTypeSelector } from "./item/selector"
 export const CredentialListItemInput: FunctionComponent<CredentialListItemInputProps> = (
   { config, control, ns, index }
 ) => {
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const model = control.getItemControl(config.field, index)
   if (!model.getType()) {
     if (config.arbitraryEvidence) {

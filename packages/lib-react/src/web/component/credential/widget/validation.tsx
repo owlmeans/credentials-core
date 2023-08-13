@@ -16,11 +16,11 @@
 
 import { Fragment, FunctionComponent } from 'react'
 import {
-  EmptyProps, RegovComponentProps, useRegov, withRegov, EXTENSION_ITEM_PURPOSE_VALIDATION,
+  EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, EXTENSION_ITEM_PURPOSE_VALIDATION,
   ResultWidgetParams
 } from '../../../../common'
-import { ValidationResult } from '@owlmeans/regov-ssi-core'
-import { normalizeValue } from '@owlmeans/regov-ssi-core'
+import { ValidationResult } from '@owlmeans/vc-core'
+import { normalizeValue } from '@owlmeans/vc-core'
 import { EvidenceTrust, EvidenceTrustHandle } from './evidence/'
 import Done from '@mui/icons-material/Done'
 import ErrorOutline from '@mui/icons-material/ErrorOutline'
@@ -37,10 +37,10 @@ import ListSubheader from '@mui/material/ListSubheader'
 import Typography from '@mui/material/Typography'
 
 
-export const ValidationResultWidgetWeb: FunctionComponent<ResultWidgetParamsWeb> = withRegov<ResultWidgetPropsWeb>({
-  namespace: 'regov-wallet-credential'
+export const ValidationResultWidgetWeb: FunctionComponent<ResultWidgetParamsWeb> = withOwlWallet<ResultWidgetPropsWeb>({
+  namespace: 'owlmeans-wallet-credential'
 }, ({ t, reload, result }) => {
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const handle: EvidenceTrustHandle = { reload }
 
   return <Fragment>
@@ -89,4 +89,4 @@ export type ResultWidgetParamsWeb = EmptyProps & {
   reload?: () => void
 }
 
-export type ResultWidgetPropsWeb = RegovComponentProps<ResultWidgetParamsWeb>
+export type ResultWidgetPropsWeb = WalletComponentProps<ResultWidgetParamsWeb>

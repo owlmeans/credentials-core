@@ -15,17 +15,17 @@
  */
 
 import { FunctionComponent, ReactNode, useEffect, useMemo } from 'react'
-import { EventParams, EXTENSION_TRIGGER_AUTHENTICATED, WalletHandler } from '@owlmeans/regov-ssi-core'
+import { EventParams, EXTENSION_TRIGGER_AUTHENTICATED, WalletHandler } from '@owlmeans/vc-core'
 import {
-  RegovComponentProps, useRegov, withRegov, WrappedComponentProps, Config
+  WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps, Config
 } from '../../common/'
 import { CastMainModalParams, UIExtensionRegistry } from '../../extension'
 
 
-export const MainModal: FunctionComponent<MainModalParams> = withRegov<MainModalProps>(
+export const MainModal: FunctionComponent<MainModalParams> = withOwlWallet<MainModalProps>(
   'MainModal', props => {
     const { i18n, t, alias, renderer: Renderer } = props
-    const { extensions, handler, config } = useRegov()
+    const { extensions, handler, config } = useOwlWallet()
     const handle: MainModalHandle = useMemo(() => ({
       close: () => handle.setOpen && handle.setOpen(false),
       
@@ -55,7 +55,7 @@ export const MainModal: FunctionComponent<MainModalParams> = withRegov<MainModal
 
     return <Renderer {..._props} />
   },
-  { namespace: 'regov-wallet-flow', transformer: (wallet) => ({ alias: wallet?.store.alias }) }
+  { namespace: 'owlmeans-wallet-flow', transformer: (wallet) => ({ alias: wallet?.store.alias }) }
 )
 
 export type MainModalAuthenticatedEventParams = EventParams & {
@@ -72,7 +72,7 @@ export type MainModalState = {
   alias: string | undefined
 }
 
-export type MainModalProps = RegovComponentProps<
+export type MainModalProps = WalletComponentProps<
   MainModalParams, MainModalImplParams, MainModalState
 >
 
@@ -94,4 +94,4 @@ export type MainModalShareEventParams = EventParams & {
   handle: MainModalHandle
 }
 
-export const EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER = 'regov:wallet:sharehandler'
+export const EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER = 'owlmeans:wallet:sharehandler'

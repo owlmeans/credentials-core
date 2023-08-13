@@ -14,19 +14,19 @@
  *  limitations under the License.
  */
 
-import { EncryptedStore } from '@owlmeans/regov-ssi-core'
+import { EncryptedStore } from '@owlmeans/vc-core'
 import { FunctionComponent } from 'react'
 import {
-  BasicNavigator, EmptyProps, RegovComponentProps, useRegov, WalletNavigatorMethod,
-  withRegov, WrappedComponentProps
+  BasicNavigator, EmptyProps, WalletComponentProps, useOwlWallet, WalletNavigatorMethod,
+  withOwlWallet, WrappedComponentProps
 } from '../../common/'
 
 
 export const StoreList: FunctionComponent<StoreListParams> =
-  withRegov<StoreListProps, StoreListNavigator>(
+  withOwlWallet<StoreListProps, StoreListNavigator>(
     'StoreList',
     ({ t, i18n, navigator, counter, renderer: Renderer }) => {
-      const { handler } = useRegov()
+      const { handler } = useOwlWallet()
 
       const _props: StoreListImplProps = {
         t, i18n,
@@ -64,12 +64,12 @@ export const StoreList: FunctionComponent<StoreListParams> =
 
       return <Renderer {..._props} />
     }, {
-    namespace: 'regov-wallet-store', transformer: (_, __, handler) => {
+    namespace: 'owlmeans-wallet-store', transformer: (_, __, handler) => {
       return { counter: Object.entries(handler?.stores || {}).length }
     }
   })
 
-export type StoreListProps = RegovComponentProps<StoreListParams, StoreListImplParams, StoreListState, StoreListNavigator>
+export type StoreListProps = WalletComponentProps<StoreListParams, StoreListImplParams, StoreListState, StoreListNavigator>
 
 export type StoreListState = {
   counter: number

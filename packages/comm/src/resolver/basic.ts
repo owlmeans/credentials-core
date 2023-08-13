@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { DIDDocument, didPurposeList, DIDVerificationItem, normalizeValue } from "@owlmeans/regov-ssi-core"
+import { DIDDocument, didPurposeList, DIDVerificationItem, normalizeValue } from "@owlmeans/vc-core"
 import { JWTDecoded } from "did-jwt/lib/JWT"
 import { Resolvable } from "did-resolver"
 

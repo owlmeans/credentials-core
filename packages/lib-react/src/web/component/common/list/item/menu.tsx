@@ -19,8 +19,8 @@ import { useTranslation } from 'react-i18next'
 import saveAs from 'file-saver'
 import copy from 'copy-to-clipboard'
 import { i18n } from 'i18next'
-import { useRegov } from '../../../../../common/'
-import { RegistryType } from '@owlmeans/regov-ssi-core'
+import { useOwlWallet } from '../../../../../common/'
+import { RegistryType } from '@owlmeans/vc-core'
 import ContentCopy from '@mui/icons-material/ContentCopy'
 import Delete from '@mui/icons-material/Delete'
 import FileDownload from '@mui/icons-material/FileDownload'
@@ -35,9 +35,9 @@ import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 
 
 export const ItemMenu = ({ i18n, meta, handle, content, prettyOutput, exportTitle, children }: ItemMenuParams) => {
-  const { t } = useTranslation('regov-wallet-main', { i18n })
+  const { t } = useTranslation('owlmeans-wallet-main', { i18n })
   const [anchor, setAnchor] = useState<HTMLElement | undefined>(undefined)
-  const { handler } = useRegov()
+  const { handler } = useOwlWallet()
   if (typeof content === 'object') {
     content = JSON.stringify(content, undefined, prettyOutput ? 2 : undefined)
   }

@@ -15,17 +15,17 @@
  */
 
 import { Fragment, FunctionComponent } from 'react'
-import { useNavigate, useParams } from 'react-router-dom-regov'
+import { useNavigate, useParams } from 'react-router-dom-owlmeans'
 import {
-  useRegov, withRegov, PurposeCredentialCreationParams, EXTENSION_ITEM_PURPOSE_CLAIM, useNavigator,
+  useOwlWallet, withOwlWallet, PurposeCredentialCreationParams, EXTENSION_ITEM_PURPOSE_CLAIM, useNavigator,
   ClaimNavigator, ClaimNavigatorParams, NavigatorContextProvider
 } from '../../../common'
 import { CREDENTIAL_LIST_ROUTE } from '../../component'
 
 
-export const CredentialClaim = withRegov({ namespace: 'regov-wallet-credential' }, () => {
+export const CredentialClaim = withOwlWallet({ namespace: 'owlmeans-wallet-credential' }, () => {
   const { ext, type } = useParams()
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const navigate = useNavigate()
   const navigator = useNavigator<ClaimNavigator>({
     success: async ({ path }: ClaimNavigatorParams) => { path && navigate(path) }

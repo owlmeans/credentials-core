@@ -19,30 +19,30 @@ import { Fragment, FunctionComponent, useEffect } from 'react'
 import {
   Credential, getCompatibleSubject, Presentation, RegistryItem, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CLAIMS,
   singleValue
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import {
-  EmptyProps, generalNameVlidation, RegovComponentProps, useNavigator, useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
+  EmptyProps, generalNameVlidation, WalletComponentProps, useNavigator, useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import {
-  RegovGroupExtension, REGOV_EXT_GROUP_NAMESPACE, MembershipSubject, GroupSubject,
-  REGOV_CREDENTIAL_TYPE_MEMBERSHIP
+  OwlMeansGroupExtension, OWLMEANS_EXT_GROUP_NAMESPACE, MembershipSubject, GroupSubject,
+  OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP
 } from '../../../../types'
 import {
   AlertOutput, dateFormatter, FormMainAction, MainTextInput, MainTextOutput, PrimaryForm, WalletFormProvider,
   ListNavigator, partialListNavigator
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import { useForm } from 'react-hook-form'
 import { ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION } from '../../types'
-import { useNavigate } from 'react-router-dom-regov'
-import { addToValue } from '@owlmeans/regov-ssi-core'
+import { useNavigate } from 'react-router-dom-owlmeans'
+import { addToValue } from '@owlmeans/vc-core'
 import DialogContent from '@mui/material/DialogContent'
 
 
-export const MembershipClaim: FunctionComponent<MembershipClaimParams> = withRegov<
+export const MembershipClaim: FunctionComponent<MembershipClaimParams> = withOwlWallet<
   MembershipClaimProps, ListNavigator
->({ namespace: REGOV_EXT_GROUP_NAMESPACE }, (props) => {
+>({ namespace: OWLMEANS_EXT_GROUP_NAMESPACE }, (props) => {
   const { group, t, i18n, ext /*, ns */ } = props
-  const { handler, extensions } = useRegov()
+  const { handler, extensions } = useOwlWallet()
   const navigate = useNavigate()
   const navigator = useNavigator<ListNavigator>(partialListNavigator(navigate))
   const groupSubjet = group ? getCompatibleSubject<GroupSubject>(group) : undefined
@@ -107,7 +107,7 @@ export const MembershipClaim: FunctionComponent<MembershipClaimParams> = withReg
       if (!handler.wallet) {
         throw ERROR_WIDGET_AUTHENTICATION
       }
-      const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+      const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
       const unsignedMemberhip = await factory.build(handler.wallet, {
         extensions: extensions?.registry,
         subjectData: Object.fromEntries(
@@ -178,13 +178,13 @@ export const MembershipClaim: FunctionComponent<MembershipClaimParams> = withReg
 })
 
 export type MembershipClaimParams = EmptyProps & {
-  ext: RegovGroupExtension,
+  ext: OwlMeansGroupExtension,
   group?: Credential,
   close?: () => void
   finish?: () => void
 }
 
-export type MembershipClaimProps = RegovComponentProps<MembershipClaimParams>
+export type MembershipClaimProps = WalletComponentProps<MembershipClaimParams>
 
 export type MembershipClaimFields = {
   membership: {

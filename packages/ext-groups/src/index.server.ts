@@ -1,8 +1,8 @@
-import { Credential, DIDDocument, DIDPURPOSE_AUTHENTICATION, Identity, normalizeValue, VERIFICATION_KEY_CONTROLLER, VERIFICATION_KEY_HOLDER } from '@owlmeans/regov-ssi-core'
-import { buildServerExtension, ERROR_NO_WALLET, getAppContext } from '@owlmeans/regov-lib-node'
+import { Credential, DIDDocument, DIDPURPOSE_AUTHENTICATION, Identity, normalizeValue, VERIFICATION_KEY_CONTROLLER, VERIFICATION_KEY_HOLDER } from '@owlmeans/vc-core'
+import { buildServerExtension, ERROR_NO_WALLET, getAppContext } from '@owlmeans/vc-lib-node'
 import { Router } from 'express'
 import { groupsExtension } from './ext'
-import { BASIC_IDENTITY_TYPE, GroupSubject, MembershipSubject, REGOV_CREDENTIAL_TYPE_GROUP, REGOV_CREDENTIAL_TYPE_MEMBERSHIP, SERVER_IS_GROUP_OWNER } from './types'
+import { BASIC_IDENTITY_TYPE, GroupSubject, MembershipSubject, OWLMEANS_CREDENTIAL_TYPE_GROUP, OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP, SERVER_IS_GROUP_OWNER } from './types'
 
 export * from './types'
 export * from './ext'
@@ -18,7 +18,7 @@ export const groupsServerExtension = buildServerExtension(groupsExtension, () =>
     }
 
     const credential: Credential<MembershipSubject> = req.body
-    const factory = groupsExtension.getFactory(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    const factory = groupsExtension.getFactory(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
     const result = await factory.validate(handler.wallet, {
       credential, extensions: extensions.registry
     })
@@ -26,7 +26,7 @@ export const groupsServerExtension = buildServerExtension(groupsExtension, () =>
     if (result.valid && result.trusted) {
       const evidence = normalizeValue(credential.evidence)
       const group = evidence.find(
-        evidence => evidence?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+        evidence => evidence?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
       ) as Credential<GroupSubject>
       const id = evidence.find(
         eveidence => eveidence?.type.includes(BASIC_IDENTITY_TYPE)

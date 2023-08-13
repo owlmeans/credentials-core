@@ -14,31 +14,31 @@
  *  limitations under the License.
  */
 
-import { MaybeArray, normalizeValue } from "@owlmeans/regov-ssi-core"
-import { Presentation, Credential } from "@owlmeans/regov-ssi-core"
-import { DIDDocument } from "@owlmeans/regov-ssi-core"
+import { MaybeArray, normalizeValue } from "@owlmeans/vc-core"
+import { Presentation, Credential } from "@owlmeans/vc-core"
+import { DIDDocument } from "@owlmeans/vc-core"
 import {
-  REGOV_CREDENTIAL_TYPE_GROUP, REGOV_CREDENTIAL_TYPE_MEMBERSHIP, REGOV_MEMBERSHIP_CLAIM_TYPE,
-  BASIC_IDENTITY_TYPE, REGOV_MEMBERSHIP_OFFER_TYPE
+  OWLMEANS_CREDENTIAL_TYPE_GROUP, OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP, OWLMEANS_MEMBERSHIP_CLAIM_TYPE,
+  BASIC_IDENTITY_TYPE, OWLMEANS_MEMBERSHIP_OFFER_TYPE
 } from "./types"
 
 
 export const getGroupFromMembershipClaimPresentation = (presentation: Presentation) => {
-  if (!presentation.type.includes(REGOV_MEMBERSHIP_CLAIM_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_MEMBERSHIP_CLAIM_TYPE)) {
     return undefined
   }
 
   const membershipClaim = presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   )
 
   return normalizeValue(membershipClaim?.evidence).find(
-    evidence => evidence?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+    evidence => evidence?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
   ) as Credential
 }
 
 export const getGroupOwnerIdentity = (crednetial: Credential) => {
-  if (!crednetial.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)) {
+  if (!crednetial.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)) {
     return undefined
   }
 
@@ -50,7 +50,7 @@ export const getGroupOwnerIdentity = (crednetial: Credential) => {
 
 export const getMembershipClaimHolder = (presentation: Presentation) => {
   const membership = presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   )
 
   return membership?.issuer as unknown as DIDDocument
@@ -58,26 +58,26 @@ export const getMembershipClaimHolder = (presentation: Presentation) => {
 
 export const getMembershipClaim = (presentation: Presentation) => {
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   )
 }
 
 export const getGroupFromMembershipOfferPresentation = (presentation: Presentation) => {
-  if (!presentation.type.includes(REGOV_MEMBERSHIP_OFFER_TYPE)) {
+  if (!presentation.type.includes(OWLMEANS_MEMBERSHIP_OFFER_TYPE)) {
     return undefined
   }
 
   const membershipClaim = presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   )
 
   return normalizeValue(membershipClaim?.evidence).find(
-    evidence => evidence?.type.includes(REGOV_CREDENTIAL_TYPE_GROUP)
+    evidence => evidence?.type.includes(OWLMEANS_CREDENTIAL_TYPE_GROUP)
   ) as Credential
 }
 
 export const getMembershipOffer = (presentation: Presentation) => {
   return presentation.verifiableCredential.find(
-    credential => credential.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+    credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
   )
 }

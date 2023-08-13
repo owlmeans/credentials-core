@@ -8,10 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
-import { normalizeValue } from "@owlmeans/regov-ssi-core"
+import { normalizeValue } from "@owlmeans/vc-core"
 import { useTranslation } from 'react-i18next'
 import { CredentialListItemConfig, CredentialListItemTypeSelectorProps } from '../types'
-import { useRegov } from '../../../../../../common'
+import { useOwlWallet } from '../../../../../../common'
 
 
 export const CredentialListItemTypeSelector = ({ control, ns }: CredentialListItemTypeSelectorProps) => {
@@ -20,7 +20,7 @@ export const CredentialListItemTypeSelector = ({ control, ns }: CredentialListIt
   const prefix = `input.${config.prefix ? `${config.prefix}.` : ''}`
   const itemConfig = config.items.find(item => item.field === control.field) as CredentialListItemConfig
 
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
   const [open, setOpen] = useState(false)
 
   return <ListItem>

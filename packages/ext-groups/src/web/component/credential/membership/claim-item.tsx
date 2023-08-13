@@ -15,12 +15,12 @@
  */
 
 import { Fragment, FunctionComponent, useMemo } from 'react'
-import { MembershipSubject, REGOV_CREDENTIAL_TYPE_MEMBERSHIP } from '../../../../types'
-import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, normalizeValue, UnsignedCredential } from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper, Presentation } from '@owlmeans/regov-ssi-core'
-import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
-import { IncommigDocumentWithConn } from '@owlmeans/regov-comm'
+import { MembershipSubject, OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP } from '../../../../types'
+import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, normalizeValue, UnsignedCredential } from '@owlmeans/vc-core'
+import { CredentialWrapper, Presentation } from '@owlmeans/vc-core'
+import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
+import { IncommigDocumentWithConn } from '@owlmeans/vc-comm'
 import Person from '@mui/icons-material/Person'
 
 import Avatar from '@mui/material/Avatar'
@@ -33,14 +33,14 @@ import Typography from '@mui/material/Typography'
 
 
 export const MembershipClaimItem = (ext: Extension): FunctionComponent<MembershipClaimItemParams> =>
-  withRegov<MembershipClaimItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+  withOwlWallet<MembershipClaimItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
     const membershipClaim = normalizeValue(
       wrapper.credential.verifiableCredential
     ).find(
-      cred => cred.type.includes(REGOV_CREDENTIAL_TYPE_MEMBERSHIP)
+      cred => cred.type.includes(OWLMEANS_CREDENTIAL_TYPE_MEMBERSHIP)
     )
     const subject = membershipClaim?.credentialSubject as MembershipSubject
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -87,4 +87,4 @@ export type MembershipClaimItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type MembershipClaimItemProps = RegovComponentProps<MembershipClaimItemParams>
+export type MembershipClaimItemProps = WalletComponentProps<MembershipClaimItemParams>

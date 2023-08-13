@@ -16,21 +16,21 @@
 
 import { FunctionComponent, useEffect } from 'react'
 
-import { CryptoHelper } from '@owlmeans/regov-ssi-core'
-import { buildWalletWrapper } from '@owlmeans/regov-ssi-core'
+import { CryptoHelper } from '@owlmeans/vc-core'
+import { buildWalletWrapper } from '@owlmeans/vc-core'
 import { UseFormReturn } from 'react-hook-form'
 import {
-  withRegov, BasicNavigator, WalletNavigatorMethod, RegovValidationRules, WrappedComponentProps,
-  RegovComponentProps, useRegov, EmptyProps, EmptyState
+  withOwlWallet, BasicNavigator, WalletNavigatorMethod, OwlWalletValidationRules, WrappedComponentProps,
+  WalletComponentProps, useOwlWallet, EmptyProps, EmptyState
 } from '../../common/'
 import { passwordValidation } from '../../util'
 
 
 export const StoreLogin: FunctionComponent<StoreLoginParams> =
-  withRegov<StoreLoginProps, StoreLoginNavigator>(
+  withOwlWallet<StoreLoginProps, StoreLoginNavigator>(
     'StoreLogin',
     ({ t, i18n, alias, navigator, config, renderer: Renderer, extensions }) => {
-      const { handler } = useRegov()
+      const { handler } = useOwlWallet()
 
       if (!handler.stores[alias]) {
         useEffect(() => { navigator?.home() })
@@ -81,10 +81,10 @@ export const StoreLogin: FunctionComponent<StoreLoginParams> =
 
       return <Renderer {..._props} />
     },
-    { namespace: 'regov-wallet-store' }
+    { namespace: 'owlmeans-wallet-store' }
   )
 
-export const storeLoginValidationRules: RegovValidationRules = {
+export const storeLoginValidationRules: OwlWalletValidationRules = {
   'login.password': passwordValidation
 }
 
@@ -92,7 +92,7 @@ export type StoreLoginParams = {
   alias: string
 } & EmptyProps
 
-export type StoreLoginProps = RegovComponentProps<
+export type StoreLoginProps = WalletComponentProps<
   StoreLoginParams, StoreLoginImplParams, EmptyState, StoreLoginNavigator
 >
 

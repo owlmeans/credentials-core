@@ -1,4 +1,4 @@
-import { MaybeArray, RegistryItem } from "@owlmeans/regov-ssi-core"
+import { MaybeArray, RegistryItem } from "@owlmeans/vc-core"
 import { ReactNode, FunctionComponent } from "react"
 import { EmptyProps } from "../../../../../common"
 

@@ -18,7 +18,7 @@ import {
   UnsignedCredential,
   Credential,
   WalletWrapper
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 
 
 export const credIdToIdentityId = (wallet: WalletWrapper, cred: UnsignedCredential | Credential) => {

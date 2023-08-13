@@ -1,4 +1,4 @@
-import { documentWarmer } from "@owlmeans/regov-ssi-core"
+import { documentWarmer } from "@owlmeans/vc-core"
 
 
 export const randomRequestSchema = {

@@ -14,15 +14,15 @@
  *  limitations under the License.
  */
 
-import { Extension, ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/regov-ssi-core'
-import { Credential, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
+import { Extension, ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/vc-core'
+import { Credential, getCompatibleSubject } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useEffect, useState } from 'react'
-import { REGOV_EXT_SIGNATURE_NAMESPACE, SignatureCredential, SignatureSubject } from '../../types'
-import { REGOV_CREDENTIAL_TYPE_SIGNATURE } from '../../types'
+import { OWLMEANS_EXT_SIGNATURE_NAMESPACE, SignatureCredential, SignatureSubject } from '../../types'
+import { OWLMEANS_CREDENTIAL_TYPE_SIGNATURE } from '../../types'
 import {
-  CredentialEvidenceWidget, EmptyProps, RegovComponentProps, useRegov, ValidationResultWidgetWeb,
-  AlertOutput, FileProcessorWeb, PrimaryForm, WalletFormProvider, withRegov
-} from '@owlmeans/regov-lib-react'
+  CredentialEvidenceWidget, EmptyProps, WalletComponentProps, useOwlWallet, ValidationResultWidgetWeb,
+  AlertOutput, FileProcessorWeb, PrimaryForm, WalletFormProvider, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import { useForm } from 'react-hook-form'
 import Close from '@mui/icons-material/Close'
 
@@ -36,11 +36,11 @@ import Paper from '@mui/material/Paper'
 import { SignatureViewFieldsWeb } from './view/fields'
 
 
-export const SignatureView: FunctionComponent<SignatureViewParams> = withRegov<SignatureViewProps>({
-  namespace: REGOV_EXT_SIGNATURE_NAMESPACE
+export const SignatureView: FunctionComponent<SignatureViewParams> = withOwlWallet<SignatureViewProps>({
+  namespace: OWLMEANS_EXT_SIGNATURE_NAMESPACE
 }, ({ t, i18n, credential, navigator, close, ext }) => {
-  const { handler, extensions } = useRegov()
-  const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+  const { handler, extensions } = useOwlWallet()
+  const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
   const subject = getCompatibleSubject<SignatureSubject>(credential)
 
   const [counter, setCounter] = useState<number>(0)
@@ -186,7 +186,7 @@ export type SignatureViewParams = EmptyProps & {
   credential: Credential
 }
 
-export type SignatureViewProps = RegovComponentProps<SignatureViewParams>
+export type SignatureViewProps = WalletComponentProps<SignatureViewParams>
 
 export type SignatureViewFields = {
   signature: {

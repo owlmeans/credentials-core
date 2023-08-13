@@ -22,8 +22,8 @@ import {
 import {
   RegistryType, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CLAIMS,
   REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_IDENTITIES, REGISTRY_TYPE_REQUESTS,
-} from '@owlmeans/regov-ssi-core'
-import { useNavigate, useParams } from 'react-router-dom-regov'
+} from '@owlmeans/vc-core'
+import { useNavigate, useParams } from 'react-router-dom-owlmeans'
 import { CredentialHeader } from '../../component'
 
 

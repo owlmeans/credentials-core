@@ -16,9 +16,9 @@
 
 import {
   CommConnectionStatusHandler, InitCommEventParams, EVENT_INIT_CONNECTION
-} from "@owlmeans/regov-comm"
-import { useRegov } from "@owlmeans/regov-lib-react"
-import { CredentialsRegistryWrapper, ExtensionRegistry, REGISTRY_SECTION_PEER, WalletHandler } from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-comm"
+import { useOwlWallet } from "@owlmeans/vc-lib-react"
+import { CredentialsRegistryWrapper, ExtensionRegistry, REGISTRY_SECTION_PEER, WalletHandler } from "@owlmeans/vc-core"
 import { IncommingCrednetialSubject, IncommingMeta, IncommingPresentation, REGISTRY_TYPE_INBOX } from "./types"
 
 
@@ -49,4 +49,4 @@ export const handleIncommingCommDocuments = (handler?: WalletHandler, extensions
 }
 
 export const useInboxRegistry = () => 
-  useRegov().handler.wallet?.getRegistry(REGISTRY_TYPE_INBOX) as CredentialsRegistryWrapper
+  useOwlWallet().handler.wallet?.getRegistry(REGISTRY_TYPE_INBOX) as CredentialsRegistryWrapper

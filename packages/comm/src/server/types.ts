@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { BuildDIDHelperOptions } from "@owlmeans/regov-ssi-core"
+import { BuildDIDHelperOptions } from "@owlmeans/vc-core"
 
 export type ServerConfig = {
   subProtocol?: string

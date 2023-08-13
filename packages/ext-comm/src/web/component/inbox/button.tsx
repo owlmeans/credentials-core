@@ -15,8 +15,8 @@
  */
 
 import { FunctionComponent, useEffect } from 'react'
-import { Extension, REGISTRY_SECTION_PEER } from '@owlmeans/regov-ssi-core'
-import { EmptyProps, RegovComponentProps, withRegov } from '@owlmeans/regov-lib-react'
+import { Extension, REGISTRY_SECTION_PEER } from '@owlmeans/vc-core'
+import { EmptyProps, WalletComponentProps, withOwlWallet } from '@owlmeans/vc-lib-react'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 import MailIcon from '@mui/icons-material/Mail'
@@ -26,7 +26,7 @@ import { handleIncommingCommDocuments } from '../../../utils'
 
 
 export const InboxButton = (ext: Extension): FunctionComponent<InboxButtonParams> =>
-  withRegov<InboxButtonProps>({
+  withOwlWallet<InboxButtonProps>({
     namespace: ext.localization?.ns, transformer: (wallet) => {
       return { count: wallet?.getRegistry(REGISTRY_TYPE_INBOX).registry.credentials[REGISTRY_SECTION_PEER].length }
     }
@@ -53,4 +53,4 @@ export const InboxButton = (ext: Extension): FunctionComponent<InboxButtonParams
 
 export type InboxButtonParams = EmptyProps & {}
 
-export type InboxButtonProps = RegovComponentProps<InboxButtonParams, {}, { count: number }>
+export type InboxButtonProps = WalletComponentProps<InboxButtonParams, {}, { count: number }>

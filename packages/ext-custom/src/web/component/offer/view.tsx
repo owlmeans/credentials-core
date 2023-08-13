@@ -14,8 +14,8 @@
  *  limitations under the License.
  */
 
-import { DIDCommConnectMeta } from '@owlmeans/regov-comm'
-import { Extension, normalizeValue } from '@owlmeans/regov-ssi-core'
+import { DIDCommConnectMeta } from '@owlmeans/vc-comm'
+import { Extension, normalizeValue } from '@owlmeans/vc-core'
 import { Fragment, FunctionComponent } from 'react'
 import { DefaultDescription, DefaultPresentation, DEFAULT_SUFFIX_REFUSE, REFUSED_TITLE, UseFieldAt } from "../../../custom.types"
 
@@ -23,7 +23,7 @@ import { useForm } from 'react-hook-form'
 import { produceValidation } from '../helper/form'
 import { castSectionKey } from '../../utils/tools'
 import { useTranslation } from 'react-i18next'
-import { AlertOutput, basicNavigator, FormMainAction, MainTextInput, PrimaryForm, useNavigator, useRegov, WalletFormProvider } from '@owlmeans/regov-lib-react'
+import { AlertOutput, basicNavigator, FormMainAction, MainTextInput, PrimaryForm, useNavigator, useOwlWallet, WalletFormProvider } from '@owlmeans/vc-lib-react'
 
 import { FieldsRenderer } from '../widget/fields'
 import { getSubject } from '../../utils/cred'
@@ -31,13 +31,13 @@ import { getSubject } from '../../utils/cred'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
 import Grid from '@mui/material/Grid'
-import { useInboxRegistry } from '@owlmeans/regov-ext-comm'
+import { useInboxRegistry } from '@owlmeans/vc-ext-comm'
 import { buildAccept, buildCancel } from './helpers'
 
 
 export const OfferView: FunctionComponent<OfferViewProps> =
   ({ descr, offer, ext, close }) => {
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const inbox = useInboxRegistry()
     const navigator = useNavigator(basicNavigator)
     const { t, i18n } = useTranslation(descr.ns)

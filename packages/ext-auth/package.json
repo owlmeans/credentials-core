@@ -1,15 +1,15 @@
 {
-  "name": "@owlmeans/regov-ext-auth",
+  "name": "@owlmeans/vc-ext-auth",
   "version": "0.8.1",
-  "description": "Authentication widgets for Regov SSI",
+  "description": "Authentication widgets extension for OwlMeans Credentials library",
   "keywords": [
-    "Regov",
+    "OwlMeans Credentials",
     "SSI",
     "authentication",
     "auth"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/ext-auth"
   },
   "sources": "src/index.ts",
@@ -37,11 +37,11 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/regov-comm": "^0.8.0",
-    "@owlmeans/regov-ext-comm": "^0.8.0",
-    "@owlmeans/regov-lib-node": "^0.8.0",
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-comm": "^0.8.0",
+    "@owlmeans/vc-ext-comm": "^0.8.0",
+    "@owlmeans/vc-lib-node": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "express": "*",
     "i18next": "*",
     "react": "*",
@@ -49,10 +49,10 @@
     "react-i18next": "*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
-    "@owlmeans/regov-lib-node": {
+    "@owlmeans/vc-lib-node": {
       "optional": true
     },
     "express": {

@@ -1,4 +1,4 @@
-# OwlMeans Re:gov Example Application
+# OwlMeans Credentials Example Application
 
 Example application.
 

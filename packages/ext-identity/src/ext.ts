@@ -20,12 +20,12 @@ import {
   RetreiveNameEventParams, isCredential, IncommigDocumentEventParams, EXTENSION_TRIGGER_INIT_SENSETIVE,
   EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, REGISTRY_SECTION_OWN, EXTENSION_TRIGGER_PRODUCE_IDENTITY,
   InitSensetiveEventParams
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
   getCompatibleSubject, REGISTRY_TYPE_IDENTITIES, UnsignedCredential
-} from "@owlmeans/regov-ssi-core"
-import { IdentitySubject, REGOV_IDENTITY_DEFAULT_NAMESPACE, REGOV_IDENTITY_DEFAULT_TYPE, ERROR_NO_EXENSION } from "./types"
-import { makeRandomUuid } from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
+import { IdentitySubject, OWLMEANS_IDENTITY_DEFAULT_NAMESPACE, OWLMEANS_IDENTITY_DEFAULT_TYPE, ERROR_NO_EXENSION } from "./types"
+import { makeRandomUuid } from "@owlmeans/vc-core"
 import { credIdToIdentityId } from "./helper"
 import en from './i18n/en.json'
 import ru from './i18n/ru.json'
@@ -36,9 +36,9 @@ export const BASIC_IDENTITY_TYPE = 'Identity'
 
 export const buildIdentityExtension = (
   type: string, params: BuildExtensionParams, details: ExtensionDetails,
-  ns = REGOV_IDENTITY_DEFAULT_NAMESPACE
+  ns = OWLMEANS_IDENTITY_DEFAULT_NAMESPACE
 ) => {
-  const identityType = type || 'OwlMeans:Regov:Identity'
+  const identityType = type || 'OwlMeans:Credentials:Identity'
 
   type IdentityCredentials = typeof identityType
 
@@ -82,7 +82,7 @@ export const buildIdentityExtension = (
     filter: async (wallet) => {
       const registry = wallet.getRegistry(REGISTRY_TYPE_IDENTITIES)
       const creds = await registry.lookupCredentials(
-        schema.details.defaultCredType || REGOV_IDENTITY_DEFAULT_TYPE,
+        schema.details.defaultCredType || OWLMEANS_IDENTITY_DEFAULT_TYPE,
         REGISTRY_SECTION_OWN
       )
 
@@ -90,7 +90,7 @@ export const buildIdentityExtension = (
     },
     method: async (wallet, params: InitSensetiveEventParams) => {
       const factory = extension.getFactory(
-        schema.details.defaultCredType || REGOV_IDENTITY_DEFAULT_TYPE
+        schema.details.defaultCredType || OWLMEANS_IDENTITY_DEFAULT_TYPE
       )
       const unsigned = await factory.build(wallet, {
         extensions: params.extensions, subjectData: {}
@@ -184,7 +184,7 @@ export const buildIdentityExtension = (
   })
 
   extension.localization = { ns, translations: {} }
-  if (ns === REGOV_IDENTITY_DEFAULT_NAMESPACE) {
+  if (ns === OWLMEANS_IDENTITY_DEFAULT_NAMESPACE) {
     extension.localization.translations = { en, ru, be: by }
   }
 

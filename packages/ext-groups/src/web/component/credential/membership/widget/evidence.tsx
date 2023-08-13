@@ -15,19 +15,19 @@
  */
 
 import { FunctionComponent } from 'react'
-import { Extension } from '@owlmeans/regov-ssi-core'
+import { Extension } from '@owlmeans/vc-core'
 import { 
-  EmptyProps, PurposeEvidenceWidgetParams, RegovComponentProps, withRegov 
-} from '@owlmeans/regov-lib-react'
-import { getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { dateFormatter } from '@owlmeans/regov-lib-react'
+  EmptyProps, PurposeEvidenceWidgetParams, WalletComponentProps, withOwlWallet 
+} from '@owlmeans/vc-lib-react'
+import { getCompatibleSubject } from '@owlmeans/vc-core'
+import { dateFormatter } from '@owlmeans/vc-lib-react'
 import { MembershipSubject } from '../../../../../types'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 
 export const MembershipEvidenceWidget = (ext: Extension): FunctionComponent<MembershipEvidenceWidgetParams> =>
-  withRegov<MembershipEvidenceWidgetProps>({ namespace: ext.localization?.ns }, (props) => {
+  withOwlWallet<MembershipEvidenceWidgetProps>({ namespace: ext.localization?.ns }, (props) => {
     const { wrapper, t } = props
 
     const subject = getCompatibleSubject<MembershipSubject>(wrapper.credential)
@@ -61,4 +61,4 @@ export const MembershipEvidenceWidget = (ext: Extension): FunctionComponent<Memb
 
 export type MembershipEvidenceWidgetParams = EmptyProps & PurposeEvidenceWidgetParams
 
-export type MembershipEvidenceWidgetProps = RegovComponentProps<MembershipEvidenceWidgetParams>
+export type MembershipEvidenceWidgetProps = WalletComponentProps<MembershipEvidenceWidgetParams>

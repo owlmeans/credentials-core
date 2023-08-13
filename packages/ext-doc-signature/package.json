@@ -1,15 +1,15 @@
 {
-  "name": "@owlmeans/regov-ext-doc-signature",
+  "name": "@owlmeans/vc-ext-signature",
   "version": "0.8.2",
-  "description": "Regov extension to sign and check signatures of random documents.",
+  "description": "OwlMeans Credentials extension to sign and check signatures of random documents.",
   "keywords": [
-    "Regov",
+    "OwlMeans Credentials",
     "SSI",
     "Document",
     "Signature"
   ],
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
-  "homepage": "https://github.com/owlmeans/regov-ssi-mono#readme",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
   "type": "commonjs",
   "main": "dist/index.js",
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owlmeans/regov-ssi-mono.git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/ext-groups"
   },
   "sources": "src/index.ts",
@@ -37,18 +37,18 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@owlmeans/regov-comm": "^0.8.0",
-    "@owlmeans/regov-ext-comm": "^0.8.0",
-    "@owlmeans/regov-lib-react": "^0.8.0",
-    "@owlmeans/regov-ssi-core": "^0.8.0",
+    "@owlmeans/vc-comm": "^0.8.0",
+    "@owlmeans/vc-ext-comm": "^0.8.0",
+    "@owlmeans/vc-lib-react": "^0.8.0",
+    "@owlmeans/vc-core": "^0.8.0",
     "i18next": "*",
     "react": "*",
     "react-hook-form": "*",
     "react-i18next": "*",
-    "react-router-dom-regov": "npm:react-router-dom@^6.*"
+    "react-router-dom-owlmeans": "npm:react-router-dom@^6.*"
   },
   "peerDependenciesMeta": {
-    "@owlmeans/regov-lib-react": {
+    "@owlmeans/vc-lib-react": {
       "optional": true
     },
     "@emotion/react": {
@@ -72,7 +72,7 @@
     "react-i18next": {
       "optional": true
     },
-    "react-router-dom-regov": {
+    "react-router-dom-owlmeans": {
       "optional": true
     }
   },

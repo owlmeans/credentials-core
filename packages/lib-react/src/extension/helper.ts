@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { addObserverToSchema, Extension } from "@owlmeans/regov-ssi-core"
+import { addObserverToSchema, Extension } from "@owlmeans/vc-core"
 import {
   EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainModalHandle, MainModalShareEventParams
 } from "../component/main/modal"

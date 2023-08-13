@@ -24,12 +24,12 @@ import {
   COMM_WS_PREFIX_CONFIRMED, COMM_WS_PREFIX_DIDDOC, COMM_WS_PREFIX_ERROR, COMM_WS_SUBPROTOCOL,
   DIDCommConnectMeta, ERROR_COMM_DID_WITHOUT_STATE, ERROR_COMM_DID_WRONG_SIGNATURE, ERROR_COMM_INVALID_PAYLOAD, ERROR_COMM_MALFORMED_PAYLOAD,
   ERROR_COMM_NO_CONNECTION, ERROR_COMM_NO_RECIPIENT, ERROR_COMM_NO_SENDER, ERROR_COMM_WS_DID_REGISTERED,
-  ERROR_COMM_WS_TIMEOUT, ERROR_COMM_WS_UNKNOWN, REGOV_COMM_REQUEST_TYPE, REGOV_COMM_RESPONSE_TYPE
+  ERROR_COMM_WS_TIMEOUT, ERROR_COMM_WS_UNKNOWN, OWLMEANS_COMM_REQUEST_TYPE, OWLMEANS_COMM_RESPONSE_TYPE
 } from '../types'
 import {
   buildWalletWrapper, ExtensionRegistry, makeRandomUuid, cryptoHelper, DIDDocument, VERIFICATION_KEY_HOLDER,
   EXTENSION_TRIGGER_PRODUCE_IDENTITY, InitSensetiveEventParams
-} from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
 import { parseJWE } from '../util'
 
 const messages: { [key: string]: SentMessage } = {}
@@ -44,7 +44,7 @@ export const startWSServer = async (
   })
 
   const serverWallet = await buildWalletWrapper(
-    { crypto: cryptoHelper, extensions }, '00000000', { alias: 'server', name: 'Regov' },
+    { crypto: cryptoHelper, extensions }, '00000000', { alias: 'server', name: 'OwlMeans Credentials' },
     {
       prefix: config.did.prefix,
       defaultSchema: config.did.baseSchemaUrl,
@@ -216,7 +216,7 @@ export const startWSServer = async (
         } else if (data.startsWith('did:')) {
           const didInfo = didHelper.parseDIDId(data)
           const sequence = (await cryptoHelper.getRandomBytes(32)).toString()
-          const request = extension.getFactory(REGOV_COMM_REQUEST_TYPE)
+          const request = extension.getFactory(OWLMEANS_COMM_REQUEST_TYPE)
 
           const unsigned = await request.build(serverWallet, { subjectData: { handshakeSequence: sequence } })
           try {
@@ -284,7 +284,7 @@ export const startWSServer = async (
             try {
               const didDoc = serverWallet.did.helper().parseLongForm(handshakeData)
 
-              const response = extension.getFactory(REGOV_COMM_RESPONSE_TYPE)
+              const response = extension.getFactory(OWLMEANS_COMM_RESPONSE_TYPE)
               const verified = await response.validate(serverWallet, {
                 credential: jwt.payload.response,
                 extensions: extensions as ExtensionRegistry,

@@ -16,16 +16,16 @@
 
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import {
-  CredentialEvidenceWidget, EmptyProps, EntityRenderer, RegovComponentProps, useRegov,
-  ValidationResultWidgetWeb, withRegov
-} from '@owlmeans/regov-lib-react'
+  CredentialEvidenceWidget, EmptyProps, EntityRenderer, WalletComponentProps, useOwlWallet,
+  ValidationResultWidgetWeb, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import {
   Credential, getCompatibleSubject, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER,
   REGISTRY_TYPE_IDENTITIES
-} from '@owlmeans/regov-ssi-core'
-import { ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { ValidationResult, VALIDATION_FAILURE_CHECKING } from '@owlmeans/vc-core'
 import {
-  RegovIdentityExtension, IdentitySubject, REGOV_IDENTITY_DEFAULT_NAMESPACE
+  OwlMeansIdentityExtension, IdentitySubject, OWLMEANS_IDENTITY_DEFAULT_NAMESPACE
 } from '../../../types'
 import Close from '@mui/icons-material/Close'
 import Button from '@mui/material/Button'
@@ -38,12 +38,12 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
 
-export const IdentityView: FunctionComponent<IdentityViewParams> = withRegov<IdentityViewProps>({
-  namespace: REGOV_IDENTITY_DEFAULT_NAMESPACE
+export const IdentityView: FunctionComponent<IdentityViewParams> = withOwlWallet<IdentityViewProps>({
+  namespace: OWLMEANS_IDENTITY_DEFAULT_NAMESPACE
 }, ({ t, credential, close, ext }) => {
   const subject = getCompatibleSubject<IdentitySubject>(credential)
   const factory = ext.getFactory(credential.type)
-  const { handler, extensions } = useRegov()
+  const { handler, extensions } = useOwlWallet()
   const [counter, setCounter] = useState<number>(0)
 
   const registry = handler.wallet?.getRegistry(REGISTRY_TYPE_IDENTITIES)
@@ -126,10 +126,10 @@ export const IdentityView: FunctionComponent<IdentityViewParams> = withRegov<Ide
 })
 
 export type IdentityViewParams = EmptyProps & {
-  ext: RegovIdentityExtension,
+  ext: OwlMeansIdentityExtension,
   credential: Credential
   close?: () => void
 }
 
-export type IdentityViewProps = RegovComponentProps<IdentityViewParams>
+export type IdentityViewProps = WalletComponentProps<IdentityViewParams>
 

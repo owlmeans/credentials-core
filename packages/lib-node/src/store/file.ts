@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { EncryptedStore, WalletHandler } from "@owlmeans/regov-ssi-core"
+import { EncryptedStore, WalletHandler } from "@owlmeans/vc-core"
 import { ServerStore } from "./types"
 import fs from 'fs'
 import { default as Path } from 'path'

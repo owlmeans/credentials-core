@@ -40,30 +40,30 @@ export const i18nDefaultOptions: InitOptions = {
   debug: false,
   resources: {
     en: {
-      'regov-wallet-store': enStore,
-      'regov-wallet-common': enCommon,
-      'regov-wallet-main': enMain,
-      'regov-wallet-credential': enCredential,
+      'owlmeans-wallet-store': enStore,
+      'owlmeans-wallet-common': enCommon,
+      'owlmeans-wallet-main': enMain,
+      'owlmeans-wallet-credential': enCredential,
     },
     ru: {
-      'regov-wallet-store': ruStore,
-      'regov-wallet-common': ruCommon,
-      'regov-wallet-main': ruMain,
-      'regov-wallet-credential': ruCredential,
+      'owlmeans-wallet-store': ruStore,
+      'owlmeans-wallet-common': ruCommon,
+      'owlmeans-wallet-main': ruMain,
+      'owlmeans-wallet-credential': ruCredential,
     },
     be: {
-      'regov-wallet-store': byStore,
-      'regov-wallet-common': byCommon,
-      'regov-wallet-main': byMain,
-      'regov-wallet-credential': byCredential,
+      'owlmeans-wallet-store': byStore,
+      'owlmeans-wallet-common': byCommon,
+      'owlmeans-wallet-main': byMain,
+      'owlmeans-wallet-credential': byCredential,
     }
   },
   ns: [
-    'regov-wallet-common', 'regov-wallet-main', 
-    'regov-wallet-store', 'regov-wallet-credential'
+    'owlmeans-wallet-common', 'owlmeans-wallet-main', 
+    'owlmeans-wallet-store', 'owlmeans-wallet-credential'
   ],
-  fallbackNS: 'regov-wallet-common',
-  defaultNS: 'regov-wallet-common',
+  fallbackNS: 'owlmeans-wallet-common',
+  defaultNS: 'owlmeans-wallet-common',
   interpolation: {
     escapeValue: false
   }

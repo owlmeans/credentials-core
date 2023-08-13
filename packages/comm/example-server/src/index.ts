@@ -16,9 +16,9 @@
 
 require('dotenv').config()
 import http from 'http'
-import { buildExtensionRegistry } from '@owlmeans/regov-ssi-core'
-import { buildIdentityExtension } from '@owlmeans/regov-ext-identity/dist/ext'
-import { startWSServer } from '@owlmeans/regov-comm'
+import { buildExtensionRegistry } from '@owlmeans/vc-core'
+import { buildIdentityExtension } from '@owlmeans/vc-ext-identity/dist/ext'
+import { startWSServer } from '@owlmeans/vc-comm'
 
 import './warmup.js'
 
@@ -35,7 +35,7 @@ const httpServer = http.createServer((_, response) => {
 
 const registry = buildExtensionRegistry()
 registry.registerSync(buildIdentityExtension(
-  EXAMPLE_IDENTITY_TYPE, { appName: 'Regov example server wallet' },
+  EXAMPLE_IDENTITY_TYPE, { appName: 'OwlMeans ID Bot example server wallet' },
   {
     name: '',
     code: 'example-identity',

@@ -18,17 +18,17 @@ import { Fragment, FunctionComponent, useMemo } from 'react'
 
 import { 
   CredentialWrapper, getCompatibleSubject, REGISTRY_SECTION_OWN, REGISTRY_TYPE_IDENTITIES 
-} from '@owlmeans/regov-ssi-core'
-import { EmptyImplProps, RegovComponentProps, withRegov } from '@owlmeans/regov-lib-react'
-import { Extension } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-core'
+import { EmptyImplProps, WalletComponentProps, withOwlWallet } from '@owlmeans/vc-lib-react'
+import { Extension } from '@owlmeans/vc-core'
 import { IdentitySubject } from '../../../types'
-import { dateFormatter, ItemMenuHandle, MenuIconButton, ItemMenu } from '@owlmeans/regov-lib-react'
+import { dateFormatter, ItemMenuHandle, MenuIconButton, ItemMenu } from '@owlmeans/vc-lib-react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 
 export const DashboardWidget = (ext: Extension): FunctionComponent<DashboardWidgetParams> =>
-  withRegov<DashboardWidgetProps>({
+  withOwlWallet<DashboardWidgetProps>({
     namespace: ext.localization?.ns,
     transformer: (wallet) => {
       return { identityWrap: wallet?.getIdentity() }
@@ -87,6 +87,6 @@ type DashboardWidgetState = {
   identityWrap: CredentialWrapper
 }
 
-type DashboardWidgetProps = RegovComponentProps<
+type DashboardWidgetProps = WalletComponentProps<
   DashboardWidgetParams, EmptyImplProps, DashboardWidgetState
 >

@@ -16,7 +16,7 @@
 
 import {
   AlertOutput, CredentialSelector, CredentialSelectorProps, dateFormatter, LongTextInput, MainTextInput, MainTextInputProps, MainTextOutput
-} from "@owlmeans/regov-lib-react"
+} from "@owlmeans/vc-lib-react"
 import React, { Fragment, PropsWithChildren } from "react"
 import { FieldValues, UseFormReturn } from "react-hook-form"
 import { typeFormatterFacotry } from "../../formatter"

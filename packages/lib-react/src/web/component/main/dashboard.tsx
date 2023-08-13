@@ -16,17 +16,17 @@
 
 
 import {
-  MainDashboardImplProps, NavigatorContextProvider, useNavigator, useRegov,
+  MainDashboardImplProps, NavigatorContextProvider, useNavigator, useOwlWallet,
   CredentialProcessor, EXTENSION_ITEM_PURPOSE_DASHBOARD_WIDGET
 } from '../../../common'
 import { ListNavigator, partialListNavigator } from './navigator'
-import { useNavigate } from 'react-router-dom-regov'
+import { useNavigate } from 'react-router-dom-owlmeans'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 
 
 export const MainDashboardWeb = ({ }: MainDashboardImplProps) => {
-  const { extensions } = useRegov()
+  const { extensions } = useOwlWallet()
 
   const navigate = useNavigate()
   const nav = useNavigator<ListNavigator>(partialListNavigator(navigate))

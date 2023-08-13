@@ -15,19 +15,19 @@
  */
 
 import {
-  EmptyProps, generalNameVlidation, RegovComponentProps, urlVlidation, useRegov, withRegov,
+  EmptyProps, generalNameVlidation, WalletComponentProps, urlVlidation, useOwlWallet, withOwlWallet,
   humanReadableVersion, useNavigator, generalIdVlidation, trySubmit, FileProcessorMethod
-} from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-lib-react'
 import {
   FileProcessorWeb, FormMainAction, PrimaryForm, WalletFormProvider, partialListNavigator, ListNavigator
-} from '@owlmeans/regov-lib-react'
-import { CredentialsRegistryWrapper, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/regov-ssi-core'
-import { Extension } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-lib-react'
+import { CredentialsRegistryWrapper, REGISTRY_SECTION_OWN, REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
+import { Extension } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useEffect, useState } from 'react'
 import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom-regov'
+import { useNavigate } from 'react-router-dom-owlmeans'
 import {
-  DOCUMENT_TYPE_JSON, DOCUMENT_TYPE_TEXT, DOCUMENT_TYPE_BINARY, REGOV_CREDENTIAL_TYPE_SIGNATURE,
+  DOCUMENT_TYPE_JSON, DOCUMENT_TYPE_TEXT, DOCUMENT_TYPE_BINARY, OWLMEANS_CREDENTIAL_TYPE_SIGNATURE,
   ERROR_WIDGET_AUTHENTICATION, SignatureSubject
 } from '../../types'
 import { SignatureCreationFieldsWeb } from './creation/fields'
@@ -35,9 +35,9 @@ const isUtf8 = require('is-utf8') as (arg: any) => boolean
 
 
 export const SignatureCreationWeb = (ext: Extension): FunctionComponent<SignatureCreationParams> =>
-  withRegov<SignatureCreationProps>({ namespace: ext.localization?.ns }, (props) => {
+  withOwlWallet<SignatureCreationProps>({ namespace: ext.localization?.ns }, (props) => {
     const { next, t } = props
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const navigate = useNavigate()
     const navigator = useNavigator<ListNavigator>(partialListNavigator(navigate))
 
@@ -95,7 +95,7 @@ export const SignatureCreationWeb = (ext: Extension): FunctionComponent<Signatur
 
       const identity = registry.getCredential(data.signature.creation.identity)?.credential
 
-      const factory = ext.getFactory(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+      const factory = ext.getFactory(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
       const unsigned = await factory.build(handler.wallet, {
         extensions: extensions?.registry,
         identity, subjectData: {
@@ -233,7 +233,7 @@ export const SignatureCreationWeb = (ext: Extension): FunctionComponent<Signatur
 
 export type SignatureCreationParams = EmptyProps & { next: () => void }
 
-export type SignatureCreationProps = RegovComponentProps<SignatureCreationParams>
+export type SignatureCreationProps = WalletComponentProps<SignatureCreationParams>
 
 export type SignatureCreationFields = {
   signature: {

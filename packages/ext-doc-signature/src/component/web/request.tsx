@@ -15,27 +15,27 @@
  */
 
 import {
-  EmptyProps, generalIdVlidation, generalNameVlidation, humanReadableVersion, RegovComponentProps, urlVlidation, useNavigator, 
-  useRegov, withRegov
-} from '@owlmeans/regov-lib-react'
+  EmptyProps, generalIdVlidation, generalNameVlidation, humanReadableVersion, WalletComponentProps, urlVlidation, useNavigator, 
+  useOwlWallet, withOwlWallet
+} from '@owlmeans/vc-lib-react'
 import {
   AlertOutput, FileProcessorWeb, FormMainAction, ListNavigator, LongTextInput, MainTextInput, 
   partialListNavigator, PrimaryForm, WalletFormProvider, FileProcessorParamsHandler
-} from '@owlmeans/regov-lib-react'
-import { REGISTRY_SECTION_OWN, REGISTRY_TYPE_REQUESTS } from '@owlmeans/regov-ssi-core'
-import { Extension } from '@owlmeans/regov-ssi-core'
+} from '@owlmeans/vc-lib-react'
+import { REGISTRY_SECTION_OWN, REGISTRY_TYPE_REQUESTS } from '@owlmeans/vc-core'
+import { Extension } from '@owlmeans/vc-core'
 import React, { Fragment, FunctionComponent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom-regov'
+import { useNavigate } from 'react-router-dom-owlmeans'
 import {
-  ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION, SignatureRequestSubject, REGOV_SIGNATURE_REQUEST_TYPE
+  ERROR_WIDGET_AUTHENTICATION, ERROR_WIDGET_EXTENSION, SignatureRequestSubject, OWLMEANS_SIGNATURE_REQUEST_TYPE
 } from '../../types'
 
 
 export const SignatureRequestWeb = (ext: Extension): FunctionComponent<SignatureRequestParams> =>
-  withRegov<SignatureRequestProps>({ namespace: ext.localization?.ns }, (props) => {
+  withOwlWallet<SignatureRequestProps>({ namespace: ext.localization?.ns }, (props) => {
     const { t } = props
-    const { handler, extensions } = useRegov()
+    const { handler, extensions } = useOwlWallet()
     const navigate = useNavigate()
     const navigator = useNavigator<ListNavigator>(partialListNavigator(navigate))
 
@@ -150,7 +150,7 @@ export const SignatureRequestWeb = (ext: Extension): FunctionComponent<Signature
         if (!ext) {
           throw ERROR_WIDGET_EXTENSION
         }
-        const factory = ext.getFactory(REGOV_SIGNATURE_REQUEST_TYPE)
+        const factory = ext.getFactory(OWLMEANS_SIGNATURE_REQUEST_TYPE)
         const unsignedRequest = await factory.build(handler.wallet, {
           extensions: extensions?.registry,
           subjectData: Object.fromEntries(
@@ -212,7 +212,7 @@ export const SignatureRequestWeb = (ext: Extension): FunctionComponent<Signature
 
 export type SignatureRequestParams = EmptyProps
 
-export type SignatureRequestProps = RegovComponentProps<SignatureRequestParams>
+export type SignatureRequestProps = WalletComponentProps<SignatureRequestParams>
 
 export type SignatureReuqestFields = {
   signature: {

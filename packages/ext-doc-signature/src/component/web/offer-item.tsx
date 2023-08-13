@@ -15,12 +15,12 @@
  */
 
  import React, { Fragment, FunctionComponent, useMemo } from 'react'
- import { EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta } from '@owlmeans/regov-lib-react'
- import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, normalizeValue } from '@owlmeans/regov-ssi-core'
- import { CredentialWrapper } from '@owlmeans/regov-ssi-core'
- import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
- import { IncommigDocumentWithConn } from '@owlmeans/regov-comm'
- import { REGOV_CREDENTIAL_TYPE_SIGNATURE, SignaturePresentation, SignatureSubject } from '../../types'
+ import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta } from '@owlmeans/vc-lib-react'
+ import { Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, normalizeValue } from '@owlmeans/vc-core'
+ import { CredentialWrapper } from '@owlmeans/vc-core'
+ import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
+ import { IncommigDocumentWithConn } from '@owlmeans/vc-comm'
+ import { OWLMEANS_CREDENTIAL_TYPE_SIGNATURE, SignaturePresentation, SignatureSubject } from '../../types'
  
  
  import BorderColor from '@mui/icons-material/BorderColor'
@@ -34,14 +34,14 @@
  
  
  export const SignatureOfferItem = (ext: Extension): FunctionComponent<OfferSignatureItemParams> =>
-   withRegov<OfferSignatureItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
+   withOwlWallet<OfferSignatureItemProps>({ namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }) => {
      const signatureOffer = normalizeValue(
        wrapper.credential.verifiableCredential
      ).find(
-       cred => cred.type.includes(REGOV_CREDENTIAL_TYPE_SIGNATURE)
+       cred => cred.type.includes(OWLMEANS_CREDENTIAL_TYPE_SIGNATURE)
      )
      const subject = signatureOffer?.credentialSubject as SignatureSubject
-     const { extensions, handler } = useRegov()
+     const { extensions, handler } = useOwlWallet()
  
      const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
  
@@ -88,4 +88,4 @@
    meta?: ListItemMeta
  }
  
- export type OfferSignatureItemProps = RegovComponentProps<OfferSignatureItemParams>
+ export type OfferSignatureItemProps = WalletComponentProps<OfferSignatureItemParams>

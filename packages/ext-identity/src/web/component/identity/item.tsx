@@ -16,13 +16,13 @@
 
 import { Fragment, FunctionComponent, useMemo } from 'react'
 import {
-  EmptyProps, RegovComponentProps, useRegov, withRegov, ListItemMeta
-} from '@owlmeans/regov-lib-react'
+  EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, ListItemMeta
+} from '@owlmeans/vc-lib-react'
 import {
   Extension, EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams
-} from '@owlmeans/regov-ssi-core'
-import { CredentialWrapper, getCompatibleSubject } from '@owlmeans/regov-ssi-core'
-import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/regov-lib-react'
+} from '@owlmeans/vc-core'
+import { CredentialWrapper, getCompatibleSubject } from '@owlmeans/vc-core'
+import { ItemMenu, ItemMenuHandle, MenuIconButton } from '@owlmeans/vc-lib-react'
 import { IdentitySubject } from '../../../types'
 import DocumentScanner from '@mui/icons-material/DocumentScanner'
 import Avatar from '@mui/material/Avatar'
@@ -35,11 +35,11 @@ import Typography from '@mui/material/Typography'
 
 
 export const IdentityItem = (ext: Extension): FunctionComponent<IdentityItemParams> =>
-  withRegov<IdentityItemProps>(
+  withOwlWallet<IdentityItemProps>(
     { namespace: ext.localization?.ns }, ({ t, i18n, meta, wrapper, action }
     ) => {
     const subject = getCompatibleSubject<IdentitySubject>(wrapper.credential)
-    const { extensions, handler } = useRegov()
+    const { extensions, handler } = useOwlWallet()
 
     const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
@@ -83,5 +83,5 @@ export type IdentityItemParams = EmptyProps & {
   meta?: ListItemMeta
 }
 
-export type IdentityItemProps = RegovComponentProps<IdentityItemParams>
+export type IdentityItemProps = WalletComponentProps<IdentityItemParams>
 

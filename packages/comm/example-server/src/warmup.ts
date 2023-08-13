@@ -10,7 +10,7 @@ import identity from './schemas/identity.json'
 import comm from './schemas/comm.json'
 import commRequest from './schemas/comm-request.json'
 
-import { documentWarmer, getCryptoAdapter } from '@owlmeans/regov-ssi-core'
+import { documentWarmer, getCryptoAdapter } from '@owlmeans/vc-core'
 import { encodeBase58, decodeBase58, toBeArray, getBytes } from 'ethers'
 import { sha256, randomBytes } from 'ethers'
 import { HDNodeWallet } from 'ethers'

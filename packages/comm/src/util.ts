@@ -18,7 +18,7 @@ import { generateKeyPairFromSeed } from '@stablelib/x25519'
 import {
   CryptoKey, DIDDocument, DIDHelper, DIDPURPOSE_AGREEMENT, KEYCHAIN_ERROR_NO_KEY,
   KeyPairToCryptoKeyOptions, Credential, Presentation, WalletWrapper, ERROR_NO_IDENTITY
-} from "@owlmeans/regov-ssi-core"
+} from "@owlmeans/vc-core"
 import {
   CommConnectionStatusHandler,
   CommKey, COMM_DID_AGREEMENT_KEY_DEFAULT, connectionFieldList, DIDCommConnectMeta,

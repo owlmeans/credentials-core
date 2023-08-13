@@ -15,8 +15,8 @@
  */
 import { Fragment, FunctionComponent } from "react"
 import { FieldsRenderer } from "../widget/fields"
-import { Extension } from "@owlmeans/regov-ssi-core"
-import { FormHeaderButton } from "@owlmeans/regov-lib-react"
+import { Extension } from "@owlmeans/vc-core"
+import { FormHeaderButton } from "@owlmeans/vc-lib-react"
 import { useTranslation } from "react-i18next"
 import { DefaultCredential, DefaultDescription, UseFieldAt } from "../../../custom.types"
 
