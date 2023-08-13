@@ -29,8 +29,8 @@
     "dotenv": "^16.0.3"
   },
   "peerDependencies": {
-    "@owlmeans/vc-lib-react": "^0.1.0",
     "@owlmeans/vc-core": "^0.1.0",
+    "@owlmeans/vc-lib-react": "^0.1.0",
     "body-parser": "^1.20.2",
     "express": "*"
   },
