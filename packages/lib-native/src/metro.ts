@@ -14,16 +14,17 @@
  *  limitations under the License.
  */
 
-const path = require('path')
+import { CustomResolver } from 'metro-resolver'
 
+const path = require('path')
 
 export const mapNodeModules = (location: string, prefix?: string) => {
   return {
     react: path.resolve(location, (prefix ? prefix : '') + 'node_modules/react'),
     url: path.resolve(location, (prefix ? prefix : '') + 'node_modules/react-native-url-polyfill'),
-    crypto: path.resolve(location, (prefix ? prefix : '') + 'node_modules/react-native-crypto'),
+    crypto: path.resolve(location, (prefix ? prefix : '') + 'node_modules/crypto-browserify'),
     buffer: path.resolve(location, (prefix ? prefix : '') + 'node_modules/buffer'),
-    stream: path.resolve(location, (prefix ? prefix : '') + 'node_modules/stream-browserify')
+    stream: path.resolve(location, (prefix ? prefix : '') + 'node_modules/stream-browserify'),
   }
 }
 
@@ -38,10 +39,30 @@ export const getDefaultTransformer = () => {
   }
 }
 
+
 export const getDefaultResolver = (location: string, prefix?: string) => {
   return {
     extraNodeModules: mapNodeModules(location, prefix),
-    resolverMainFields: ['react-native', 'browser', 'module', 'main']
+    resolverMainFields: ['react-native', 'browser', 'module', 'main'],
+    resolveRequest: ((context, moduleName, platform) => {
+
+      const filePath = [
+        'crypto-ld', '@digitalbazaar/jws-linked-data-signature',
+        'base64url-universal'
+      ].find(module => module === moduleName)?.replace(
+        moduleName,
+        path.resolve(
+          location, prefix ?? '', `node_modules/${moduleName}/lib/index.js`
+        )
+      )
+
+      if (filePath != null) {
+        return { filePath, type: 'sourceFile' }
+      }
+
+      // Optionally, chain to the standard Metro resolver.
+      return context.resolveRequest(context, moduleName, platform);
+    }) as CustomResolver
   }
 }
 
@@ -51,3 +72,4 @@ export const getDefaultMetroConfig = (location: string, prefix?: string) => {
     transformer: getDefaultTransformer()
   }
 }
+

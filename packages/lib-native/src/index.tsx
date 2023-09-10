@@ -25,7 +25,8 @@ import { encodeBase58, decodeBase58, toBeArray, getBytes, sha256, randomBytes, H
 import { getCryptoAdapter } from '@owlmeans/vc-core'
 import { signSync, verify } from '@noble/secp256k1'
 
-import aes from 'react-native-aes-crypto'
+const aes = require('browserify-aes/browser')
+
 
 export const DebugSSIView = () => {
   const handler = useMemo(createWalletHandler, [])
@@ -34,13 +35,12 @@ export const DebugSSIView = () => {
     console.log('START USE EFFECT');
     void (async () => {
       const adapter = getCryptoAdapter()
-      // console.log(encodeBase58('dfdfdf'))
-      // adapter.setBase58Impl(encodeBase58, decodeBase58, toBeArray)
-      // adapter.setSha256Impl(sha256, getBytes)
+      adapter.setBase58Impl(encodeBase58, decodeBase58, toBeArray)
+      adapter.setSha256Impl(sha256, getBytes)
       adapter.setAesImpl(aes)
-      // adapter.setRandomImpl(randomBytes)
+      adapter.setRandomImpl(randomBytes)
       adapter.setSecpImpl(signSync, verify);
-      // adapter.WalletClass = HDNodeWallet as any;
+      adapter.WalletClass = HDNodeWallet as any;
       (async () => {
         console.log('GET ASYNC')
         try {
