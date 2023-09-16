@@ -49,7 +49,7 @@ export const i18nRegisterExtensions = (i18n: I18n, extensions: UIExtensionRegist
   })
 }
 
-export const WalletPersistentIntegrationReact = (
+export const WalletPersistentIntegrationCombined = (
   {
     config, extensions, navigatorBuilder, children, serverClient, setInboxCount, source,
     passedHandler, renderSeed, integrationConfig, plugins, CryptoLoader
@@ -78,9 +78,7 @@ export const WalletPersistentIntegrationReact = (
 
   useEffect(() => extensions && i18nRegisterExtensions(i18n, extensions), extensions?.uiExtensions)
 
-  // useEffect(() => {
-
-  // }, [source, isOwlWalletPasswordSet(), storage])
+  const destructors: UneregisterIntegratedWalletPlugin[] = []
 
   switch (loaded) {
     case PasswordState.LOADING:
@@ -89,11 +87,12 @@ export const WalletPersistentIntegrationReact = (
           if (!isOwlWalletPasswordSet()) {
             return
           }
-          if (passedHandler && passedHandler.wallet && handler.wallet) {
-            const destructors = plugins?.onKickOff?.map(plugin => plugin({
+          if (storage.loaded && passedHandler && passedHandler.wallet && handler.wallet) {
+            const _destructors = plugins?.onKickOff?.map(plugin => plugin({
               handler, isHandlerPassed: true, isUnregisterSet: !!pluginDestructors, extensions, setInboxCount
             }))
 
+            destructors.push(..._destructors?.filter(_ => _) as UneregisterIntegratedWalletPlugin[])
             setLoaded(PasswordState.LOADED)
 
             return () => {
@@ -174,9 +173,13 @@ export const WalletPersistentIntegrationReact = (
               handle, config, handler, extensions
             })
 
-            const destructors = plugins?.onStorageLoaded?.map(destructor => destructor({
+            destructors.push(...plugins?.onStorageLoaded?.map(destructor => destructor({
               handler, isHandlerPassed: !!passedHandler, isUnregisterSet: !!pluginDestructors, extensions, setInboxCount
-            }))
+            })) as [])
+
+            destructors?.push(...plugins?.onKickOff?.map(plugin => plugin({
+              handler, isHandlerPassed: true, isUnregisterSet: !!pluginDestructors, extensions, setInboxCount
+            })) as [])
 
             destructors && setPluginDestructors(
               destructors.filter(destructor => !!destructor) as UneregisterIntegratedWalletPlugin[]
@@ -187,8 +190,7 @@ export const WalletPersistentIntegrationReact = (
 
           return () => {
             if (!passedHandler) {
-              pluginDestructors && pluginDestructors.forEach(destructor => destructor())
-              handler.logout().then(() => storage.detach())
+              pluginDestructors && pluginDestructors.forEach(destructor => destructor && destructor())
             }
           }
         }} />

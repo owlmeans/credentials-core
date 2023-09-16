@@ -23,7 +23,6 @@ export const pluginIntegratedWalletKickoff: IntegratedWalletPlugin = ({
 
   setInboxCount && handler.observers.push(updateInbox)
 
-
   return () => {
     const idx = handler.observers.findIndex((ob) => ob === updateInbox)
     idx > -1 && handler.observers.splice(idx, 1)

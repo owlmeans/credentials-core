@@ -17,7 +17,6 @@
 import { LDKeyPair } from 'crypto-ld'
 import { getCryptoAdapter } from './adapter'
 import { cryptoHelper } from './helper'
-// const { JwsLinkedDataSignature } = require('@digitalbazaar/jws-linked-data-signature')
 import { JwsLinkedDataSignature } from '@digitalbazaar/jws-linked-data-signature'
 
 export const KEY_TYPE = 'EcdsaSecp256k1Signature2019'
