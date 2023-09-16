@@ -14,8 +14,6 @@
  *  limitations under the License.
  */
 
-import "@ethersproject/shims"
-
 import * as React from 'react'
 import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
 import { useEffect, useMemo } from 'react'

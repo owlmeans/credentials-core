@@ -16,6 +16,7 @@
 
 import 'react-native-url-polyfill/auto'
 import 'react-native-get-random-values'
+import "@ethersproject/shims"
 
 global.process = require("process")
 global.Buffer = require("buffer/").Buffer

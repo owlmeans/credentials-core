@@ -48,6 +48,7 @@
   },
   "peerDependencies": {
     "@owlmeans/vc-core": "^0.1.0",
+    "@owlmeans/vc-lib-react": "^0.1.0",
     "metro-config": "*",
     "react": "*",
     "react-native": "*"

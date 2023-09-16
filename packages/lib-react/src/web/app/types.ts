@@ -18,7 +18,7 @@ import { BasicNavigator, Config, UIExtensionRegistry } from "../../common"
 import { NavigateFunction } from "react-router-dom-owlmeans"
 import { WalletHandler } from "@owlmeans/vc-core"
 import { ServerClient } from "../../common"
-import { CryptoLoaderProps } from '../crypto/types'
+import { CryptoLoaderProps } from '../../common/crypto/types'
 import { FC } from 'react'
 
 
