@@ -15,19 +15,25 @@
  */
 
 import { Credential, Presentation } from "@owlmeans/vc-core";
-import { 
-  AuthSubject, OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_AUTH_RESPONSE_TYPE, OWLMEANS_CREDENTIAL_TYPE_AUTH 
+import {
+  AuthSubject,
+  OWLMEANS_AUTH_REQUEST_TYPE, OWLMEANS_AUTH_RESPONSE_TYPE, OWLMEANS_CREDENTIAL_TYPE_AUTH,
+  REGOV_AUTH_REQUEST_TYPE, REGOV_AUTH_RESPONSE_TYPE, REGOV_CREDENTIAL_TYPE_AUTH
 } from "./types";
 
 
 export const getAuthFromPresentation = (presentation: Presentation) => {
+  console.log(presentation.type, REGOV_AUTH_RESPONSE_TYPE, REGOV_AUTH_REQUEST_TYPE)
   if (!presentation.type.includes(OWLMEANS_AUTH_RESPONSE_TYPE)
-   && !presentation.type.includes(OWLMEANS_AUTH_REQUEST_TYPE)) {
+    && !presentation.type.includes(OWLMEANS_AUTH_REQUEST_TYPE)
+    && !presentation.type.includes(REGOV_AUTH_RESPONSE_TYPE)
+    && !presentation.type.includes(REGOV_AUTH_REQUEST_TYPE)) {
     return undefined
   }
 
   return presentation.verifiableCredential.find(
     credential => credential.type.includes(OWLMEANS_CREDENTIAL_TYPE_AUTH)
+      || credential.type.includes(REGOV_CREDENTIAL_TYPE_AUTH)
   )
 }
 

@@ -25,6 +25,12 @@ export const OWLMEANS_AUTH_REQUEST_TYPE = 'OwlMeans:Credentials:Auth:Request'
 
 export const OWLMEANS_AUTH_RESPONSE_TYPE = 'OwlMeans:Credentials:Auth:Response'
 
+export const REGOV_CREDENTIAL_TYPE_AUTH = 'OwlMeans:Regov:Auth'
+
+export const REGOV_AUTH_REQUEST_TYPE = 'OwlMeans:Regov:Auth:Request'
+
+export const REGOV_AUTH_RESPONSE_TYPE = 'OwlMeans:Regov:Auth:Response'
+
 export const BASIC_IDENTITY_TYPE = 'Identity'
 
 export const ERROR_NO_EXTENSION = 'ERROR_NO_EXTENSION'
