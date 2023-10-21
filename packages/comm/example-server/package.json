@@ -11,7 +11,7 @@
     "@owlmeans/vc-ext-identity": "link:../../ext-identity/",
     "@owlmeans/vc-core": "link:../../core/",
     "dotenv": "^16.0.3",
-    "ethers": "^6.4.0"
+    "ethers": "6.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
