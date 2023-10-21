@@ -23,7 +23,6 @@ import {
 
 
 export const getAuthFromPresentation = (presentation: Presentation) => {
-  console.log(presentation.type, REGOV_AUTH_RESPONSE_TYPE, REGOV_AUTH_REQUEST_TYPE)
   if (!presentation.type.includes(OWLMEANS_AUTH_RESPONSE_TYPE)
     && !presentation.type.includes(OWLMEANS_AUTH_REQUEST_TYPE)
     && !presentation.type.includes(REGOV_AUTH_RESPONSE_TYPE)
