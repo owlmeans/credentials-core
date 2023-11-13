@@ -15,8 +15,9 @@
  */
 
 import { Fragment, FunctionComponent, useEffect, useState } from 'react'
+import { withOwlWallet } from '../../../common/context'
 import {
-  EmptyImplProps, EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps
+  EmptyImplProps, EmptyProps, WalletComponentProps, useOwlWallet, WrappedComponentProps
 } from '../../../common/'
 import { Credential } from '@owlmeans/vc-core'
 import { normalizeValue } from '@owlmeans/vc-core'

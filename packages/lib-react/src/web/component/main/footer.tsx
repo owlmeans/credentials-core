@@ -15,7 +15,7 @@
  */
 
 import { Fragment } from 'react'
-import { MainFooterImplProps, useOwlWallet } from '../../../common'
+import { MainFooterImplProps, useOwlWallet } from '../../../cmn'
 import AppBar from '@mui/material/AppBar'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'

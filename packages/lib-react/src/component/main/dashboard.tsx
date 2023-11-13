@@ -15,7 +15,8 @@
  */
 
 import { FunctionComponent } from 'react'
-import { WalletComponentProps, withOwlWallet, WrappedComponentProps } from '../../common/'
+import { withOwlWallet } from '../../common/context'
+import { WalletComponentProps, WrappedComponentProps } from '../../common/'
 
 
 export const MainDashboard: FunctionComponent<MainDashboardParams> = withOwlWallet<

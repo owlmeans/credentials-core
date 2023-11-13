@@ -15,7 +15,7 @@
  */
 
 import { FunctionComponent } from 'react'
-import { PurposeEvidenceWidgetParams } from '../../../../../common'
+import { PurposeEvidenceWidgetParams } from '../../../../../cmn'
 import { normalizeValue } from '@owlmeans/vc-core'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'

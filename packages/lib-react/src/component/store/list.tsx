@@ -16,11 +16,11 @@
 
 import { EncryptedStore } from '@owlmeans/vc-core'
 import { FunctionComponent } from 'react'
+import { withOwlWallet } from '../../common/context'
 import {
   BasicNavigator, EmptyProps, WalletComponentProps, useOwlWallet, WalletNavigatorMethod,
-  withOwlWallet, WrappedComponentProps
+  WrappedComponentProps
 } from '../../common/'
-
 
 export const StoreList: FunctionComponent<StoreListParams> =
   withOwlWallet<StoreListProps, StoreListNavigator>(

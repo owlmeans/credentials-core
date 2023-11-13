@@ -32,9 +32,6 @@ import byCommon from './by/common.json'
 import byMain from './by/main.json'
 import byCredential from './by/credential.json'
 
-export * from './setup'
-
-
 export const i18nDefaultOptions: InitOptions = {
   fallbackLng: 'en',
   debug: false,

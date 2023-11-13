@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CredentialListTab, WrappedComponentProps } from '../../../../common'
+import { CredentialListTab, WrappedComponentProps } from '../../../../cmn'
 import { REGISTRY_SECTION_PEER } from '@owlmeans/vc-core'
 import { Fragment } from 'react'
 import Switch from '@mui/material/Switch'

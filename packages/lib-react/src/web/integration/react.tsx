@@ -16,8 +16,8 @@
 
 import { WalletAppParams } from '../app/types'
 import {
-  i18nDefaultOptions, i18nSetup, BasicNavigator, OwlWalletProvider, MainLoading
-} from '../../common'
+  i18nDefaultOptions, BasicNavigator, OwlWalletProvider, MainLoading
+} from '../../cmn'
 import { PropsWithChildren, useEffect, useMemo, useState } from 'react'
 import { buildStorageHelper } from '../storage'
 import { i18nRegisterExtensions } from '../../i18n/util'
@@ -28,6 +28,7 @@ import {
 } from '@owlmeans/vc-core'
 import { DEFAULT_GUEST_WALLET_ALIAS } from '../types'
 import CircularProgress from '@mui/material/CircularProgress'
+import { i18nSetup } from '../../i18n/setup'
 
 
 const i18n = i18nSetup(i18nDefaultOptions)

@@ -15,8 +15,9 @@
  */
 
 import { FunctionComponent } from 'react'
+import { withOwlWallet } from '../../common/context'
 import { 
-  BasicNavigator, EmptyProps, NavigatorLoading, WalletComponentProps, withOwlWallet, WrappedComponentProps
+  BasicNavigator, EmptyProps, NavigatorLoading, WalletComponentProps, WrappedComponentProps
 } from '../../common/'
 
 

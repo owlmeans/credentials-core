@@ -15,7 +15,8 @@
  */
 
 import { useEffect, FunctionComponent, Fragment, ReactNode } from 'react'
-import { EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps } from '../../common/'
+import { withOwlWallet } from '../../common/context'
+import { EmptyProps, WalletComponentProps, useOwlWallet, WrappedComponentProps } from '../../common/'
 
 
 export const MainAuthArea: FunctionComponent<MainAuthAreaParams> = withOwlWallet<MainAuthAreaProps>(

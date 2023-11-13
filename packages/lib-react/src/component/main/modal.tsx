@@ -16,9 +16,8 @@
 
 import { FunctionComponent, ReactNode, useEffect, useMemo } from 'react'
 import { EventParams, EXTENSION_TRIGGER_AUTHENTICATED, WalletHandler } from '@owlmeans/vc-core'
-import {
-  WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps, Config
-} from '../../common/'
+import { withOwlWallet } from '../../common/context'
+import { WalletComponentProps, useOwlWallet, WrappedComponentProps, Config } from '../../common/'
 import { CastMainModalParams, UIExtensionRegistry } from '../../extension'
 
 

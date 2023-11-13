@@ -17,7 +17,7 @@
 import { FunctionComponent, useMemo, Fragment } from 'react'
 import {
   CredentialListImplProps, useOwlWallet, EXTENSION_ITEM_PURPOSE_ITEM, PurposeListItemParams
-} from '../../../common'
+} from '../../../cmn'
 import { ItemMenu, ItemMenuHandle, ItemMenuMeta, MenuIconButton, SimpleList, SimpleListItem } from '../common'
 import { CredentialListHeaderAction } from './list/header-action'
 import { CredentialWrapper, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'

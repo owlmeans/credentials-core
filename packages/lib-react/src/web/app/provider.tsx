@@ -15,7 +15,7 @@
  */
 
 import { PropsWithChildren, useState } from "react"
-import { MainLoading, OwlWalletProvider, MainModal } from "../../common"
+import { MainLoading, OwlWalletProvider, MainModal } from "../../cmn"
 import { useNavigate } from "react-router-dom-owlmeans"
 import { buildDevWallet } from "../debug/util/builder"
 import { WalletAppParams, RootNavigatorBuilder } from "./types"

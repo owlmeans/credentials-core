@@ -15,7 +15,7 @@
  */
 
 import { useEffect, useMemo, useState } from 'react'
-import { i18nDefaultOptions, i18nSetup } from '../common'
+import { i18nDefaultOptions } from '../cmn'
 import { createWalletHandler } from '@owlmeans/vc-core'
 import { NavigationRoot, createRootNavigator } from './router'
 import { HashRouter } from 'react-router-dom-owlmeans'
@@ -26,6 +26,7 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import { i18nSetup } from '../i18n/setup'
 
 
 const i18n = i18nSetup(i18nDefaultOptions)

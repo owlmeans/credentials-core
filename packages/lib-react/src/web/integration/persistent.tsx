@@ -20,14 +20,15 @@ import { buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_AUTHENTICATE
 import { i18n as I18n } from 'i18next'
 
 import CircularProgress from '@mui/material/CircularProgress'
-import { i18nDefaultOptions, i18nSetup } from '../../i18n'
+import { i18nDefaultOptions } from '../../i18n'
 import { UIExtensionRegistry } from '../../extension'
-import { BasicNavigator, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider } from '../../common'
+import { BasicNavigator, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider } from '../../cmn'
 import { buildStorageHelper } from '../storage'
 import { WalletAppParams } from '../app/types'
 import { getOwlWalletPassword, isOwlWalletPasswordSet } from './utils'
 import { webComponentMap } from '../component'
 import { IntegratedWalletPlugin, UneregisterIntegratedWalletPlugin } from './types'
+import { i18nSetup } from '../../i18n/setup'
 
 export const i18n = i18nSetup(i18nDefaultOptions)
 

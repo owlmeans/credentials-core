@@ -33,7 +33,7 @@ export const NavigatorContext = createContext<BasicNavigator>(basicNavigator)
 export const NavigatorContextProvider = <T extends WalletNavigator = BasicNavigator>(
   { navigator, children }: PropsWithChildren<{ navigator: T }>
 ) => {
-  return <NavigatorContext.Provider value={navigator as BasicNavigator}> {children} </NavigatorContext.Provider>
+  return <NavigatorContext.Provider value={navigator as BasicNavigator}>{children}</NavigatorContext.Provider>
 }
 
 export const extendNavigator = <
@@ -72,21 +72,21 @@ export type BasicNavigator = WalletNavigator<{}, string> & {
 export type WalletNavigator<
   Params extends {} = {},
   Item extends string | {} = string
-  > = {
-    assertAuth?: () => Promise<boolean>
-    checkAuth?: () => Promise<boolean>
-    interrupt?: WalletNavigatorMethod<Params>
-    resume?: WalletNavigatorMethod<Params>
-    home?: WalletNavigatorMethod<undefined>
-    success?: WalletNavigatorMethod<Params>
-    back?: WalletNavigatorMethod<undefined>
-    previous?: WalletNavigatorMethod<undefined>
-    next?: WalletNavigatorMethod<undefined>
-    failure?: WalletNavigatorMethod<Params>
-    cancel?: WalletNavigatorMethod<Params>
-    menu?: WalletNavigatorMenuMethod<Item, Params>
-    invokeLoading?: () => Promise<NavigatorLoading>
-  }
+> = {
+  assertAuth?: () => Promise<boolean>
+  checkAuth?: () => Promise<boolean>
+  interrupt?: WalletNavigatorMethod<Params>
+  resume?: WalletNavigatorMethod<Params>
+  home?: WalletNavigatorMethod<undefined>
+  success?: WalletNavigatorMethod<Params>
+  back?: WalletNavigatorMethod<undefined>
+  previous?: WalletNavigatorMethod<undefined>
+  next?: WalletNavigatorMethod<undefined>
+  failure?: WalletNavigatorMethod<Params>
+  cancel?: WalletNavigatorMethod<Params>
+  menu?: WalletNavigatorMenuMethod<Item, Params>
+  invokeLoading?: () => Promise<NavigatorLoading>
+}
 
 export type NavigatorLoading = {
   finish: () => void
@@ -101,4 +101,4 @@ export type WalletNavigatorMethod<Params extends {} | undefined = {}>
 export type WalletNavigatorMenuMethod<
   Item extends string | {} = string,
   Params extends {} = {}
-  > = (item: Item, params?: Params) => Promise<void>
+> = (item: Item, params?: Params) => Promise<void>

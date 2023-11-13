@@ -15,7 +15,7 @@
  */
 
 import { Fragment, useState } from 'react'
-import { MainLoadingImplProps } from '../../../common'
+import { MainLoadingImplProps } from '../../../cmn'
 import Alert, { AlertColor } from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Backdrop from '@mui/material/Backdrop'

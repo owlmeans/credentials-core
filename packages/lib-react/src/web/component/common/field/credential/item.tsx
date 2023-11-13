@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { CredentialListItemInputProps, CredentialListItemInputRendererProps } from "./types"
-import { EXRENSION_ITEM_PURPOSE_INPUT_ITEM, UIExtensionFactoryProduct, useOwlWallet } from "../../../../../common"
+import { EXRENSION_ITEM_PURPOSE_INPUT_ITEM, UIExtensionFactoryProduct, useOwlWallet } from "../../../../../cmn"
 import { CredentialListItemInputSimpleRenderer } from "./item/simple"
 import { CredentialListItemTypeSelector } from "./item/selector"
 

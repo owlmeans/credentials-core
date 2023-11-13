@@ -44,14 +44,20 @@
     "stream-browserify": "^3.0.0"
   },
   "devDependencies": {
-    "metro-config": "^0.79.0"
+    "metro-config": "^0.79.0",
+    "react-native-paper": "^5.11.1",
+    "react-native-safe-area-context": "^4.7.4",
+    "react-native-vector-icons": "^10.0.2"
   },
   "peerDependencies": {
     "@owlmeans/vc-core": "^0.1.0",
     "@owlmeans/vc-lib-react": "^0.1.0",
     "metro-config": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-paper": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-vector-icons": "*"
   },
   "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596"
 }

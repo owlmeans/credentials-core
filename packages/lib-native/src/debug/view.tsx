@@ -22,9 +22,23 @@ import { View, Text } from 'react-native'
 import { encodeBase58, decodeBase58, toBeArray, getBytes, sha256, randomBytes, HDNodeWallet } from 'ethers'
 import { getCryptoAdapter } from '@owlmeans/vc-core'
 import { signSync, verify } from '@noble/secp256k1'
+import { i18nDefaultOptions } from '@owlmeans/vc-lib-react/dist/i18n'
+import { nativeComponentMap } from '../component'
+import I18n, { InitOptions } from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import { OwlWalletProvider } from '@owlmeans/vc-lib-react/dist/common/context'
+import { basicNavigator } from '@owlmeans/vc-lib-react/dist/common/navigator'
 
 const aes = require('browserify-aes/browser')
 
+export const i18nSetup = (options: InitOptions) => {
+  const i18n = I18n.createInstance({ ...options, compatibilityJSON: 'v3' })
+  i18n.use(initReactI18next).init()
+
+  return i18n
+}
+
+const i18n = i18nSetup(i18nDefaultOptions)
 
 export const DebugSSIView = () => {
   const handler = useMemo(createWalletHandler, [])
@@ -56,7 +70,13 @@ export const DebugSSIView = () => {
     })();
   }, [])
 
+
   return <View>
-    <Text>Hello world</Text>
+    {/* <OwlWalletContext.Provider value={{ map: nativeComponentMap, handler, config: { DID_PREFIX: 'exm', code: 'rn-test' } }}> */}
+    <OwlWalletProvider map={nativeComponentMap} handler={handler}
+      config={{ DID_PREFIX: 'exm', code: 'rn-test' }} navigator={basicNavigator} i18n={i18n}>
+      <Text>Hello world</Text>
+    </OwlWalletProvider>
+    {/* </OwlWalletContext.Provider> */}
   </View>
 }

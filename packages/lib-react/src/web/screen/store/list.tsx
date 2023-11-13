@@ -15,7 +15,7 @@
  */
 
 
-import { useNavigator, NavigatorContextProvider, StoreList, StoreListNavigator } from '../../../common'
+import { useNavigator, NavigatorContextProvider, StoreList, StoreListNavigator } from '../../../cmn'
 import { useNavigate } from 'react-router-dom-owlmeans'
 
 

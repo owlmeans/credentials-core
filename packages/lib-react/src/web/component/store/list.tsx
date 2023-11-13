@@ -16,7 +16,7 @@
 
 
 
-import { StoreListImplProps, MainFooter } from '../../../common'
+import { StoreListImplProps, MainFooter } from '../../../cmn'
 import { FormHeaderButton, SimpleList, SimpleListItem } from '../../component/common'
 import { saveAs } from 'file-saver'
 import { useDropzone } from "react-dropzone"

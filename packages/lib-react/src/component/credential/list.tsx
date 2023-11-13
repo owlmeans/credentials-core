@@ -18,8 +18,9 @@ import {
   CredentialWrapper, RegistryType, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CREDENTIALS
 } from '@owlmeans/vc-core'
 import { FunctionComponent } from 'react'
+import { withOwlWallet } from '../../common/context'
 import {
-  BasicNavigator, EmptyProps, WalletComponentProps, WalletNavigatorMenuMethod, withOwlWallet,
+  BasicNavigator, EmptyProps, WalletComponentProps, WalletNavigatorMenuMethod,
   WrappedComponentProps
 } from '../../common/'
 

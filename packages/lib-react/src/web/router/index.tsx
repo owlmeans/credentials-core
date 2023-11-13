@@ -20,7 +20,7 @@ import { NavigateFunction, Route, Routes, useParams } from 'react-router-dom-owl
 import {
   basicNavigator, extendNavigator, MainAuthArea, MainDashboard, useOwlWallet, Config,
   EXTENSION_ITEM_PURPOSE_ROUTE
-} from '../../common'
+} from '../../cmn'
 import {
   WalletStoreCreation, WalletStoreLogin, WalletStoreList, WalletCredentialList, WalletMainMenu,
   CredentialCreation, CredentialRequest, CredentialClaim

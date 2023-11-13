@@ -18,7 +18,7 @@
 import {
   useNavigator, NavigatorContextProvider, StoreCreation, StoreCreationNavigator,
   StoreCreationNavSuccess, STORE_CREATION_MENU_IMPORT,
-} from '../../../common'
+} from '../../../cmn'
 import { useNavigate } from 'react-router-dom-owlmeans'
 
 

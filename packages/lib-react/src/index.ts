@@ -15,6 +15,6 @@
  */
 
 
-export * from './common'
+export * from './cmn'
 
 export * from './web'

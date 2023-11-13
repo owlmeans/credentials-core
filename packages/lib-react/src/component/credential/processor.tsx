@@ -16,8 +16,9 @@
 
 import { FunctionComponent } from 'react'
 import { UseFormReturn } from 'react-hook-form'
+import { withOwlWallet } from '../../common/context'
 import {
-  EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, WrappedComponentProps
+  EmptyProps, WalletComponentProps, useOwlWallet, WrappedComponentProps
 } from '../../common/'
 import {
   EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED, IncommigDocumentEventParams

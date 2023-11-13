@@ -15,9 +15,10 @@
  */
 
 import { FunctionComponent } from 'react'
+import { withOwlWallet } from '../../common/context'
 import {
   BasicNavigator, EmptyProps, EmptyState, WalletComponentProps, useOwlWallet,
-  WalletNavigatorMenuMethod, withOwlWallet, WrappedComponentProps
+  WalletNavigatorMenuMethod, WrappedComponentProps
 } from '../../common/'
 import { castMenuItemParams } from '../../extension/helper'
 import { ManuItemParams } from '../../extension/types'

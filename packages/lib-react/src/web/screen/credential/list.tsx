@@ -18,7 +18,7 @@
 import {
   CredentialList, CredentialListTab, useNavigator, CredentialListNavigator, CredentialListNavigatorParams,
   NavigatorContextProvider
-} from '../../../common'
+} from '../../../cmn'
 import {
   RegistryType, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CLAIMS,
   REGISTRY_TYPE_CREDENTIALS, REGISTRY_TYPE_IDENTITIES, REGISTRY_TYPE_REQUESTS,

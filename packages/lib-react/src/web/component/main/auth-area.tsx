@@ -16,7 +16,7 @@
 
 import React, { Fragment } from 'react'
 import { Outlet } from 'react-router-dom-owlmeans'
-import { EXTENSION_ITEM_PURPOSE_TOP_ACTION, MainAuthAreaImplProps, MainFooter } from '../../../common'
+import { EXTENSION_ITEM_PURPOSE_TOP_ACTION, MainAuthAreaImplProps, MainFooter } from '../../../cmn'
 import { useOwlWallet } from '../../../common/context'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'

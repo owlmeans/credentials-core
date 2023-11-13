@@ -18,9 +18,10 @@ import { FunctionComponent } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import { CryptoHelper } from '@owlmeans/vc-core'
 import { buildWalletWrapper } from '@owlmeans/vc-core'
+import { withOwlWallet } from '../../common/context'
 import {
   BasicNavigator, EmptyProps, WalletComponentProps, OwlWalletValidationRules, useOwlWallet,
-  WalletNavigatorMenuMethod, WalletNavigatorMethod, withOwlWallet, WrappedComponentProps
+  WalletNavigatorMenuMethod, WalletNavigatorMethod, WrappedComponentProps
 } from '../../common/'
 import { generalNameVlidation, loginAliasValidation, passwordValidation } from '../../util'
 

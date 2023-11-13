@@ -17,7 +17,7 @@
 import { EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, WalletHandler, buildWalletWrapper, createWalletHandler, cryptoHelper, Credential, REGISTRY_TYPE_IDENTITIES, REGISTRY_SECTION_PEER, EXTENSION_TRIGGER_AUTHENTICATED } from '@owlmeans/vc-core'
 import { buildStorageHelper } from '../storage'
 import { Dispatch, FC, PropsWithChildren, SetStateAction, Suspense, useEffect, useMemo, useState } from 'react'
-import { BasicNavigator, Config, ContextParams, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider, ServerClient, UIExtensionRegistry, basicNavigator, extendNavigator, useOwlWallet as useRealWallet } from '../../common'
+import { BasicNavigator, Config, ContextParams, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider, ServerClient, UIExtensionRegistry, basicNavigator, extendNavigator, useOwlWallet as useRealWallet } from '../../cmn'
 import { webComponentMap } from '../component'
 import { i18n, i18nRegisterExtensions } from './persistent'
 import { CryptoLoaderProps } from '../../common/crypto'
