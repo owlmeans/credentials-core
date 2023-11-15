@@ -18,7 +18,7 @@ import { Fragment, FunctionComponent } from 'react'
 import {
   EmptyProps, WalletComponentProps, useOwlWallet, withOwlWallet, EXTENSION_ITEM_PURPOSE_VALIDATION,
   ResultWidgetParams
-} from '../../../../cmn'
+} from '../../../../shared'
 import { ValidationResult } from '@owlmeans/vc-core'
 import { normalizeValue } from '@owlmeans/vc-core'
 import { EvidenceTrust, EvidenceTrustHandle } from './evidence/'

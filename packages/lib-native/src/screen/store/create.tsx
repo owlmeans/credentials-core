@@ -1,5 +1,5 @@
 /**
- *  Copyright 2023 OwlMeans, Inc
+ *  Copyright 2023 OwlMeans
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,29 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { NavigatorContextProvider, StoreCreation, StoreCreationNavigator, useNavigator } from '@owlmeans/vc-lib-react/dist/shared'
+import { FC } from 'react'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/native'
+import { RootNavigationParams } from '../../router/types'
 
+export const StoreCreateScreen: FC = () => {
+  const navigation: NativeStackNavigationProp<RootNavigationParams> = useNavigation()
 
-import {
-  useNavigator, NavigatorContextProvider, StoreCreation, StoreCreationNavigator,
-  StoreCreationNavSuccess, STORE_CREATION_MENU_IMPORT,
-} from '../../../shared'
-import { useNavigate } from 'react-router-dom-owlmeans'
-
-
-export const WalletStoreCreation = () => {
-  const navigate = useNavigate()
   const nav = useNavigator<StoreCreationNavigator>({
-    success: async (params: StoreCreationNavSuccess) => { navigate(`/store/login/${params.alias}`) },
-    menu: async (location: string) => {
-      switch (location) {
-        default:
-        case STORE_CREATION_MENU_IMPORT:
-          navigate('/store/list')
-      }
-    }
+    menu: async () => { navigation.push('store.list') }
   })
 
   return <NavigatorContextProvider navigator={nav}>
-    <StoreCreation defaultAlias="citizen" />
+    <StoreCreation defaultAlias="default" />
   </NavigatorContextProvider>
 }

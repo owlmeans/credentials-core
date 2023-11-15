@@ -1,5 +1,5 @@
 /**
- *  Copyright 2023 OwlMeans, Inc
+ *  Copyright 2023 OwlMeans
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,18 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { NavigatorContextProvider, StoreList, StoreListNavigator, useNavigator } from '@owlmeans/vc-lib-react/dist/shared'
+import { FC } from 'react'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/native'
+import { RootNavigationParams } from '../../router/types'
 
+export const StoreListScreen: FC = () => {
+  const navigation: NativeStackNavigationProp<RootNavigationParams> = useNavigation()
 
-import { useNavigator, NavigatorContextProvider, StoreList, StoreListNavigator } from '../../../shared'
-import { useNavigate } from 'react-router-dom-owlmeans'
-
-
-export const WalletStoreList = () => {
-  const navigate = useNavigate()
   const nav = useNavigator<StoreListNavigator>({
-    login: async (alias: string) => { navigate(`/store/login/${alias}`) },
-
-    create: async () => { navigate('/store/create') }
+    login: async alias => navigation.push('store.login', { alias }),
+    create: async () => navigation.push('store.create')
   })
 
   return <NavigatorContextProvider navigator={nav}>

@@ -18,7 +18,7 @@
 import { useNavigate } from 'react-router-dom-owlmeans'
 import {
   MainMenu, MainMenuNavigation, NavigatorContextProvider, useNavigator, useOwlWallet
-} from '../../../cmn'
+} from '../../../shared'
 import {  CREDENTIAL_LIST_ROUTE  } from '../../component'
 
 

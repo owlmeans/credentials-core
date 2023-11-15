@@ -13,14 +13,5 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { ImplementationMap } from '@owlmeans/vc-lib-react/dist/common/index'
-import { StoreCreationNative, StoreListNative, StoreLoginNative } from './store'
-
 export * from './grid'
-export * from './store'
-
-export const nativeComponentMap: ImplementationMap = {
-  "StoreList": StoreListNative,
-  "StoreCreation": StoreCreationNative,
-  "StoreLogin": StoreLoginNative
-}
+export * from './types'

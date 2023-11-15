@@ -18,7 +18,7 @@ import { Fragment, FunctionComponent, useState } from 'react'
 import {
   EmptyProps, EXTENSION_ITEM_PURPOSE_EVIDENCE, generalNameVlidation, PurposeEvidenceWidgetParams,
   WalletComponentProps, useOwlWallet, withOwlWallet
-} from '../../../../../cmn'
+} from '../../../../../shared'
 import { Credential, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
 import {
   EvidenceValidationResult, EXTENSION_TRIGGER_RETRIEVE_NAME, RetreiveNameEventParams,

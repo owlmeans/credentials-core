@@ -16,7 +16,7 @@
 
 
 import { FormProvider, useForm, UseFormProps } from 'react-hook-form'
-import { StoreLoginFields, StoreLoginImplProps, MainFooter } from '../../../cmn'
+import { StoreLoginFields, StoreLoginImplProps, MainFooter } from '../../../shared'
 import { cryptoHelper } from '@owlmeans/vc-core'
 import {
   FormMainAction, PasswordInput, PrimaryForm, AlertOutput, FormHeaderButton

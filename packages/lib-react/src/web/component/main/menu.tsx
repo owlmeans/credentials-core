@@ -15,7 +15,7 @@
  */
 
 
-import { MainMenuImplProps } from '../../../cmn'
+import { MainMenuImplProps } from '../../../shared'
 import { MainMenuItemWeb } from './menu/item'
 import List from '@mui/material/List'
 

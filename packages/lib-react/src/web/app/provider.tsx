@@ -15,14 +15,13 @@
  */
 
 import { PropsWithChildren, useState } from "react"
-import { MainLoading, OwlWalletProvider, MainModal } from "../../cmn"
+import { MainLoading, OwlWalletProvider, MainModal } from "../../shared"
 import { useNavigate } from "react-router-dom-owlmeans"
 import { buildDevWallet } from "../debug/util/builder"
 import { WalletAppParams, RootNavigatorBuilder } from "./types"
 import { webComponentMap } from "../component"
 import { i18n } from "i18next"
 import { WalletHandler } from "@owlmeans/vc-core"
-
 
 export const AppProvider = ({
   handler, config, extensions, i18n, navigatorBuilder, children, serverClient

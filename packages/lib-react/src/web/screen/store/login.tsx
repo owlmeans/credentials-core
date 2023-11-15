@@ -16,7 +16,7 @@
 
 
 import { useNavigate, useParams } from 'react-router-dom-owlmeans'
-import { NavigatorContextProvider, StoreLogin, StoreLoginNavigator, useNavigator } from '../../../cmn'
+import { NavigatorContextProvider, StoreLogin, StoreLoginNavigator, useNavigator } from '../../../shared'
 
 
 export const WalletStoreLogin = () => {

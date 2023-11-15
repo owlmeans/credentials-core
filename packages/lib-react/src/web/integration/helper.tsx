@@ -17,12 +17,13 @@
 import { EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, WalletHandler, buildWalletWrapper, createWalletHandler, cryptoHelper, Credential, REGISTRY_TYPE_IDENTITIES, REGISTRY_SECTION_PEER, EXTENSION_TRIGGER_AUTHENTICATED } from '@owlmeans/vc-core'
 import { buildStorageHelper } from '../storage'
 import { Dispatch, FC, PropsWithChildren, SetStateAction, Suspense, useEffect, useMemo, useState } from 'react'
-import { BasicNavigator, Config, ContextParams, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider, ServerClient, UIExtensionRegistry, basicNavigator, extendNavigator, useOwlWallet as useRealWallet } from '../../cmn'
+import { BasicNavigator, Config, ContextParams, EXTENSION_TIRGGER_MAINMODAL_SHARE_HANDLER, MainLoading, MainModalAuthenticatedEventParams, MainModalHandle, MainModalShareEventParams, OwlWalletProvider, ServerClient, UIExtensionRegistry, basicNavigator, extendNavigator, useOwlWallet as useRealWallet } from '../../shared'
 import { webComponentMap } from '../component'
-import { i18n, i18nRegisterExtensions } from './persistent'
+// import { i18n, i18nRegisterExtensions } from './persistent'
 import { CryptoLoaderProps } from '../../common/crypto'
 import { IntegratedWalletPlugin, UneregisterIntegratedWalletPlugin } from './types'
 import { getOwlWalletPassword, isOwlWalletPasswordSet } from './utils'
+import { i18n, i18nRegisterExtensions } from '../../i18n/util'
 
 export const useOwlUIContext = (
   config: Config,
@@ -35,6 +36,18 @@ export const useOwlUIContext = (
   return { handler, storage, loading, setLoading }
 }
 
+/**
+ * OwlMeansProviderWrapper Component
+ * 
+ * If you need to use OwlMeans Credentials inside your project wrap your custom components
+ * with this high level component.
+ * 
+ * 
+ * It's used as a root component for OwlMeans dependent UIs in integrated solutions.
+ * It provides pluggable integrations for event based data exchange.
+ * E.g.:
+ * It consumes plugins that will observe inbox events for incomming messages.
+ */
 export const OwlMeansProviderWrapper: FC<OwlMeansProviderWrapperProps> = ({
   handler, config, navigatorBuilder, serverClient, children, integrationConfig, source, plugins,
   setInboxCount
@@ -51,7 +64,7 @@ export const OwlMeansProviderWrapper: FC<OwlMeansProviderWrapperProps> = ({
     [source]
   )
 
-  useEffect(() => owlmeans.extensions && i18nRegisterExtensions(i18n, owlmeans.extensions), owlmeans.extensions?.uiExtensions)
+  useEffect(() => owlmeans.extensions && i18nRegisterExtensions(owlmeans.extensions), owlmeans.extensions?.uiExtensions)
 
   const [oneTime, setOneTime] = useState(true)
 
@@ -198,15 +211,13 @@ export const buildOwlMeansCryptoLoader = ({
         if (sharedOwlMeansContext.handler == null) {
           handler.cryptoLoaded = true
           sharedOwlMeansContext.handler = handler
-          i18nRegisterExtensions(i18n, extensions)
+          i18nRegisterExtensions(extensions)
           storage.init().then(async () => {
             setLoading(handler.stores['default'] ? WalletState.Loaded : WalletState.Empty)
           })
         }
       }} />
     </Wrapper>
-
-
   }
 
   return CompoundCryptoLoader

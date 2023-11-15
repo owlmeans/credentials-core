@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { BasicNavigator, Config, UIExtensionRegistry } from "../../cmn"
+import { BasicNavigator, Config, UIExtensionRegistry } from "../../shared"
 import { NavigateFunction } from "react-router-dom-owlmeans"
 import { WalletHandler } from "@owlmeans/vc-core"
 import { ServerClient } from "../../common"

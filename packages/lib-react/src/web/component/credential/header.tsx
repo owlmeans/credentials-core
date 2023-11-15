@@ -18,7 +18,7 @@ import { Fragment, FunctionComponent, useState } from 'react'
 import {
   castMenuItemParams, CredentialListNavigator, EmptyProps, ManuItemParams, MenuActionResult, WalletComponentProps,
   useNavigator, useOwlWallet, withOwlWallet
-} from '../../../cmn'
+} from '../../../shared'
 import { MENU_TAG_CLAIM_NEW, MENU_TAG_CRED_NEW, MENU_TAG_REQUEST_NEW, NewCredentailMenuItem } from '../../extension/types'
 import { TFunction } from 'i18next'
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline'

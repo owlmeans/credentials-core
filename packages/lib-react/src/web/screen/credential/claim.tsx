@@ -19,7 +19,7 @@ import { useNavigate, useParams } from 'react-router-dom-owlmeans'
 import {
   useOwlWallet, withOwlWallet, PurposeCredentialCreationParams, EXTENSION_ITEM_PURPOSE_CLAIM, useNavigator,
   ClaimNavigator, ClaimNavigatorParams, NavigatorContextProvider
-} from '../../../cmn'
+} from '../../../shared'
 import { CREDENTIAL_LIST_ROUTE } from '../../component'
 
 

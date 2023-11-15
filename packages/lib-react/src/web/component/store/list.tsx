@@ -13,16 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
-
-import { StoreListImplProps, MainFooter } from '../../../cmn'
+import { StoreListImplProps, MainFooter } from '../../../shared'
 import { FormHeaderButton, SimpleList, SimpleListItem } from '../../component/common'
 import { saveAs } from 'file-saver'
 import { useDropzone } from "react-dropzone"
 import Grid from '@mui/material/Grid'
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
-
 
 export const StoreListWeb = (props: StoreListImplProps) => {
   const onDrop = async (files: File[]) => {

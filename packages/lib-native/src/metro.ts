@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { CustomResolver } from 'metro-resolver'
 
 const path = require('path')
@@ -38,7 +37,6 @@ export const getDefaultTransformer = () => {
     }),
   }
 }
-
 
 export const getDefaultResolver = (location: string, prefix?: string) => {
   return {
@@ -72,4 +70,3 @@ export const getDefaultMetroConfig = (location: string, prefix?: string) => {
     transformer: getDefaultTransformer()
   }
 }
-

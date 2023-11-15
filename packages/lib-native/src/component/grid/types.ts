@@ -1,5 +1,5 @@
 /**
- *  Copyright 2023 OwlMeans, Inc
+ *  Copyright 2023 OwlMeans
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,14 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { PropsWithChildren } from 'react'
 
+export interface GridProps extends PropsWithChildren {
+  container?: boolean
+  item?: boolean
+  direction?: GridDirection
+  space?: number
+}
 
-export * from './util'
-
-export * from './common'
-
-export * from './component'
-
-export * from './extension'
-
-export * from './i18n'
+export type GridDirection = "column" | "row"

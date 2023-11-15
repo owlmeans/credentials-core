@@ -15,7 +15,7 @@
  */
 
 import { FunctionComponent, useState } from 'react'
-import { MainModalImplProps } from '../../../cmn'
+import { MainModalImplProps } from '../../../shared'
 import Dialog from '@mui/material/Dialog'
 
 

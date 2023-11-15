@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import 'react-native-url-polyfill/auto'
 import 'react-native-get-random-values'
 import "@ethersproject/shims"

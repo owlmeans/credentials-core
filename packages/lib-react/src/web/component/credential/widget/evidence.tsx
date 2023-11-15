@@ -18,7 +18,7 @@ import { Fragment, FunctionComponent, useState } from 'react'
 import {
   CredentialEvidenceWidget, EvidenceWidgetImplProps, EXTENSION_ITEM_PURPOSE_EVIDENCE,
   PurposeEvidenceWidgetParams, useOwlWallet
-} from '../../../../cmn'
+} from '../../../../shared'
 import { CredentialWrapper, Credential } from '@owlmeans/vc-core'
 import { StandardEvidenceWidget } from './evidence/'
 import ExpandMore from '@mui/icons-material/ExpandMore'

@@ -15,16 +15,30 @@
  */
 
 import { UIExtensionRegistry } from "../extension"
-import { i18n } from 'i18next'
+import { i18n as I18n } from 'i18next'
+import { i18nSetup } from './setup'
+import { i18nDefaultOptions } from './index'
 
-export const i18nRegisterExtensions = (i18n: i18n, extensions: UIExtensionRegistry) => {
-  extensions?.uiExtensions.forEach(ext => {
+let i18nInitialized: boolean = false
+
+export const i18nRegisterExtensions = (extensions: UIExtensionRegistry, _i18n?: I18n) => {
+  if (i18nInitialized) {
+    return
+  }
+  if (_i18n == null) {
+    _i18n = i18nSetup(i18nDefaultOptions)
+  }
+  i18n = _i18n
+  i18nInitialized = true
+  extensions?.uiExtensions.forEach((ext) => {
     if (ext.extension.localization) {
       Object.entries(ext.extension.localization.translations).forEach(([lng, resource]) => {
-        if (ext.extension.localization?.ns) {
-          i18n.addResourceBundle(lng, ext.extension.localization?.ns, resource, true, true)
+        if (_i18n != null && ext.extension.localization?.ns) {
+          _i18n.addResourceBundle(lng, ext.extension.localization?.ns, resource, true, true)
         }
       })
     }
   })
 }
+
+export let i18n: I18n;

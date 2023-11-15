@@ -18,7 +18,7 @@
 import {
   MainDashboardImplProps, NavigatorContextProvider, useNavigator, useOwlWallet,
   CredentialProcessor, EXTENSION_ITEM_PURPOSE_DASHBOARD_WIDGET
-} from '../../../cmn'
+} from '../../../shared'
 import { ListNavigator, partialListNavigator } from './navigator'
 import { useNavigate } from 'react-router-dom-owlmeans'
 import Grid from '@mui/material/Grid'

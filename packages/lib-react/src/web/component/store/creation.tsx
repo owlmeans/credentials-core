@@ -15,7 +15,7 @@
  */
 
 
-import { StoreCreationFields, StoreCreationImplProps, MainFooter } from '../../../cmn'
+import { StoreCreationFields, StoreCreationImplProps, MainFooter } from '../../../shared'
 import { useForm, FormProvider, UseFormProps, } from 'react-hook-form'
 import { cryptoHelper } from '@owlmeans/vc-core'
 import {

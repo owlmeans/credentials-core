@@ -15,6 +15,6 @@
  */
 
 
-export * from './cmn'
+export * from './shared'
 
 export * from './web'

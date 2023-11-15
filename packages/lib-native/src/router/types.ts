@@ -13,14 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { ImplementationMap } from '@owlmeans/vc-lib-react/dist/common/index'
-import { StoreCreationNative, StoreListNative, StoreLoginNative } from './store'
+import { NavigationProp, ParamListBase } from '@react-navigation/native'
 
-export * from './grid'
-export * from './store'
+export interface RootNavigationProps extends NavigationProp<RootNavigationParams> { }
 
-export const nativeComponentMap: ImplementationMap = {
-  "StoreList": StoreListNative,
-  "StoreCreation": StoreCreationNative,
-  "StoreLogin": StoreLoginNative
+export interface RootNavigationParams extends ParamListBase {
+  'store.list': undefined,
+  'store.create': undefined,
+  'store.login': { alias?: string }
 }

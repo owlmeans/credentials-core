@@ -14,84 +14,87 @@
  *  limitations under the License.
  */
 
-import { WalletAppParams } from '../app/types'
-import {
-  i18nDefaultOptions, BasicNavigator, OwlWalletProvider, MainLoading
-} from '../../cmn'
-import { PropsWithChildren, useEffect, useMemo, useState } from 'react'
-import { buildStorageHelper } from '../storage'
-import { i18nRegisterExtensions } from '../../i18n/util'
-import { webComponentMap } from '../component'
-import { 
-  buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, 
-  WalletHandler, cryptoHelper 
-} from '@owlmeans/vc-core'
-import { DEFAULT_GUEST_WALLET_ALIAS } from '../types'
-import CircularProgress from '@mui/material/CircularProgress'
-import { i18nSetup } from '../../i18n/setup'
+// import { WalletAppParams } from '../app/types'
+// import {
+//   i18nDefaultOptions, BasicNavigator, OwlWalletProvider, MainLoading
+// } from '../../shared'
+// import { PropsWithChildren, useEffect, useMemo, useState } from 'react'
+// import { buildStorageHelper } from '../storage'
+// import { i18nRegisterExtensions } from '../../i18n/util'
+// import { webComponentMap } from '../component'
+// import { 
+//   buildWalletWrapper, createWalletHandler, EXTENSION_TRIGGER_INIT_SENSETIVE, InitSensetiveEventParams, 
+//   WalletHandler, cryptoHelper 
+// } from '@owlmeans/vc-core'
+// import { DEFAULT_GUEST_WALLET_ALIAS } from '../types'
+// import CircularProgress from '@mui/material/CircularProgress'
+// import { i18nSetup } from '../../i18n/setup'
 
 
-const i18n = i18nSetup(i18nDefaultOptions)
+// const i18n = i18nSetup(i18nDefaultOptions)
 
-export const WalletIntegrationReact = (
-  { config, extensions, navigatorBuilder, children, serverClient }: PropsWithChildren<
-    WalletAppParams & {
-      navigatorBuilder: (handler: WalletHandler) => BasicNavigator
-    }>
-) => {
-  const handler = useMemo(createWalletHandler, [])
-  const storage = useMemo(() => buildStorageHelper(handler, config), [config])
+/**
+ * @deprecated
+ */
+// export const WalletIntegrationReact = (
+//   { config, extensions, navigatorBuilder, children, serverClient }: PropsWithChildren<
+//     WalletAppParams & {
+//       navigatorBuilder: (handler: WalletHandler) => BasicNavigator
+//     }>
+// ) => {
+//   const handler = useMemo(createWalletHandler, [])
+//   const storage = useMemo(() => buildStorageHelper(handler, config), [config])
 
-  useEffect(() => {
-    (async () => {
-      if (!handler.wallet) {
-        const wallet = await buildWalletWrapper(
-          { crypto: cryptoHelper, extensions: extensions?.registry }, '11111111',
-          { alias: DEFAULT_GUEST_WALLET_ALIAS, name: 'Guest wallet' }, {
-          prefix: config.DID_PREFIX,
-          defaultSchema: config.baseSchemaUrl,
-          didSchemaPath: config.DID_SCHEMA_PATH,
-        })
-        handler.stores[wallet.store.alias] = await wallet.export()
-        await extensions?.triggerEvent<InitSensetiveEventParams>(
-          wallet, EXTENSION_TRIGGER_INIT_SENSETIVE, {
-          extensions: extensions.registry
-        })
-        await handler.loadStore(async _ => wallet)
-      }
-    })()
-  }, [])
+//   useEffect(() => {
+//     (async () => {
+//       if (!handler.wallet) {
+//         const wallet = await buildWalletWrapper(
+//           { crypto: cryptoHelper, extensions: extensions?.registry }, '11111111',
+//           { alias: DEFAULT_GUEST_WALLET_ALIAS, name: 'Guest wallet' }, {
+//           prefix: config.DID_PREFIX,
+//           defaultSchema: config.baseSchemaUrl,
+//           didSchemaPath: config.DID_SCHEMA_PATH,
+//         })
+//         handler.stores[wallet.store.alias] = await wallet.export()
+//         await extensions?.triggerEvent<InitSensetiveEventParams>(
+//           wallet, EXTENSION_TRIGGER_INIT_SENSETIVE, {
+//           extensions: extensions.registry
+//         })
+//         await handler.loadStore(async _ => wallet)
+//       }
+//     })()
+//   }, [])
 
-  const [loaded, setLoaded] = useState(false)
+//   const [loaded, setLoaded] = useState(false)
 
-  const navigator = navigatorBuilder(handler)
+//   const navigator = navigatorBuilder(handler)
 
-  useEffect(
-    () => extensions && i18nRegisterExtensions(i18n, extensions), extensions?.uiExtensions || []
-  )
+//   useEffect(
+//     () => extensions && i18nRegisterExtensions(extensions, i18n), extensions?.uiExtensions || []
+//   )
 
-  useEffect(() => {
-    storage.init().then(
-      async _ => {
-        console.info('STORE INITIALIZED')
-        setLoaded(true)
-      }
-    )
+//   useEffect(() => {
+//     storage.init().then(
+//       async _ => {
+//         console.info('STORE INITIALIZED')
+//         setLoaded(true)
+//       }
+//     )
 
-    return () => {
-      console.info('STORE DETACHED');
-      (async () => {
-        await handler.logout()
-        storage.detach()
-      })()
-    }
-  }, [storage])
+//     return () => {
+//       console.info('STORE DETACHED');
+//       (async () => {
+//         await handler.logout()
+//         storage.detach()
+//       })()
+//     }
+//   }, [storage])
   
-  return loaded
-    ? <OwlWalletProvider i18n={i18n} map={webComponentMap} handler={handler}
-      config={config} navigator={navigator} extensions={extensions} serverClient={serverClient}>
-      {children}
-      <MainLoading nav={navigator} />
-    </OwlWalletProvider>
-    : <CircularProgress color="inherit" />
-}
+//   return loaded
+//     ? <OwlWalletProvider i18n={i18n} map={webComponentMap} handler={handler}
+//       config={config} navigator={navigator} extensions={extensions} serverClient={serverClient}>
+//       {children}
+//       <MainLoading nav={navigator} />
+//     </OwlWalletProvider>
+//     : <CircularProgress color="inherit" />
+// }

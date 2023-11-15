@@ -13,9 +13,8 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { useEffect, useMemo, useState } from 'react'
-import { i18nDefaultOptions } from '../cmn'
+import { i18nDefaultOptions } from '../shared'
 import { createWalletHandler } from '@owlmeans/vc-core'
 import { NavigationRoot, createRootNavigator } from './router'
 import { HashRouter } from 'react-router-dom-owlmeans'
@@ -31,11 +30,17 @@ import { i18nSetup } from '../i18n/setup'
 
 const i18n = i18nSetup(i18nDefaultOptions)
 
+/**
+ * WalletApp Component
+ * 
+ * Is used to be a root compononent for custom react based web app that
+ * are based on OwlMeans Credentials.
+ */
 export const WalletApp = ({ config, extensions, CryptoLoader }: WalletAppParams) => {
   const handler = useMemo(createWalletHandler, [])
   const storage = useMemo(() => buildStorageHelper(handler, config), [config])
 
-  useEffect(() => extensions && i18nRegisterExtensions(i18n, extensions), extensions?.uiExtensions || [])
+  useEffect(() => extensions && i18nRegisterExtensions(extensions, i18n), extensions?.uiExtensions || [])
 
   const [loaded, setLoaded] = useState(false)
 

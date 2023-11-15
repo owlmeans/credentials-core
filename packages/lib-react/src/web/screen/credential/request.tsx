@@ -18,7 +18,7 @@ import { Fragment, FunctionComponent } from 'react'
 import { useNavigate, useParams } from 'react-router-dom-owlmeans'
 import {
   useOwlWallet, withOwlWallet, PurposeCredentialCreationParams, EXTENSION_ITEM_PURPOSE_REQUEST
-} from '../../../cmn'
+} from '../../../shared'
 import { CREDENTIAL_LIST_ROUTE } from '../../component'
 
 

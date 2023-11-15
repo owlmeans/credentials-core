@@ -15,7 +15,7 @@
  */
 
 
-import { MainMenuItemImplProps } from '../../../../cmn'
+import { MainMenuItemImplProps } from '../../../../shared'
 import Button from '@mui/material/Button'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'

@@ -15,7 +15,7 @@
  */
 
 import { useCallback, useEffect, useState } from 'react'
-import { CredentialProcessorFields, CredentialProcessorImplProps } from '../../../cmn'
+import { CredentialProcessorFields, CredentialProcessorImplProps } from '../../../shared'
 import { useDropzone } from 'react-dropzone'
 import { Control, Controller, FieldValues, useForm, UseFormProps } from 'react-hook-form'
 import { formatError } from '../common'
