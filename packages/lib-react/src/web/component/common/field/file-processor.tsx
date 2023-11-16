@@ -13,9 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { EmptyProps, OwlWalletValidationRules, WrappedComponentProps } from '../../../../common'
-import { formatError } from '../error'
 import { useCallback, useState } from 'react'
 import { Controller, useFormContext, UseFormProps } from 'react-hook-form'
 import { useDropzone } from 'react-dropzone'
@@ -30,7 +28,7 @@ import FormControl from '@mui/material/FormControl'
 import Typography from '@mui/material/Typography'
 import FormHelperText from '@mui/material/FormHelperText'
 import Button from '@mui/material/Button'
-
+import { formatError } from '../../../../shared'
 
 export const FileProcessorWeb = (props: FileProcessorImplProps) => {
   const { t, square, rules, field, process, onDrop, isCode, fileHandler } = props

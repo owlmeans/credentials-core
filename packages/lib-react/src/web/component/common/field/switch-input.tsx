@@ -13,17 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { Fragment } from 'react'
 import { WrappedComponentProps } from '../../../../common'
 import { useFormContext, Controller } from 'react-hook-form'
-import { formatError } from '../error'
 import FormGroup from '@mui/material/FormGroup'
 import Grid from '@mui/material/Grid'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormHelperText from '@mui/material/FormHelperText'
 import Switch from '@mui/material/Switch'
-
+import { formatError } from '../../../../shared'
 
 export const SwitchInput = ({ t, field, rules }: SwitchInputProps) => {
   const { control } = useFormContext()

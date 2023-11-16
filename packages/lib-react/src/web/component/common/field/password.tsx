@@ -13,14 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { WrappedComponentProps } from '../../../../common'
-
 import { Controller, useFormContext } from 'react-hook-form'
-import { formatError } from '../error'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
-
+import { formatError } from '../../../../shared'
 
 export const PasswordInput = ({ t, field, rules }: PasswordInputProps) => {
   const { control } = useFormContext()

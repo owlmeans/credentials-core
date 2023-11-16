@@ -1,32 +1,10 @@
-/**
- *  Copyright 2023 OwlMeans, Inc
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-import { Config } from '../../common'
+
 import { EncryptedStore, WalletHandler } from '@owlmeans/vc-core'
-import localforage from 'localforage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const buildStorageHelper = (
-  handler: WalletHandler,
-  config: Config
+  handler: WalletHandler
 ) => {
-  const storage = localforage.createInstance({
-    driver: localforage.INDEXEDDB,
-    name: config.code,
-    storeName: `${config.code}.storage`
-  })
-
   const _commited: string[] = []
 
   let _obvserIdx = -1
@@ -38,9 +16,9 @@ export const buildStorageHelper = (
       if (_obvserIdx > -1) {
         return
       }
-      const storeList = await storage.keys()
+      const storeList = await AsyncStorage.getAllKeys()
       handler.stores = (await Promise.all(storeList.map(
-        key => storage.getItem<string>(key)
+        key => AsyncStorage.getItem(key)
       ))).map(
         store => store && JSON.parse(store) as EncryptedStore
       ).reduce(
@@ -72,13 +50,13 @@ export const buildStorageHelper = (
     commit: async () => {
       console.info('STORE COMMITS')
 
-      let promises: Promise<string | null[] | null>[] = []
+      let promises: Promise<void | null | null[]>[] = []
 
       Object.entries(handler.stores).map(
         ([alias, store]) => {
           if (store.toRemove) {
             console.info(`::: remove ${alias}`)
-            promises.push(storage.removeItem(alias).then(_ => null))
+            promises.push(AsyncStorage.removeItem(alias).then(_ => null))
             delete handler.stores[alias]
             _helper.touch(alias)
           }
@@ -99,7 +77,7 @@ export const buildStorageHelper = (
           store.toRemove = false
 
           _commited.push(alias)
-          return storage.setItem(alias, JSON.stringify(store))
+          return AsyncStorage.setItem(alias, JSON.stringify(store))
         }
       )]
 
@@ -110,19 +88,19 @@ export const buildStorageHelper = (
             console.info(`::: wallet commit ${value.alias}`)
             handler.stores[value.alias] = value
             value.toRemove = false
-            return storage.setItem(
+            return AsyncStorage.setItem(
               value.alias, JSON.stringify(value)
             )
           }
         ))
       }
 
-      promises.push(storage.keys().then(
+      promises.push(AsyncStorage.getAllKeys().then(
         keys => Promise.all(keys.map(
           async alias => {
             if (!handler.stores[alias]) {
               console.info(`::: cleanup ${alias}`)
-              await storage.removeItem(alias)
+              await AsyncStorage.removeItem(alias)
               _helper.touch(alias)
             }
             return null

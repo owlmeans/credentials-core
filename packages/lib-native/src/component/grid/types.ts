@@ -14,12 +14,20 @@
  *  limitations under the License.
  */
 import { PropsWithChildren } from 'react'
+import { ViewStyle } from 'react-native'
 
 export interface GridProps extends PropsWithChildren {
   container?: boolean
   item?: boolean
   direction?: GridDirection
   space?: number
+  justify?: GridJustify
+  align?: GridAlign
+  style?: ViewStyle
 }
 
-export type GridDirection = "column" | "row"
+export type GridDirection = ViewStyle['flexDirection']
+
+export type GridJustify = ViewStyle['justifyContent']
+
+export type GridAlign = ViewStyle['alignItems']

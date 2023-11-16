@@ -41,7 +41,7 @@ export const DebugSSIView = () => {
   const handler = useMemo(createWalletHandler, [])
 
   const navigation = useNavigation<RootNavigationProps>()
-  const navigator = createRootNavigator(navigation, handler)
+  const navigator = createRootNavigator(navigation, handler, { DID_PREFIX: 'exm', code: 'rn-test' })
 
   return <StrictMode>
     <SafeAreaProvider>

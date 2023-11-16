@@ -13,15 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
 import { FormProvider, useForm, UseFormProps } from 'react-hook-form'
 import { StoreLoginFields, StoreLoginImplProps, MainFooter } from '../../../shared'
 import { cryptoHelper } from '@owlmeans/vc-core'
 import {
   FormMainAction, PasswordInput, PrimaryForm, AlertOutput, FormHeaderButton
 } from '../../component/common'
-
 
 export const StoreLoginWeb = (props: StoreLoginImplProps) => {
   const methods = useForm<StoreLoginFields>(props.form as UseFormProps<StoreLoginFields>)

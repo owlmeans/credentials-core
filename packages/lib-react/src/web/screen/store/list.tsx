@@ -13,11 +13,8 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
 import { useNavigator, NavigatorContextProvider, StoreList, StoreListNavigator } from '../../../shared'
 import { useNavigate } from 'react-router-dom-owlmeans'
-
 
 export const WalletStoreList = () => {
   const navigate = useNavigate()

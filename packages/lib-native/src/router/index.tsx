@@ -14,12 +14,12 @@
  *  limitations under the License.
  */
 import { WalletHandler } from '@owlmeans/vc-core'
-import { basicNavigator, extendNavigator } from '@owlmeans/vc-lib-react/dist/shared'
+import { Config, basicNavigator, extendNavigator } from '@owlmeans/vc-lib-react/dist/shared'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { FC } from 'react'
-import { StoreListScreen } from '../screen'
+import { StoreListScreen, StoreLoginScreen } from '../screen'
 import { RootNavigationProps } from './types'
-import { StoreCreateScreen } from '../screen/store/create'
+import { StoreCreateScreen } from '../screen/store/creation'
 import { useTranslation } from 'react-i18next'
 
 export const NavigationRoot: FC = () => {
@@ -33,15 +33,35 @@ export const NavigationRoot: FC = () => {
     <Stack.Screen name="store.create" component={StoreCreateScreen} options={{
       title: `${ts('creation.title')}`
     }} />
+    <Stack.Screen name="store.login" component={StoreLoginScreen} options={
+      ({ route }) => {
+        return {
+          title: `${ts('login.title', { name: (route.params as any).alias })}`
+        }
+      }
+    } />
   </Stack.Navigator>
 }
 
 export const createRootNavigator = (
-  navigation: RootNavigationProps, _: WalletHandler
+  navigation: RootNavigationProps, handler: WalletHandler, config: Config
 ) =>
   extendNavigator(basicNavigator, {
     assertAuth: async () => {
-      navigation.navigate('store.list')
+      if (handler.wallet) {
+        return true
+      }
+
+      if (!config.development) {
+        navigation.navigate('store.list')
+      }
+
       return true
-    }
+    },
+
+    checkAuth: async () => handler.wallet != null,
+
+    home: async () => navigation.navigate('home'),
+
+    back: async () => navigation.goBack()
   })

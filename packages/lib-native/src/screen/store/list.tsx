@@ -23,8 +23,9 @@ export const StoreListScreen: FC = () => {
   const navigation: NativeStackNavigationProp<RootNavigationParams> = useNavigation()
 
   const nav = useNavigator<StoreListNavigator>({
-    login: async alias => navigation.push('store.login', { alias }),
-    create: async () => navigation.push('store.create')
+    login: async alias => navigation.navigate('store.login', { alias }),
+    
+    create: async () => navigation.navigate('store.create')
   })
 
   return <NavigatorContextProvider navigator={nav}>

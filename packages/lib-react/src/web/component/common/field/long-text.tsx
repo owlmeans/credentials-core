@@ -17,11 +17,11 @@
 import { useCallback } from 'react'
 import { WrappedComponentProps } from '../../../../common'
 import { useFormContext, Controller } from 'react-hook-form'
-import { formatError } from '../error'
 import { useDropzone } from "react-dropzone"
 import { FormHeaderButton } from '../button'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
+import { formatError } from '../../../../shared'
 
 
 export const LongTextInput = ({

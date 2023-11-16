@@ -17,9 +17,9 @@
 import { WrappedComponentProps } from '../../../../common'
 
 import { Controller, useFormContext } from 'react-hook-form'
-import { formatError } from '../error'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
+import { formatError } from '../../../../shared'
 
 
 export const NewPasswordInput = ({ t, field, rules }: NewPasswordInputProps) => {

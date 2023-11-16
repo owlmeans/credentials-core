@@ -17,11 +17,10 @@
 import { Fragment } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import { WrappedComponentProps } from '../../../../common'
-import { formatError } from '../error'
 import Grid from '@mui/material/Grid'
 import Alert, { AlertColor } from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
-
+import { formatError } from '../../../../shared'
 
 export const AlertOutput = ({ t, field }: AlertOutputProps) => {
   const { control } = useFormContext()
@@ -43,7 +42,6 @@ export const AlertOutput = ({ t, field }: AlertOutputProps) => {
     } />
   </Grid>
 }
-
 
 export type AlertOutputProps = WrappedComponentProps<{
   field: string

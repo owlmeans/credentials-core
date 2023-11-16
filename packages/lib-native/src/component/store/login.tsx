@@ -13,8 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { StoreLoginFields, StoreLoginImplProps } from '@owlmeans/vc-lib-react/dist/shared'
 import { FC } from 'react'
+import { FormProvider, UseFormProps, useForm } from 'react-hook-form'
+import { PasswordInput } from '../common'
+import { Grid } from '../grid'
+import { Button } from 'react-native-paper'
+import { cryptoHelper } from '@owlmeans/vc-core'
 
-export const StoreLoginNative: FC = () => {
-  return <></>
+export const StoreLoginNative: FC<StoreLoginImplProps> = (props) => {
+  const methods = useForm<StoreLoginFields>(props.form as UseFormProps<StoreLoginFields>)
+
+  return <FormProvider {...methods}>
+    <Grid container justify="flex-start">
+      <Grid item>
+        <PasswordInput {...props} field="login.password" />
+      </Grid>
+      <Grid item justify="flex-end" align="center" style={{ paddingBottom: '20%' }}>
+        <Button mode="contained" style={{ width: '90%' }} onPress={
+          methods.handleSubmit(props.login(methods, cryptoHelper))
+        }>{props.t('creation.create')}</Button>
+      </Grid>
+    </Grid>
+  </FormProvider>
 }

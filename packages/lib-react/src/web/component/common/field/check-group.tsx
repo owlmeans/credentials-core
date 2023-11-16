@@ -13,17 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { Fragment } from 'react'
 import { WrappedComponentProps } from '../../../../common'
 import { useFormContext, Controller } from 'react-hook-form'
-import { formatError } from '../error'
 import FormGroup from '@mui/material/FormGroup'
 import Grid from '@mui/material/Grid'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormHelperText from '@mui/material/FormHelperText'
 import Checkbox from '@mui/material/Checkbox'
-
+import { formatError } from '../../../../shared'
 
 export const CheckGroup = ({ t, fields, rules }: CheckGroupProps) => {
   const { control } = useFormContext()

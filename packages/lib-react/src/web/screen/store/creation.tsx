@@ -13,14 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
 import {
   useNavigator, NavigatorContextProvider, StoreCreation, StoreCreationNavigator,
   StoreCreationNavSuccess, STORE_CREATION_MENU_IMPORT,
 } from '../../../shared'
 import { useNavigate } from 'react-router-dom-owlmeans'
-
 
 export const WalletStoreCreation = () => {
   const navigate = useNavigate()

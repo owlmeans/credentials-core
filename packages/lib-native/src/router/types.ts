@@ -18,6 +18,7 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native'
 export interface RootNavigationProps extends NavigationProp<RootNavigationParams> { }
 
 export interface RootNavigationParams extends ParamListBase {
+  'home': undefined,
   'store.list': undefined,
   'store.create': undefined,
   'store.login': { alias?: string }

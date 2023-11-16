@@ -18,7 +18,7 @@ import { Button, List, Text } from 'react-native-paper'
 import { FC } from 'react'
 import { Grid } from '../grid/grid'
 
-export const StoreListNative: FC<StoreListImplProps> = ({ t, stores, create }) => {
+export const StoreListNative: FC<StoreListImplProps> = ({ t, stores, create, login }) => {
   return <Grid container>
     <Grid item container space={1} direction="row">
       <Grid item space={3}><Text variant="headlineLarge">{t('list.title')}</Text></Grid>
@@ -26,7 +26,9 @@ export const StoreListNative: FC<StoreListImplProps> = ({ t, stores, create }) =
     </Grid>
     <Grid item space={11}>
       {stores.length > 0 ? stores.map(
-        store => <List.Item key={store.alias} title={store.name} />
+        store => <List.Item key={store.alias} title={store.name} onPress={
+          () => login(store.alias)
+        } />
       ) : <List.Item title={t('list.empty')} />}
     </Grid>
   </Grid>

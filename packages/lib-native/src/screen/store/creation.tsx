@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { NavigatorContextProvider, StoreCreation, StoreCreationNavigator, useNavigator } from '@owlmeans/vc-lib-react/dist/shared'
+import { NavigatorContextProvider, STORE_CREATION_MENU_IMPORT, StoreCreation, StoreCreationNavSuccess, StoreCreationNavigator, WalletNavigatorMethod, useNavigator } from '@owlmeans/vc-lib-react/dist/shared'
 import { FC } from 'react'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/native'
@@ -23,10 +23,20 @@ export const StoreCreateScreen: FC = () => {
   const navigation: NativeStackNavigationProp<RootNavigationParams> = useNavigation()
 
   const nav = useNavigator<StoreCreationNavigator>({
-    menu: async () => { navigation.push('store.list') }
+    success: (async (params: StoreCreationNavSuccess): Promise<void> => {
+      navigation.navigate('store.login', params)
+    }) as WalletNavigatorMethod<StoreCreationNavSuccess>,
+
+    menu: async location => {
+      switch (location) {
+        default:
+        case STORE_CREATION_MENU_IMPORT:
+          navigation.navigate('store.list')
+      }
+    }
   })
 
   return <NavigatorContextProvider navigator={nav}>
-    <StoreCreation defaultAlias="default" />
+    <StoreCreation defaultAlias="user" />
   </NavigatorContextProvider>
 }

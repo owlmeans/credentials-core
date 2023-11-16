@@ -13,8 +13,30 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { StoreCreationFields, StoreCreationImplProps, formatError } from '@owlmeans/vc-lib-react/dist/shared'
 import { FC } from 'react'
+import { FormProvider, UseFormProps, useForm } from 'react-hook-form'
+import { Grid } from '../grid'
+import { Button, Text } from 'react-native-paper'
+import { MainTextInput, NewPasswordInput } from '../common'
+import { cryptoHelper } from '@owlmeans/vc-core'
 
-export const StoreCreationNative: FC = () => {
-  return <></>
+export const StoreCreationNative: FC<StoreCreationImplProps> = (props) => {
+  const { t, form } = props
+  const methods = useForm<StoreCreationFields>(form as UseFormProps<StoreCreationFields>)
+
+  return <FormProvider {...methods}>
+    <Grid container justify="flex-start">
+      <Grid item>
+        <MainTextInput {...props} field="creation.name" />
+        <MainTextInput {...props} field="creation.login" />
+        <NewPasswordInput {...props} field="creation.password" />
+      </Grid>
+      <Grid item justify="flex-end" align="center" style={{ paddingBottom: '20%' }}>
+        <Button mode="contained" style={{ width: '90%' }} onPress={
+          methods.handleSubmit(props.create(methods, cryptoHelper))
+        }>{t('creation.create')}</Button>
+      </Grid>
+    </Grid>
+  </FormProvider>
 }

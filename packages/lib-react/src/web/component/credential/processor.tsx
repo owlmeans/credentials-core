@@ -15,10 +15,9 @@
  */
 
 import { useCallback, useEffect, useState } from 'react'
-import { CredentialProcessorFields, CredentialProcessorImplProps } from '../../../shared'
+import { CredentialProcessorFields, CredentialProcessorImplProps, formatError } from '../../../shared'
 import { useDropzone } from 'react-dropzone'
 import { Control, Controller, FieldValues, useForm, UseFormProps } from 'react-hook-form'
-import { formatError } from '../common'
 import { isMobile } from "react-device-detect"
 import Close from '@mui/icons-material/Close'
 import Delete from '@mui/icons-material/Delete'

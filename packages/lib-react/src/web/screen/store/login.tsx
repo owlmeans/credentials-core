@@ -13,11 +13,8 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
 import { useNavigate, useParams } from 'react-router-dom-owlmeans'
 import { NavigatorContextProvider, StoreLogin, StoreLoginNavigator, useNavigator } from '../../../shared'
-
 
 export const WalletStoreLogin = () => {
   const { alias } = useParams()

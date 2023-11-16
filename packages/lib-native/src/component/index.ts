@@ -18,6 +18,7 @@ import { StoreCreationNative, StoreListNative, StoreLoginNative } from './store'
 
 export * from './grid'
 export * from './store'
+export * from './common'
 
 export const nativeComponentMap: ImplementationMap = {
   "StoreList": StoreListNative,

@@ -13,14 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-
 import { WrappedComponentProps } from '../../../../common'
 import { useFormContext, Controller } from 'react-hook-form'
-import { formatError } from '../error'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
-
+import { formatError } from '../../../../shared'
 
 export const MainTextInput = ({ t, field, rules }: MainTextInputProps) => {
   const { control } = useFormContext()

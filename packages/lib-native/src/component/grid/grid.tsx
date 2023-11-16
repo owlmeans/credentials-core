@@ -18,19 +18,27 @@ import { GridProps } from './types'
 import { StyleSheet, View, ViewStyle } from 'react-native'
 
 export const Grid: FC<GridProps> = ({
-  direction, space,
-  container, item, children
+  direction, space, style,
+  container, item, children,
+  justify, align
 }) => {
-  const styles: ViewStyle[] = [{ 
+  const styles: ViewStyle[] = [{
     flex: space ?? 1,
-    flexDirection: direction ?? 'column'
-   }]
+    flexDirection: direction ?? 'column',
+    ...style
+  }]
 
   if (container === true) {
     styles.push(gridStyles.container)
   }
   if (item === true) {
     styles.push(gridStyles.item)
+  }
+  if (justify != null) {
+    styles.push({ justifyContent: justify })
+  }
+  if (align != null) {
+    styles.push({ alignItems: align })
   }
 
   return <View style={styles}>{children}</View>
@@ -40,10 +48,10 @@ Grid.displayName = "Grid"
 
 export const gridStyles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between',
-    alignItems: 'stretch'
+    // justifyContent: 'space-between',
+    // alignItems: 'stretch'
   },
   item: {
-    justifyContent: 'center',
+    // justifyContent: 'center',
   }
 })
