@@ -32,7 +32,7 @@ export const StoreLoginNative: FC<StoreLoginImplProps> = (props) => {
       <Grid item justify="flex-end" align="center" style={{ paddingBottom: '20%' }}>
         <Button mode="contained" style={{ width: '90%' }} onPress={
           methods.handleSubmit(props.login(methods, cryptoHelper))
-        }>{props.t('creation.create')}</Button>
+        }>{props.t('login.main')}</Button>
       </Grid>
     </Grid>
   </FormProvider>

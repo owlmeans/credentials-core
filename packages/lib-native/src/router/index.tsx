@@ -14,13 +14,15 @@
  *  limitations under the License.
  */
 import { WalletHandler } from '@owlmeans/vc-core'
-import { Config, basicNavigator, extendNavigator } from '@owlmeans/vc-lib-react/dist/shared'
+import { Config, EXTENSION_ITEM_PURPOSE_ROUTE, MainDashboard, basicNavigator, extendNavigator, useOwlWallet } from '@owlmeans/vc-lib-react/dist/shared'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { FC } from 'react'
 import { StoreListScreen, StoreLoginScreen } from '../screen'
 import { RootNavigationProps } from './types'
 import { StoreCreateScreen } from '../screen/store/creation'
 import { useTranslation } from 'react-i18next'
+import { useRoute } from '@react-navigation/native'
 
 export const NavigationRoot: FC = () => {
   const Stack = createNativeStackNavigator()
@@ -40,7 +42,25 @@ export const NavigationRoot: FC = () => {
         }
       }
     } />
+    <Stack.Screen name="home" component={NavigationHome} options={{ headerShown: false }} />
   </Stack.Navigator>
+}
+
+export const NavigationHome: FC = () => {
+  const { extensions } = useOwlWallet()
+  const Drawer = createDrawerNavigator()
+  return <Drawer.Navigator initialRouteName="dashboard" screenOptions={{ headerStatusBarHeight: 0 }}>
+    <Drawer.Screen name="dashboard" component={MainDashboard} />
+    {extensions?.produceComponent(EXTENSION_ITEM_PURPOSE_ROUTE).map(ext => {
+      const Renderer = () => {
+        const params = useRoute()
+        return <ext.com {...params.params} />
+      }
+      return ext.params && <Drawer.Screen key={`${ext.extensionCode}-${ext.params.path}`}
+        name={ext.params.path as string} component={Renderer}
+      />
+    })}
+  </Drawer.Navigator>
 }
 
 export const createRootNavigator = (
