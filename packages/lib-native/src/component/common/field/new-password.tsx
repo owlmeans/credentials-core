@@ -7,8 +7,8 @@ export const NewPasswordInput: FC<NewPasswordInputProps> = ({ t, field, rules })
   const { control } = useFormContext()
 
   return <>
-    <Controller control={control} name="creation.password.input"
-      rules={rules && rules['creation.password.input']}
+    <Controller control={control} name={`${field}.input`}
+      rules={rules && rules[`${field}.input`]}
       render={
         ({ field: _field, fieldState }) => <>
           <TextInput {..._field} onChangeText={_field.onChange} secureTextEntry
@@ -19,7 +19,7 @@ export const NewPasswordInput: FC<NewPasswordInputProps> = ({ t, field, rules })
           }</HelperText>
         </>
       } />
-    <Controller control={control} name="creation.password.confirm" render={
+    <Controller control={control} name={`${field}.confirm`} render={
       ({ field: _field, fieldState }) => <>
         <TextInput {..._field} onChangeText={_field.onChange} secureTextEntry
             label={`${t(field + '.confirm.label')}`} error={fieldState.error != null}

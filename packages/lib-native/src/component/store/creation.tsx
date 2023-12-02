@@ -13,11 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { StoreCreationFields, StoreCreationImplProps, formatError } from '@owlmeans/vc-lib-react/dist/shared'
+import { StoreCreationFields, StoreCreationImplProps } from '@owlmeans/vc-lib-react/dist/shared'
 import { FC } from 'react'
 import { FormProvider, UseFormProps, useForm } from 'react-hook-form'
 import { Grid } from '../grid'
-import { Button, Text } from 'react-native-paper'
+import { Button } from 'react-native-paper'
 import { MainTextInput, NewPasswordInput } from '../common'
 import { cryptoHelper } from '@owlmeans/vc-core'
 

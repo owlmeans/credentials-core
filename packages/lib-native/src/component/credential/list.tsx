@@ -22,7 +22,7 @@ export const CredentialListNative: FC<CredentialListImplProps> = ({ credentials 
     {
       credentials.map(
         credential => {
-          return <List.Item title={credential.credential.id}></List.Item>
+          return <List.Item key={credential.credential.id} title={credential.credential.id}></List.Item>
         }
       )
     }

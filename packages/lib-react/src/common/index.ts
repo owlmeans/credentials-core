@@ -14,9 +14,10 @@
  *  limitations under the License.
  */
 
-
 export * from './context'
 export * from './navigator'
 export * from './client'
 export * from './types'
 export * from './crypto'
+export * from './consts'
+export * from './extensions'

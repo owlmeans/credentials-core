@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next'
 import { useRoute } from '@react-navigation/native'
 
 export const NavigationRoot: FC = () => {
+  const { extensions } = useOwlWallet()
   const Stack = createNativeStackNavigator()
   const { t: ts } = useTranslation('owlmeans-wallet-store')
 
@@ -43,23 +44,27 @@ export const NavigationRoot: FC = () => {
       }
     } />
     <Stack.Screen name="home" component={NavigationHome} options={{ headerShown: false }} />
-  </Stack.Navigator>
-}
-
-export const NavigationHome: FC = () => {
-  const { extensions } = useOwlWallet()
-  const Drawer = createDrawerNavigator()
-  return <Drawer.Navigator initialRouteName="dashboard" screenOptions={{ headerStatusBarHeight: 0 }}>
-    <Drawer.Screen name="dashboard" component={MainDashboard} />
     {extensions?.produceComponent(EXTENSION_ITEM_PURPOSE_ROUTE).map(ext => {
       const Renderer = () => {
         const params = useRoute()
         return <ext.com {...params.params} />
       }
-      return ext.params && <Drawer.Screen key={`${ext.extensionCode}-${ext.params.path}`}
-        name={ext.params.path as string} component={Renderer}
+      return ext.params && ext.params.path && <Stack.Screen key={`${ext.extensionCode}-${ext.params.path}`}
+        name={ext.params.path as string} component={Renderer} options={{
+          title: `${ts(`route.${ext.params.path}`, {
+            ns: ext.params.ns as string ?? undefined
+          })}`
+        }}
       />
     })}
+  </Stack.Navigator>
+}
+
+export const NavigationHome: FC = () => {
+  const Drawer = createDrawerNavigator()
+  return <Drawer.Navigator initialRouteName="dashboard" screenOptions={{ headerStatusBarHeight: 0 }}>
+    <Drawer.Screen name="dashboard" component={MainDashboard} />
+
   </Drawer.Navigator>
 }
 

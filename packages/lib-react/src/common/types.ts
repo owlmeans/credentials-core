@@ -14,8 +14,28 @@
  *  limitations under the License.
  */
 
-export const ERROR_NO_SERVER_CLIENT = 'ERROR_NO_SERVER_CLIENT'
+import { BuildMethodParams, Credential, SignMethodParams, UnsignedCredential } from '@owlmeans/vc-core'
+import { TFunction, i18n } from 'i18next'
+import { OwlWalletValidationRules } from './context'
 
-export const ERROR_NO_WALLET_HANDLER_AUTH = 'ERROR_NO_WALLET_HANDLER_AUTH'
+export interface EmpoweredExtension {
+  factory: (type: string) => EmpoweredCredentialFactory
+}
 
-export const ERROR_NO_EXTENSION_REGISTRY = 'ERROR_NO_EXTENSION_REGISTRY'
+export interface EmpoweredCredentialFactory {
+  build: <Params extends BuildMethodParams>(params: Params) => Promise<UnsignedCredential>
+  sign: <Params extends SignMethodParams>(params: Params) => Promise<Credential>
+}
+
+export interface SimpleView {
+  t: TFunction
+  i18n: i18n
+}
+
+export interface SimpleFormView extends SimpleView {
+  rules?: OwlWalletValidationRules
+}
+
+export interface SimpleViewField extends SimpleFormView {
+  field: string
+}

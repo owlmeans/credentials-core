@@ -13,10 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import 'react-native-url-polyfill/auto'
-import 'react-native-get-random-values'
-import '@ethersproject/shims'
-import 'text-encoding-polyfill'
 
-global.process = require("process")
-global.Buffer = require("buffer/").Buffer
+export const ERROR_NO_SERVER_CLIENT = 'ERROR_NO_SERVER_CLIENT'
+
+export const ERROR_NO_WALLET_HANDLER_AUTH = 'ERROR_NO_WALLET_HANDLER_AUTH'
+
+export const ERROR_NO_EXTENSION_REGISTRY = 'ERROR_NO_EXTENSION_REGISTRY'
