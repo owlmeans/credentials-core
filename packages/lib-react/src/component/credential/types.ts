@@ -14,10 +14,9 @@
  *  limitations under the License.
  */
 
-import { 
-  BASE_CREDENTIAL_TYPE, 
-  BASE_PRESENTATION_TYPE 
-} from "@owlmeans/vc-core"
+import { BASE_CREDENTIAL_TYPE, BASE_PRESENTATION_TYPE, CredentialWrapper, RegistryType } from "@owlmeans/vc-core"
+import { BasicNavigator, EmptyProps, WalletComponentProps, WalletNavigatorMenuMethod, WrappedComponentProps } from '../../common'
+import { PurposeListItemParams } from '../../extension'
 
 export const LIBREACT_HOLDER_ISNT_UNSIGNEDID = 'LIBREACT_HOLDER_ISNT_UNSIGNEDID'
 
@@ -43,4 +42,67 @@ export type UnknownVerificationResult = {
 export type BaseVerificationResult = {
   valid: boolean
   extension?: string
+}
+
+export type CredentialListParams = {
+  tabs: CredentialListTab[]
+  tab?: RegistryType
+  section?: string
+  id?: string
+} & EmptyProps
+
+
+
+export type CredentialListImplParams = EmptyProps & {
+  tabs: CredentialListTab[]
+  tab?: RegistryType
+  section?: string
+  id?: string
+  binarySectionSwitch: () => void
+  switchTab: (tab: string) => void
+}
+
+export type CredentialListNavigatorItem = RegistryType
+export type CredentialListNavigatorParams = {
+  section: string
+}
+
+export type CredentialListNavigator = BasicNavigator & {
+  menu?: WalletNavigatorMenuMethod<CredentialListNavigatorItem, CredentialListNavigatorParams>
+  create?: WalletNavigatorMenuMethod<string>
+  request?: WalletNavigatorMenuMethod<string>
+  claim?: WalletNavigatorMenuMethod<string>
+}
+
+export type CredentialListProps = WalletComponentProps<
+  CredentialListParams, CredentialListImplProps, CredentialListState, CredentialListNavigator
+>
+
+export type CredentialListState = {
+  credentials: CredentialWrapper[]
+}
+
+export type CredentialListImplProps = WrappedComponentProps<
+  CredentialListImplParams, CredentialListState
+>
+
+export type CredentialListTab = {
+  name: string
+  registry: {
+    type: RegistryType
+    defaultSection?: string
+    allowPeer?: boolean
+    sections?: string[]
+  }
+}
+
+export type CredentialListItemProps = {
+  wrapper: CredentialWrapper
+  meta?: Partial<CredentialListParams>
+  props: CredentialListImplProps
+}
+
+export interface CredentialListItemImplProps extends Omit<CredentialListItemProps, "meta">, PurposeListItemParams {
+  hint: string
+  status: string
 }

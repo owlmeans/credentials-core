@@ -14,5 +14,5 @@
  *  limitations under the License.
  */
 
-
 export * from './menu'
+export * from './simple'

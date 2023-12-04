@@ -13,5 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-export * from './list'
-export * from './list-coms'
+
+import { CredentialListItemImplProps } from '@owlmeans/vc-lib-react/dist/shared'
+import { FC } from 'react'
+import { List } from 'react-native-paper'
+
+export const CredentialListItemNative: FC<CredentialListItemImplProps> = ({wrapper}) => {
+  return <List.Item title={wrapper.credential.id}></List.Item>
+}

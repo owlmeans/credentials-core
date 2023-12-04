@@ -13,18 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { CredentialListImplProps } from '@owlmeans/vc-lib-react/dist/shared'
+import { CredentialListImplProps, CredentialListItem } from '@owlmeans/vc-lib-react/dist/shared'
 import { FC } from 'react'
-import { List } from 'react-native-paper'
+import { ScrollView } from 'react-native'
 
-export const CredentialListNative: FC<CredentialListImplProps> = ({ credentials }) => {
-  return <>
+export const CredentialListNative: FC<CredentialListImplProps> = (props) => {
+  const { credentials, tab, section } = props
+  return <ScrollView>
     {
       credentials.map(
-        credential => {
-          return <List.Item key={credential.credential.id} title={credential.credential.id}></List.Item>
-        }
+        (wrapper, idx) => <CredentialListItem key={idx} wrapper={wrapper} props={props}
+          meta={{ tab: tab, section: section }} />
       )
     }
-  </>
+  </ScrollView>
 }

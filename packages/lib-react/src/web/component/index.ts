@@ -14,7 +14,6 @@
  *  limitations under the License.
  */
 
-
 export * from './common'
 export * from './credential'
 export * from './main'
@@ -22,8 +21,7 @@ export * from './main'
 import { ImplementationMap } from '../../common'
 import { MainLoadingWeb, MainMenuWeb, MainDashboardWeb, MainModalWeb, MainAuthAreaWeb, MainFooterWeb } from './main'
 import { StoreCreationWeb, StoreLoginWeb, StoreListWeb } from "./store"
-import { CredentialEvidenceWidgetWeb, CredentialListWeb, CredentialProcessorWeb } from './credential'
-
+import { CredentialEvidenceWidgetWeb, CredentialListItemWeb, CredentialListWeb, CredentialProcessorWeb } from './credential'
 
 export const webComponentMap: ImplementationMap = {
   'StoreCreation': StoreCreationWeb,
@@ -34,6 +32,7 @@ export const webComponentMap: ImplementationMap = {
   'MainFooter': MainFooterWeb,
   'StoreList': StoreListWeb,
   'CredentialList': CredentialListWeb,
+  'CredentialListItem': CredentialListItemWeb,
   'MainModal': MainModalWeb,
   'CredentialProcessor': CredentialProcessorWeb,
   'MainAuthArea': MainAuthAreaWeb,

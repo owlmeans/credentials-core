@@ -11,6 +11,7 @@ export const PasswordInput: FC<PasswordInputProps> = ({ t, field, rules }) => {
     render={
       ({ field: _field, fieldState }) => <>
         <TextInput {..._field} secureTextEntry onChangeText={_field.onChange}
+          value={_field.value}
           label={`${t(field + '.label')}`} error={fieldState.error != null}
         />
         <HelperText type={fieldState.error == null ? 'info' : 'error'} visible={true}>{

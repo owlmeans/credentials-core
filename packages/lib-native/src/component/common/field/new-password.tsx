@@ -12,6 +12,7 @@ export const NewPasswordInput: FC<NewPasswordInputProps> = ({ t, field, rules })
       render={
         ({ field: _field, fieldState }) => <>
           <TextInput {..._field} onChangeText={_field.onChange} secureTextEntry
+            value={_field.value}
             label={`${t(field + '.input.label')}`} error={fieldState.error != null}
           />
           <HelperText type={fieldState.error == null ? 'info' : 'error'} visible={true}>{
@@ -22,11 +23,12 @@ export const NewPasswordInput: FC<NewPasswordInputProps> = ({ t, field, rules })
     <Controller control={control} name={`${field}.confirm`} render={
       ({ field: _field, fieldState }) => <>
         <TextInput {..._field} onChangeText={_field.onChange} secureTextEntry
-            label={`${t(field + '.confirm.label')}`} error={fieldState.error != null}
-          />
-          <HelperText type={fieldState.error == null ? 'info' : 'error'} visible={true}>{
-            fieldState.error ? formatError(t, field + '.confirm', fieldState) : t(field + `.confirm.hint`)
-          }</HelperText>
+          value={_field.value}
+          label={`${t(field + '.confirm.label')}`} error={fieldState.error != null}
+        />
+        <HelperText type={fieldState.error == null ? 'info' : 'error'} visible={true}>{
+          fieldState.error ? formatError(t, field + '.confirm', fieldState) : t(field + `.confirm.hint`)
+        }</HelperText>
       </>
     } />
   </>

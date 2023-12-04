@@ -14,8 +14,8 @@
  *  limitations under the License.
  */
 
-
 export * from './list'
+export * from './list-coms'
 export * from './header'
 export * from './processor'
 export * from './widget'

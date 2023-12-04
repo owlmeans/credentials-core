@@ -14,20 +14,17 @@
  *  limitations under the License.
  */
 
-import { FunctionComponent, useMemo, Fragment } from 'react'
-import {
-  CredentialListImplProps, useOwlWallet, EXTENSION_ITEM_PURPOSE_ITEM, PurposeListItemParams
-} from '../../../shared'
-import { ItemMenu, ItemMenuHandle, ItemMenuMeta, MenuIconButton, SimpleList, SimpleListItem } from '../common'
-import { CredentialListHeaderAction } from './list/header-action'
-import { CredentialWrapper, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_IDENTITIES } from '@owlmeans/vc-core'
+import { FC, Fragment } from 'react'
+import { CredentialListImplProps, CredentialListItem } from '../../../shared'
+import { SimpleList } from '../common'
+import { CredentialListHeaderAction } from './list-coms/header-action'
+import { REGISTRY_SECTION_OWN } from '@owlmeans/vc-core'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 
-
-export const CredentialListWeb = (props: CredentialListImplProps) => {
+export const CredentialListWeb: FC<CredentialListImplProps> = (props) => {
   const { credentials, tabs, t, tab, section } = props
   const currentTab = tabs.find(_tab => _tab.name === tab) || tabs[0]
 
@@ -49,45 +46,45 @@ export const CredentialListWeb = (props: CredentialListImplProps) => {
     }>
       {credentials.map(
         wrapper => <CredentialListItem key={wrapper.credential.id} wrapper={wrapper} props={props}
-          meta={{ registry: tab, section: section }} />
+          meta={{ tab: tab, section: section }} />
       )}
     </SimpleList>
   </Fragment>
 }
 
-const CredentialListItem = ({ wrapper, props, meta }: CredentialListItemProps) => {
-  const { t, i18n } = props
-  const { extensions } = useOwlWallet()
+// const CredentialListItem = ({ wrapper, props, meta }: CredentialListItemProps) => {
+//   const { t, i18n } = props
+//   const { extensions } = useOwlWallet()
 
-  const credHint = wrapper.credential.type.join(', ')
-  const signStatus = `list.item.${wrapper.credential.proof ? 'signed' : 'unsigned'}`
-  const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
+//   const credHint = wrapper.credential.type.join(', ')
+//   const signStatus = `list.item.${wrapper.credential.proof ? 'signed' : 'unsigned'}`
+//   const handle: ItemMenuHandle = useMemo(() => ({ handler: undefined }), [wrapper.credential.id])
 
-  const renderers = extensions?.produceComponent(EXTENSION_ITEM_PURPOSE_ITEM, wrapper.credential.type)
+//   const renderers = extensions?.produceComponent(EXTENSION_ITEM_PURPOSE_ITEM, wrapper.credential.type)
 
-  const metaItem = {
-    id: wrapper.credential.id,
-    registry: meta?.registry || REGISTRY_TYPE_IDENTITIES,
-    section: meta?.section || REGISTRY_SECTION_PEER
-  }
+//   const metaItem = {
+//     id: wrapper.credential.id,
+//     registry: meta?.registry || REGISTRY_TYPE_IDENTITIES,
+//     section: meta?.section || REGISTRY_SECTION_PEER
+//   }
 
-  if (renderers && renderers.length > 0) {
-    const renderer = renderers[0]
-    const Renderer = renderer.com as FunctionComponent<PurposeListItemParams>
+//   if (renderers && renderers.length > 0) {
+//     const renderer = renderers[0]
+//     const Renderer = renderer.com as FunctionComponent<PurposeListItemParams>
 
-    return <Renderer wrapper={wrapper} trigger={wrapper.credential.id === props.id} meta={metaItem} />
-  }
+//     return <Renderer wrapper={wrapper} trigger={wrapper.credential.id === props.id} meta={metaItem} />
+//   }
 
-  return <SimpleListItem {...props} noTranslation label={wrapper.meta.title || t('list.item.unknown')}
-    hint={`${credHint} - ${t(signStatus)}`}>
-    <MenuIconButton handle={handle} />
-    <ItemMenu handle={handle} content={wrapper.credential} i18n={i18n} prettyOutput
-      exportTitle={`${wrapper.meta.title}.group`} meta={metaItem} />
-  </SimpleListItem>
-}
+//   return <SimpleListItem {...props} noTranslation label={wrapper.meta.title || t('list.item.unknown')}
+//     hint={`${credHint} - ${t(signStatus)}`}>
+//     <MenuIconButton handle={handle} />
+//     <ItemMenu handle={handle} content={wrapper.credential} i18n={i18n} prettyOutput
+//       exportTitle={`${wrapper.meta.title}.group`} meta={metaItem} />
+//   </SimpleListItem>
+// }
 
-type CredentialListItemProps = {
-  wrapper: CredentialWrapper
-  meta?: Partial<ItemMenuMeta>
-  props: CredentialListImplProps
-}
+// type CredentialListItemProps = {
+//   wrapper: CredentialWrapper
+//   meta?: Partial<ItemMenuMeta>
+//   props: CredentialListImplProps
+// }

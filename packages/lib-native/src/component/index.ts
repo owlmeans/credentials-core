@@ -16,7 +16,7 @@
 import { ImplementationMap } from '@owlmeans/vc-lib-react/dist/common/index'
 import { StoreCreationNative, StoreListNative, StoreLoginNative } from './store'
 import { MainDashboardNative } from './main'
-import { CredentialListNative } from './credential'
+import { CredentialListItemNative, CredentialListNative } from './credential'
 
 export * from './grid'
 export * from './store'
@@ -29,5 +29,6 @@ export const nativeComponentMap: ImplementationMap = {
   "StoreCreation": StoreCreationNative,
   "StoreLogin": StoreLoginNative,
   "MainDashboard": MainDashboardNative,
-  "CredentialList": CredentialListNative
+  "CredentialList": CredentialListNative,
+  "CredentialListItem": CredentialListItemNative,
 }

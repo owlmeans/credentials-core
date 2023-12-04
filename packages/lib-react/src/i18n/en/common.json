@@ -1,6 +1,7 @@
 {
   "ERROR_STORE_CANT_DECRYPT": "Wallet store can't be decrypted with provided password",
   "ERROR_INVALID_EVIDENCE": "Invalid credential evidence",
+  "ERROR_NO_WALLET_HANDLER_AUTH": "Your wallet aren't auhtenticated to proceed",
   "Invalid signature.": "Invalid signature.",
   "alert": {
     "error": {

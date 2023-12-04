@@ -7,6 +7,7 @@ export const trySubmit = <
   Naviagtor extends BasicNavigator = BasicNavigator
 >(params: TrySubmitParams<Data, Naviagtor>, callback: TrySubmitCallback<Data, Naviagtor>) => {
   const { navigator, errorField, methods, onError } = params
+  const _onError = onError ?? (async _ => true)
   return async (data: Data) => {
     const loader = await navigator.invokeLoading()
     try {
@@ -14,7 +15,7 @@ export const trySubmit = <
     } catch (e) {
       console.error(e)
       loader.error(e)
-      if (onError && await onError({ ...params, loader }, data)) {
+      if (await _onError({ ...params, loader }, data)) {
         methods && errorField && methods.setError(errorField as any, { type: e.message })
       }
     } finally {

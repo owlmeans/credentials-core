@@ -14,16 +14,10 @@
  *  limitations under the License.
  */
 
-import {
-  CredentialWrapper, RegistryType, REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CREDENTIALS
-} from '@owlmeans/vc-core'
 import { FunctionComponent } from 'react'
+import { REGISTRY_SECTION_OWN, REGISTRY_SECTION_PEER, REGISTRY_TYPE_CREDENTIALS } from '@owlmeans/vc-core'
 import { withOwlWallet } from '../../common/context'
-import {
-  BasicNavigator, EmptyProps, WalletComponentProps, WalletNavigatorMenuMethod,
-  WrappedComponentProps
-} from '../../common/'
-
+import { CredentialListImplProps, CredentialListNavigator, CredentialListParams, CredentialListProps, CredentialListTab } from './types'
 
 export const CredentialList: FunctionComponent<CredentialListParams> = withOwlWallet<
   CredentialListProps, CredentialListNavigator
@@ -68,55 +62,3 @@ export const CredentialList: FunctionComponent<CredentialListParams> = withOwlWa
     }
   }
 )
-
-
-export type CredentialListParams = {
-  tabs: CredentialListTab[]
-  tab?: RegistryType
-  section?: string
-  id?: string
-} & EmptyProps
-
-export type CredentialListTab = {
-  name: string
-  registry: {
-    type: RegistryType
-    defaultSection?: string
-    allowPeer?: boolean
-    sections?: string[]
-  }
-}
-
-
-export type CredentialListState = {
-  credentials: CredentialWrapper[]
-}
-
-export type CredentialListProps = WalletComponentProps<
-  CredentialListParams, CredentialListImplProps, CredentialListState, CredentialListNavigator
->
-
-export type CredentialListImplProps = WrappedComponentProps<
-  CredentialListImplParams, CredentialListState
->
-
-export type CredentialListImplParams = EmptyProps & {
-  tabs: CredentialListTab[]
-  tab?: RegistryType
-  section?: string
-  id?: string
-  binarySectionSwitch: () => void
-  switchTab: (tab: string) => void
-}
-
-export type CredentialListNavigator = BasicNavigator & {
-  menu?: WalletNavigatorMenuMethod<CredentialListNavigatorItem, CredentialListNavigatorParams>
-  create?: WalletNavigatorMenuMethod<string>
-  request?: WalletNavigatorMenuMethod<string>
-  claim?: WalletNavigatorMenuMethod<string>
-}
-
-export type CredentialListNavigatorItem = RegistryType
-export type CredentialListNavigatorParams = {
-  section: string
-}

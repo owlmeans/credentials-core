@@ -65,7 +65,7 @@ export const generalNameVlidation = (required: boolean = true) => ({
   required,
   maxLength: 96,
   validate: {
-    pattern: (v: string) => !v.match(/[\<\>\[\]\{\}\\\']/)
+    pattern: (v: string) => v == null ? !required : !v.match(/[\<\>\[\]\{\}\\\']/)
   }
 })
 
@@ -85,13 +85,15 @@ export const generalDidIdValidation = (required: boolean = true) => ({
 export const urlVlidation = (required: boolean = false) => ({
   validate: {
     url: (v: string) => {
-      if (!required && v === '') {
+      if (!required && (v === '' || v == null)) {
         return true
       }
-      
+
       try {
+        console.log(v)
         new URL(v)
       } catch (e) {
+        console.error(e)
         return false
       }
 
