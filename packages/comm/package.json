@@ -36,6 +36,7 @@
     "@stablelib/x25519": "^1.0.3",
     "did-jwt": "^7.2.0",
     "did-resolver": "^4.1.0",
+    "react-router-dom-owlmeans": "npm:react-router-dom@^6.11.2",
     "websocket": "^1.0.34"
   },
   "private": false,

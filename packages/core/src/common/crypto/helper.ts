@@ -117,12 +117,12 @@ export const cryptoHelper: CryptoHelper = {
       // const adapter = getCryptoAdapter()
 
       return Buffer.from(
-        _getSecp256k1().sign(data, _base58().decode(key))
+        _getSecp256k1().sign(data, _base58().decode(key)).toCompactRawBytes()
       ).toString('base64')
     }
 
     return Buffer.from(
-      _getSecp256k1().sign(_hashBytes(data), _base58().decode(key))
+      _getSecp256k1().sign(_hashBytes(data), _base58().decode(key)).toCompactRawBytes()
     ).toString('base64')
   },
 

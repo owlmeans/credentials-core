@@ -77,7 +77,8 @@
     }
   },
   "dependencies": {
-    "is-utf8": "^0.2.1"
+    "is-utf8": "^0.2.1",
+    "react-router-dom-owlmeans": "npm:react-router-dom@^6.11.2"
   },
   "private": false,
   "publishConfig": {

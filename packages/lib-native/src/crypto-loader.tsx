@@ -17,7 +17,7 @@ import { FC, useEffect } from 'react'
 import { CryptoLoaderProps } from '@owlmeans/vc-lib-react/dist/shared'
 import { encodeBase58, decodeBase58, toBeArray, getBytes, sha256, randomBytes, HDNodeWallet } from 'ethers'
 import { getCryptoAdapter } from '@owlmeans/vc-core'
-import { signSync, verify } from '@noble/secp256k1'
+import { secp256k1 } from '@noble/curves/secp256k1'
 
 const aes = require('browserify-aes/browser')
 
@@ -28,7 +28,7 @@ const CryptoLoader: FC<CryptoLoaderProps> = ({ onFinish, deps }) => {
     adapter.setSha256Impl(sha256, getBytes)
     adapter.setAesImpl(aes)
     adapter.setRandomImpl(randomBytes)
-    adapter.setSecpImpl(signSync, verify)
+    adapter.setSecpImpl(secp256k1.sign, secp256k1.verify)
     adapter.WalletClass = HDNodeWallet as any
 
     return onFinish()

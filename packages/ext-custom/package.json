@@ -90,7 +90,8 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react-router-dom-owlmeans": "npm:react-router-dom@^6.11.2"
   },
   "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596"
 }

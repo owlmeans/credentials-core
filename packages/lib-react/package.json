@@ -76,7 +76,8 @@
   },
   "dependencies": {
     "localforage": "^1.10.0",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "react-router-dom-owlmeans": "npm:react-router-dom@^6.11.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.7",
