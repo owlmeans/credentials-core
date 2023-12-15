@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-core",
-  "version": "0.1.2",
+  "version": "0.1.4-alpha.0",
   "description": "It's core package for OwlMeans Credentials SSI library",
   "author": "Igor Tkachenk <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",

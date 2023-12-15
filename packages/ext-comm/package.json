@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-comm",
-  "version": "0.1.2-alpha.2",
+  "version": "0.1.4-alpha.0",
   "description": "Communication channel OwlMeans Credentials ecosystem",
   "keywords": [
     "OwlMeans Credentials",

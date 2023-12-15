@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-lib-react",
-  "version": "0.1.2",
+  "version": "0.1.4-alpha.0",
   "description": "UI toolkit to build SSI Applications over OwlMeans Credentials library",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",

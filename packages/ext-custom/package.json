@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-custom",
-  "version": "0.1.2",
+  "version": "0.1.4-alpha.0",
   "description": "OwlMeans Credentials extension to build customizable credentials.",
   "keywords": [
     "OwlMeans Credentials",

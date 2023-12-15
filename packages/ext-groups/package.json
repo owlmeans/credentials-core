@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-groups",
-  "version": "0.1.0",
+  "version": "0.1.4-alpha.0",
   "description": "OwlMeans Credentials extendsion for Groups VC",
   "keywords": [
     "OwlMeans Credentials",

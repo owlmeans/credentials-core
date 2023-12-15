@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-auth",
-  "version": "0.1.3",
+  "version": "0.1.4-alpha.0",
   "description": "Authentication widgets extension for OwlMeans Credentials library",
   "keywords": [
     "OwlMeans Credentials",

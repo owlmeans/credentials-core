@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-signature",
-  "version": "0.1.0",
+  "version": "0.1.4-alpha.0",
   "description": "OwlMeans Credentials extension to sign and check signatures of random documents.",
   "keywords": [
     "OwlMeans Credentials",
