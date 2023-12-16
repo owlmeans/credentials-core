@@ -55,6 +55,10 @@ export const IdentityItem = (ext: Extension): FunctionComponent<IdentityItemPara
       })
     })
 
+    if (subject == null) {
+      return <ListItem>{t('error.wrongType')}</ListItem>
+    }
+
     return <ListItem>
       <ListItemButton onClick={action}>
         <ListItemAvatar>

@@ -89,5 +89,8 @@
     "createdAt": {
       "hint": "Creation Date"
     }
+  },
+  "error": {
+    "wrongType": "If you seeing this something went completely wrong with the document type"
   }
 }

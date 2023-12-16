@@ -19,7 +19,8 @@ import { Server as HttpServer } from 'http'
 import { createJWT, decodeJWT, ES256KSigner } from 'did-jwt'
 
 import { extension } from '../ext'
-import { REDEFINED_MAX_FRAME_SIZE, REDEFINED_MAX_MESSAGE_SIZE, ServerConfig } from './types'
+import type { ServerConfig } from './types'
+import { COMM_WS_SUBPROTOCOL_DEPRECATED, HTTP_NOTACCEPTABLE, REDEFINED_MAX_FRAME_SIZE, REDEFINED_MAX_MESSAGE_SIZE } from './consts'
 import {
   COMM_WS_PREFIX_CONFIRMED, COMM_WS_PREFIX_DIDDOC, COMM_WS_PREFIX_ERROR, COMM_WS_SUBPROTOCOL,
   DIDCommConnectMeta, ERROR_COMM_DID_WITHOUT_STATE, ERROR_COMM_DID_WRONG_SIGNATURE, ERROR_COMM_INVALID_PAYLOAD, ERROR_COMM_MALFORMED_PAYLOAD,
@@ -172,7 +173,17 @@ export const startWSServer = async (
   }
 
   _wsServer.on('request', request => {
-    request.accept(config.subProtocol || COMM_WS_SUBPROTOCOL, request.origin)
+    try {
+      let protocol = config.subProtocol || COMM_WS_SUBPROTOCOL
+      if (!request.requestedProtocols.includes(protocol)) {
+        if (request.requestedProtocols.includes(COMM_WS_SUBPROTOCOL_DEPRECATED)) {
+          protocol = COMM_WS_SUBPROTOCOL_DEPRECATED
+        }
+      }
+      request.accept(protocol, request.origin)
+    } catch (e) {
+      request.reject(HTTP_NOTACCEPTABLE)
+    }
   })
 
   _wsServer.on('connect', conn => {

@@ -1587,7 +1587,7 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nx/nx-darwin-arm64@v17.2.5":
+"@nx/nx-darwin-arm64@^17.2.5", "@nx/nx-darwin-arm64@v17.2.5":
   version "17.2.5"
   resolved "https://registry.yarnpkg.com/@nx/nx-darwin-arm64/-/nx-darwin-arm64-17.2.5.tgz#411b861cb0a98540082b7639dbaaa9f48044a25a"
   integrity sha512-AGF/XnMkXymS8xYMsbeyNKZWKflfU8TTqEJqlcADMHYcr8OD1Jyq1YYHp/vvPBWqEhUL4bx3GPspQn5YiiCrWw==

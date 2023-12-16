@@ -14,18 +14,8 @@
  *  limitations under the License.
  */
 
-export type WSClientConfig = {
-  server: string,
-  subProtocol?: string
-  timeout: number
-}
+export const HTTP_NOTACCEPTABLE = 406
+export const REDEFINED_MAX_FRAME_SIZE = 1024 * 1024
+export const REDEFINED_MAX_MESSAGE_SIZE = 8 * 1024 * 1024
 
-export type Receiver = (msg: string) => void
-
-export type CommWSClient = {
-  opened: boolean
-  currentResolve?: (value: string) => void
-  currentReject?: (err: any) => void
-  send: (msg: string, id?: string) => Promise<boolean>
-  close: () => Promise<void>
-}
+export const COMM_WS_SUBPROTOCOL_DEPRECATED = 'owlmeans-regov-ws-did-com'

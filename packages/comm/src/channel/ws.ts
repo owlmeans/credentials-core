@@ -29,7 +29,7 @@ export const createWSChannel = async (config: WSClientConfig): Promise<DIDCommCh
   })
 
   const _channel: DIDCommChannel = {
-    code: config.subProtocal || COMM_WS_SUBPROTOCOL,
+    code: config.subProtocol || COMM_WS_SUBPROTOCOL,
 
     init: async (didComm: DIDCommHelper) => {
       _comm = didComm

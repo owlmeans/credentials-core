@@ -44,10 +44,11 @@ const _processMessage = (_data: string, receive?: Receiver) => {
     if (receive) {
       receive(_data)
     } else {
-      console.log('Received data: ', data)
+      console.info('Received data: ', data)
     }
   }
 }
+
 
 const isWSClient = (client: BrowserClient | WSClient): client is WSClient => {
   return client.hasOwnProperty('config')
@@ -57,12 +58,12 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
   return new Promise<CommWSClient>((resolve, reject) => {
 
     const _wsClient = WSClient
-      ? new WSClient() : new BrowserClient(config.server, config.subProtocal || COMM_WS_SUBPROTOCOL)
+      ? new WSClient() : new BrowserClient(config.server, config.subProtocol || COMM_WS_SUBPROTOCOL)
 
     if (isWSClient(_wsClient)) {
       let _conn: WSConnection
 
-      _wsClient.connect(config.server, config.subProtocal || COMM_WS_SUBPROTOCOL)
+      _wsClient.connect(config.server, config.subProtocol || COMM_WS_SUBPROTOCOL)
 
       const _client: CommWSClient = {
         opened: false,
@@ -77,7 +78,7 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
               await new Promise((resolve, reject) => {
                 _conn.send(`${id}:${msg}`, err => err ? reject(err) : resolve(undefined))
               })
-              console.log('sending... ' + msg.substring(0, 23))
+              // console.log('sending... ' + msg.substring(0, 23))
               if (!msg.startsWith(COMM_WS_PREFIX_CONFIRMED + ':')
                 && !msg.startsWith(COMM_WS_PREFIX_ERROR + ':')) {
 
@@ -91,9 +92,8 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
                   timeout = setTimeout(() => reject(ERROR_COMM_WS_TIMEOUT), config.timeout * 1000)
                 })
 
-                const code = await defer
-
-                console.log('Sent', msg.substring(0, 16) + '...', code)
+                await defer
+                // console.log('Sent', msg.substring(0, 16) + '...', code)
               }
             } catch (err) {
               console.error(err)
@@ -160,7 +160,7 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
         if (typeof msg.data === 'string') {
           _processMessage(msg.data, receive)
         } else {
-          console.log('non string data received from ws: ', msg)
+          console.error('non string data received from ws: ', msg)
         }
       }
 
@@ -177,7 +177,7 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
             let timeout: ReturnType<typeof setTimeout> | undefined
             try {
               _wsClient.send(`${id}:${msg}`)
-              console.log(`brwsr:sending {${id}}... ` + msg.substring(0, 23))
+              // console.log(`brwsr:sending {${id}}... ` + msg.substring(0, 23))
               if (!msg.startsWith(COMM_WS_PREFIX_CONFIRMED + ':')
                 && !msg.startsWith(COMM_WS_PREFIX_ERROR + ':')) {
                 messages[id] = { id }
@@ -189,9 +189,8 @@ export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
 
                   timeout = setTimeout(() => reject(ERROR_COMM_WS_TIMEOUT), config.timeout * 1000)
                 })
-
-                const code = await defer
-                console.log('Sent', msg.substring(0, 16) + '...', code)
+                await defer
+                // console.log('Sent', msg.substring(0, 16) + '...', code)
               }
             } catch (err) {
               console.error(err)
