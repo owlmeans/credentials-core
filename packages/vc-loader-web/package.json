@@ -1,0 +1,45 @@
+{
+  "name": "@owlmeans/vc-loader-web",
+  "version": "0.1.4",
+  "description": "Crypto loader helper for web applications based on OwlMeans Credentials",
+  "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
+  "homepage": "https://github.com/owlmeans/credentials-core#readme",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "directories": {
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owlmeans/credentials-core.git",
+    "directory": "packages/vc-loader-web"
+  },
+  "source": "src/index.ts",
+  "bugs": {
+    "url": "https://github.com/owlmeans/credentials-core/issues"
+  },
+  "scripts": {
+    "build": "tsc -b -f",
+    "build:watch": "tsc -b -w --preserveWatchOutput --pretty"
+  },
+  "peerDependencies": {
+    "@owlmeans/vc-core": "^0.1.0",
+    "@owlmeans/vc-lib-react": "^0.1.0",
+    "ethers": "*",
+    "@noble/curves": "*",
+    "react": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}
