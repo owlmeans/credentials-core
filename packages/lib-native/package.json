@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-lib-native",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "OwlMeans Credentials UI package for mobile wallet applications",
   "keywords": [
     "SSI",
@@ -78,12 +78,12 @@
     "react-hook-form": "^7.*",
     "react-i18next": "*",
     "react-native": "*",
+    "react-native-gesture-handler": "*",
     "react-native-paper": "*",
+    "react-native-reanimated": "*",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "react-native-vector-icons": "*",
-    "react-native-reanimated": "*",
-    "react-native-gesture-handler": "*"
+    "react-native-vector-icons": "*"
   },
   "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596"
 }

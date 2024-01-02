@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-lib-node",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "This is the server stored and managed wallet framework for OwlMeans Credentials library",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",

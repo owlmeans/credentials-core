@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-loader-web",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Crypto loader helper for web applications based on OwlMeans Credentials",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",
@@ -28,10 +28,10 @@
     "build:watch": "tsc -b -w --preserveWatchOutput --pretty"
   },
   "peerDependencies": {
+    "@noble/curves": "*",
     "@owlmeans/vc-core": "^0.1.0",
     "@owlmeans/vc-lib-react": "^0.1.0",
     "ethers": "*",
-    "@noble/curves": "*",
     "react": "*"
   },
   "devDependencies": {
