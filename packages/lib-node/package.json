@@ -49,8 +49,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596",
-  "dependencies": {
-    "react-router-dom-owlmeans": "npm:react-router-dom@^6.11.2"
-  }
+  "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596"
 }

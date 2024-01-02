@@ -11,3 +11,14 @@ const libNative = require('lib-native');
 ```
 
 https://github.com/demchenkoalex/react-native-module-template/
+
+
+## Installation
+Install the following packages:
+* react-native-reanimated
+* react-native-gesture-handler
+* react-native-paper
+* react-native-safe-area-context
+* react-native-screens
+* react-native-vector-icons
+

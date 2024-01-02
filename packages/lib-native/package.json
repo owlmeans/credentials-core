@@ -81,7 +81,9 @@
     "react-native-paper": "*",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "react-native-vector-icons": "*"
+    "react-native-vector-icons": "*",
+    "react-native-reanimated": "*",
+    "react-native-gesture-handler": "*"
   },
   "gitHead": "59100ada803fe56700a80ac31134c8bfcd70c596"
 }
