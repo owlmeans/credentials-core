@@ -15,7 +15,7 @@
  */
 import * as React from 'react'
 import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
-import { useMemo, StrictMode } from 'react'
+import { useMemo, StrictMode, FC } from 'react'
 
 import { i18nDefaultOptions } from '@owlmeans/vc-lib-react/dist/i18n'
 import { nativeComponentMap } from '../component'
@@ -27,6 +27,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { NavigationRoot, createRootNavigator } from '../router'
 import { useNavigation } from '@react-navigation/native'
 import { RootNavigationProps } from '../router/types'
+import { UIExtensionRegistry } from '@owlmeans/vc-lib-react/dist/shared'
 
 export const i18nSetup = (options: InitOptions) => {
   const i18n = I18n.createInstance({ ...options, compatibilityJSON: 'v3' })
@@ -37,7 +38,7 @@ export const i18nSetup = (options: InitOptions) => {
 
 const i18n = i18nSetup(i18nDefaultOptions)
 
-export const DebugSSIView = () => {
+export const DebugSSIView: FC<DebugSSIViewParams> = ({ extensions }) => {
   const handler = useMemo(createWalletHandler, [])
 
   const navigation = useNavigation<RootNavigationProps>()
@@ -64,11 +65,15 @@ export const DebugSSIView = () => {
             }
           })()
         }} />
-        <OwlWalletProvider map={nativeComponentMap} handler={handler}
+        <OwlWalletProvider map={nativeComponentMap} handler={handler} extensions={extensions}
           config={{ DID_PREFIX: 'exm', code: 'rn-test' }} navigator={navigator} i18n={i18n}>
           <NavigationRoot />
         </OwlWalletProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   </StrictMode>
+}
+
+export interface DebugSSIViewParams {
+  extensions?: UIExtensionRegistry
 }

@@ -42,8 +42,6 @@ export const EXTENSION_ITEM_PURPOSE_REQUEST = 'request'
 export const EXTENSION_ITEM_PURPOSE_CLAIM = 'claim'
 export const EXTENSION_ITEM_PURPOSE_TOP_ACTION = 'top_action'
 
-
-
 export type ManuItemParams = {
   title: string
   action: (() => Promise<void | MenuActionResult> | MenuActionResult | void)
