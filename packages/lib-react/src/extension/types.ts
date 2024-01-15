@@ -14,8 +14,16 @@
  *  limitations under the License.
  */
 
-import { CredentialDescription, CredentialWrapper, RegistryType } from "@owlmeans/vc-core"
+import { CredentialDescription, CredentialWrapper, EventParams, RegistryType, WalletHandler } from "@owlmeans/vc-core"
 import { EmptyProps, WalletNavigator, BasicNavigator } from "../common"
+import {
+  EXRENSION_ITEM_PURPOSE_INPUT_ITEM, EXTENSION_ITEM_PURPOSE_CREATION,
+  EXTENSION_ITEM_PURPOSE_DASHBOARD, EXTENSION_ITEM_PURPOSE_DASHBOARD_WIDGET,
+  EXTENSION_ITEM_PURPOSE_EVIDENCE, EXTENSION_ITEM_PURPOSE_ITEM,
+  EXTENSION_ITEM_PURPOSE_REQUEST, EXTENSION_ITEM_PURPOSE_ROUTE,
+  EXTENSION_ITEM_PURPOSE_TOP_ACTION, EXTENSION_ITEM_PURPOSE_VALIDATION
+} from './consts'
+import { UIExtensionRegistry } from './registry'
 
 export type ExtensionItemPurpose = typeof EXTENSION_ITEM_PURPOSE_ITEM
   | typeof EXTENSION_ITEM_PURPOSE_ROUTE
@@ -29,18 +37,6 @@ export type ExtensionItemPurpose = typeof EXTENSION_ITEM_PURPOSE_ITEM
   | typeof EXRENSION_ITEM_PURPOSE_INPUT_ITEM
   | string
 
-export const EXTENSION_ITEM_PURPOSE_ITEM = 'item'
-export const EXRENSION_ITEM_PURPOSE_INPUT_ITEM = 'input:item'
-export const EXRENSION_ITEM_PURPOSE_INPUT_DETAILS = 'input:details'
-export const EXTENSION_ITEM_PURPOSE_ROUTE = 'route'
-export const EXTENSION_ITEM_PURPOSE_DASHBOARD = 'dashboard'
-export const EXTENSION_ITEM_PURPOSE_DASHBOARD_WIDGET = 'dashboard_widget'
-export const EXTENSION_ITEM_PURPOSE_EVIDENCE = 'evidence'
-export const EXTENSION_ITEM_PURPOSE_VALIDATION = 'validation'
-export const EXTENSION_ITEM_PURPOSE_CREATION = 'creation'
-export const EXTENSION_ITEM_PURPOSE_REQUEST = 'request'
-export const EXTENSION_ITEM_PURPOSE_CLAIM = 'claim'
-export const EXTENSION_ITEM_PURPOSE_TOP_ACTION = 'top_action'
 
 export type ManuItemParams = {
   title: string
@@ -85,4 +81,9 @@ export type ClaimNavigatorParams = {
   descr: CredentialDescription
   id?: string
   issuer?: string
+}
+
+export interface UIAuthenticatedEvent extends EventParams {
+  extensions?: UIExtensionRegistry
+  handler: WalletHandler
 }

@@ -25,6 +25,7 @@ import {
   WalletComponentProps, EmptyProps, EmptyState
 } from '../../common/'
 import { passwordValidation } from '../../util'
+import { UIAuthenticatedEvent, UI_TRIGGER_AUTHENTICATED } from '../../extension'
 
 
 export const StoreLogin: FunctionComponent<StoreLoginParams> =
@@ -54,7 +55,7 @@ export const StoreLogin: FunctionComponent<StoreLoginParams> =
         login: (methods, crypto) => async (data: StoreLoginFields) => {
           const loading = await navigator?.invokeLoading()
           try {
-            await handler.loadStore(async (handler) => {
+            const wallet = await handler.loadStore(async (handler) => {
               return await buildWalletWrapper(
                 { crypto, extensions: extensions?.registry },
                 data.login.password,
@@ -66,6 +67,10 @@ export const StoreLogin: FunctionComponent<StoreLoginParams> =
                 }
               )
             })
+
+            if (wallet != null) {
+              extensions?.triggerEvent<UIAuthenticatedEvent>(wallet, UI_TRIGGER_AUTHENTICATED, { extensions , handler })
+            }
 
             if (navigator?.success) {
               navigator?.success()

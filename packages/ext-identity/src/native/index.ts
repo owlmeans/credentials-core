@@ -1,7 +1,7 @@
-import { ExtensionDetails } from '@owlmeans/vc-core'
+import { EXTENSION_TRIGGER_INIT_SENSETIVE, ExtensionDetails, InitSensetiveEventParams, addObserverToSchema } from '@owlmeans/vc-core'
 import { BuildExtensionParams, buildIdentityExtension } from '../ext'
 import { OWLMEANS_IDENTITY_DEFAULT_NAMESPACE, OWLMEANS_IDENTITY_DEFAULT_TYPE } from '../types'
-import { ExtensionItemPurpose, UIExtensionFactoryProduct, buildUIExtension } from '@owlmeans/vc-lib-react/dist/shared'
+import { ExtensionItemPurpose, UIAuthenticatedEvent, UIExtensionFactoryProduct, UI_TRIGGER_AUTHENTICATED, buildUIExtension } from '@owlmeans/vc-lib-react/dist/shared'
 
 export const buildIdentityExtensionNative = (
   type: string,
@@ -16,6 +16,15 @@ export const buildIdentityExtensionNative = (
     ...details,
     name: details.name === '' ? 'extension.details.name' : details.name,
   }, ns)
+
+  extension.schema = addObserverToSchema(extension.schema, {
+    trigger: UI_TRIGGER_AUTHENTICATED,
+    method: async (wallet, params: UIAuthenticatedEvent) => {
+      await params.extensions?.triggerEvent<InitSensetiveEventParams>(
+        wallet, EXTENSION_TRIGGER_INIT_SENSETIVE, { extensions: params.extensions.registry }
+      )
+    }
+  })
 
   const uiExt = buildUIExtension(
     extension,
