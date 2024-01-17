@@ -10,6 +10,7 @@ export const buildCommNativeExtension = (config: CommExtConfig) => {
   commExtension.schema = addObserverToSchema(commExtension.schema, {
     trigger: UI_TRIGGER_AUTHENTICATED,
     method: async (_, { handler, extensions }: UIAuthenticatedEvent) => {
+      // @TODO Do not forget to unregister it on logout
       handleIncommingCommDocuments(handler, extensions?.registry)
     }
   })

@@ -14,38 +14,43 @@
  *  limitations under the License.
  */
 import * as React from 'react'
-import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
-import { useMemo, StrictMode, FC } from 'react'
+// import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
+import { StrictMode, FC } from 'react'
+// import { useMemo } from 'react'
 
-import { i18nDefaultOptions } from '@owlmeans/vc-lib-react/dist/i18n'
-import { nativeComponentMap } from '../component'
-import I18n, { InitOptions } from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import { OwlWalletProvider } from '@owlmeans/vc-lib-react/dist/common/context'
+// import { i18nDefaultOptions } from '@owlmeans/vc-lib-react/dist/i18n'
+// import { nativeComponentMap } from '../component'
+// import I18n, { InitOptions } from 'i18next'
+// import { initReactI18next } from 'react-i18next'
+// import { OwlWalletProvider } from '@owlmeans/vc-lib-react/dist/common/context'
+import { Config } from '@owlmeans/vc-lib-react/dist/common/context'
 import CryptoLoader from '../crypto-loader'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { NavigationRoot, createRootNavigator } from '../router'
-import { useNavigation } from '@react-navigation/native'
-import { RootNavigationProps } from '../router/types'
+// import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+// import { NavigationRoot, createRootNavigator } from '../router'
+// import { useNavigation } from '@react-navigation/native'
+// import { RootNavigationProps } from '../router/types'
 import { UIExtensionRegistry } from '@owlmeans/vc-lib-react/dist/shared'
+import { PolyfillCrypto, WalletApp } from '../app'
 
-export const i18nSetup = (options: InitOptions) => {
-  const i18n = I18n.createInstance({ ...options, compatibilityJSON: 'v3' })
-  i18n.use(initReactI18next).init()
+// export const i18nSetup = (options: InitOptions) => {
+//   const i18n = I18n.createInstance({ ...options, compatibilityJSON: 'v3' })
+//   i18n.use(initReactI18next).init()
 
-  return i18n
-}
+//   return i18n
+// }
 
-const i18n = i18nSetup(i18nDefaultOptions)
+// const i18n = i18nSetup(i18nDefaultOptions)
 
-export const DebugSSIView: FC<DebugSSIViewParams> = ({ extensions }) => {
-  const handler = useMemo(createWalletHandler, [])
+export const DebugSSIView: FC<DebugSSIViewParams> = ({ extensions, config }) => {
+  // const handler = useMemo(createWalletHandler, [])
 
-  const navigation = useNavigation<RootNavigationProps>()
-  const navigator = createRootNavigator(navigation, handler, { DID_PREFIX: 'exm', code: 'rn-test' })
+  // const navigation = useNavigation<RootNavigationProps>()
+  // const navigator = createRootNavigator(navigation, handler, { DID_PREFIX: 'exm', code: 'rn-test' })
 
   return <StrictMode>
-    <SafeAreaProvider>
+    <PolyfillCrypto />
+    <WalletApp CryptoLoader={CryptoLoader} config={config} extensions={extensions} />
+    {/* <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <CryptoLoader onFinish={() => {
           (async () => {
@@ -70,10 +75,11 @@ export const DebugSSIView: FC<DebugSSIViewParams> = ({ extensions }) => {
           <NavigationRoot />
         </OwlWalletProvider>
       </SafeAreaView>
-    </SafeAreaProvider>
+    </SafeAreaProvider> */}
   </StrictMode>
 }
 
 export interface DebugSSIViewParams {
   extensions?: UIExtensionRegistry
+  config: Config
 }

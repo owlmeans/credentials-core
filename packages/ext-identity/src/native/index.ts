@@ -23,6 +23,7 @@ export const buildIdentityExtensionNative = (
       await params.extensions?.triggerEvent<InitSensetiveEventParams>(
         wallet, EXTENSION_TRIGGER_INIT_SENSETIVE, { extensions: params.extensions.registry }
       )
+      params.handler.notify()
     }
   })
 
