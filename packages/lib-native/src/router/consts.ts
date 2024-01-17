@@ -15,3 +15,6 @@
  */
 
 export const DASHBOARD_PATH = 'dashboard'
+
+export const NATIVE_ROUTER_TYPE_STACK = 'native:router:stack'
+export const NATIVE_ROUTER_TYPE_DRAWER = 'native:router:drawer'
