@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-comm",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "It's DIDComm package for OwlMeans Credentials Core SSI Library",
   "author": "Igor Tkachenko <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",

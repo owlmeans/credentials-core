@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-ext-identity",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Simple Identity Extension for OwlMeans Crednetials Library",
   "keywords": [
     "OwlMeans Credentials",

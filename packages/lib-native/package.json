@@ -1,6 +1,6 @@
 {
   "name": "@owlmeans/vc-lib-native",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "OwlMeans Credentials UI package for mobile wallet applications",
   "keywords": [
     "SSI",
