@@ -14,61 +14,20 @@
  *  limitations under the License.
  */
 import * as React from 'react'
-import { buildWalletWrapper, createWalletHandler, cryptoHelper } from '@owlmeans/vc-core'
-import { useMemo, StrictMode } from 'react'
-
-import { i18nDefaultOptions } from '@owlmeans/vc-lib-react/dist/i18n'
-import { nativeComponentMap } from '../component'
-import I18n, { InitOptions } from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import { OwlWalletProvider } from '@owlmeans/vc-lib-react/dist/common/context'
+import { StrictMode, FC } from 'react'
+import { Config } from '@owlmeans/vc-lib-react/dist/common/context'
 import CryptoLoader from '../crypto-loader'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { NavigationRoot, createRootNavigator } from '../router'
-import { useNavigation } from '@react-navigation/native'
-import { RootNavigationProps } from '../router/types'
+import { UIExtensionRegistry } from '@owlmeans/vc-lib-react/dist/shared'
+import { PolyfillCrypto, WalletApp } from '../app'
 
-export const i18nSetup = (options: InitOptions) => {
-  const i18n = I18n.createInstance({ ...options, compatibilityJSON: 'v3' })
-  i18n.use(initReactI18next).init()
-
-  return i18n
+export const DebugSSIView: FC<DebugSSIViewParams> = ({ extensions, config }) => {
+  return <StrictMode>
+    <PolyfillCrypto />
+    <WalletApp CryptoLoader={CryptoLoader} config={config} extensions={extensions} />
+  </StrictMode>
 }
 
-const i18n = i18nSetup(i18nDefaultOptions)
-
-export const DebugSSIView = () => {
-  const handler = useMemo(createWalletHandler, [])
-
-  const navigation = useNavigation<RootNavigationProps>()
-  const navigator = createRootNavigator(navigation, handler, { DID_PREFIX: 'exm', code: 'rn-test' })
-
-  return <StrictMode>
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <CryptoLoader onFinish={() => {
-          (async () => {
-            console.log('GET ASYNC')
-            try {
-              const wallet = await buildWalletWrapper(
-                { crypto: cryptoHelper }, '11111111', { alias: 'default', name: 'Development wallet' }, {
-                prefix: 'exm',
-                defaultSchema: 'https://schema.owlmeans.com',
-                didSchemaPath: 'did-schema.json',
-              })
-              handler.wallet = wallet
-              handler.stores[wallet.store.alias] = await wallet.export()
-              await handler.loadStore(async _ => wallet)
-            } catch (e) {
-              console.error((e as Error).stack)
-            }
-          })()
-        }} />
-        <OwlWalletProvider map={nativeComponentMap} handler={handler}
-          config={{ DID_PREFIX: 'exm', code: 'rn-test' }} navigator={navigator} i18n={i18n}>
-          <NavigationRoot />
-        </OwlWalletProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  </StrictMode>
+export interface DebugSSIViewParams {
+  extensions?: UIExtensionRegistry
+  config: Config
 }

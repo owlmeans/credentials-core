@@ -28,7 +28,6 @@ import {
   CommExtConfig, DEFAULT_SERVER_ALIAS, OWLMEANS_EXT_COMM_NAMESPACE, CommExtension, BASIC_IDENTITY_TYPE
 } from './types'
 
-
 export const buildCommExtension = (config: CommExtConfig) => {
 
   let commExtensionSchema = buildExtensionSchema({

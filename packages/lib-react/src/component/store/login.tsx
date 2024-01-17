@@ -25,6 +25,7 @@ import {
   WalletComponentProps, EmptyProps, EmptyState
 } from '../../common/'
 import { passwordValidation } from '../../util'
+import { UIAuthenticatedEvent, UI_TRIGGER_AUTHENTICATED } from '../../extension'
 
 
 export const StoreLogin: FunctionComponent<StoreLoginParams> =
@@ -66,6 +67,10 @@ export const StoreLogin: FunctionComponent<StoreLoginParams> =
                 }
               )
             })
+
+            if (handler.wallet != null) {
+              extensions?.triggerEvent<UIAuthenticatedEvent>(handler.wallet, UI_TRIGGER_AUTHENTICATED, { extensions , handler })
+            }
 
             if (navigator?.success) {
               navigator?.success()

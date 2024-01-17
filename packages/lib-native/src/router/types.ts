@@ -13,7 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { UIExtensionRegistry } from '@owlmeans/vc-lib-react'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationProp, ParamListBase } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { TFunction } from 'i18next'
 
 export interface RootNavigationProps extends NavigationProp<RootNavigationParams> { }
 
@@ -22,4 +26,11 @@ export interface RootNavigationParams extends ParamListBase {
   'store.list': undefined,
   'store.create': undefined,
   'store.login': { alias?: string }
+}
+
+export interface ExtensionRouteProducerParams {
+  extensions?: UIExtensionRegistry
+  routeType: string
+  Route: ReturnType<typeof createNativeStackNavigator | typeof createDrawerNavigator>
+  t: TFunction
 }

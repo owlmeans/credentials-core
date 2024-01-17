@@ -17,7 +17,7 @@
 import {
   CommConnectionStatusHandler, InitCommEventParams, EVENT_INIT_CONNECTION
 } from "@owlmeans/vc-comm"
-import { useOwlWallet } from "@owlmeans/vc-lib-react"
+import { useOwlWallet } from "@owlmeans/vc-lib-react/dist/shared"
 import { CredentialsRegistryWrapper, ExtensionRegistry, REGISTRY_SECTION_PEER, WalletHandler } from "@owlmeans/vc-core"
 import { IncommingCrednetialSubject, IncommingMeta, IncommingPresentation, REGISTRY_TYPE_INBOX } from "./types"
 

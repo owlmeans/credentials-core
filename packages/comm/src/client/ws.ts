@@ -55,6 +55,7 @@ const isWSClient = (client: BrowserClient | WSClient): client is WSClient => {
 }
 
 export const createWSClient = (config: WSClientConfig, receive?: Receiver) => {
+  console.log(config)
   return new Promise<CommWSClient>((resolve, reject) => {
 
     const _wsClient = WSClient

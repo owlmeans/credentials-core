@@ -18,4 +18,5 @@
 export * from './extension'
 export * from './registry'
 export * from './types'
+export * from './consts'
 export * from './helper'
