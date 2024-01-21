@@ -87,7 +87,7 @@ export const buildRotuer = () => {
       const factory = extension.getFactory(req.params.type)
 
       const result = await factory.validate(handler.wallet, {
-        presentation, credential, extensions: extensions.registry,
+        presentation, credential, extensions: extensions.registry.normalize(),
         // kind: VALIDATION_KIND_OFFER @TODO we don't have claim on server side
       })
 
@@ -116,7 +116,7 @@ export const buildRotuer = () => {
             try {
               const facotry = extensions.registry.getFactory(credential.type)
               const validationResult = await facotry.validate(handler.wallet, {
-                presentation: response, credential, extensions: extensions.registry
+                presentation: response, credential, extensions: extensions.registry.normalize()
               })
 
               return validationResult
@@ -167,7 +167,7 @@ export const buildRotuer = () => {
             contextUrl: randomRequestUrl,
             credentialContext: randomRequestSchema['@context']
           })(handler.wallet, {
-            extensions: extensions.registry,
+            extensions: extensions.registry.normalize(),
             subjectData: { type, issuer, holder: requested.holder }
           })
 

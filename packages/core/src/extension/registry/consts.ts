@@ -1,5 +1,5 @@
 /**
- *  Copyright 2023 OwlMeans, Inc
+ *  Copyright 2024 OwlMeans, Inc
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,10 +14,4 @@
  *  limitations under the License.
  */
 
-
-export * from './extension'
-export * from './registry'
-export * from './types'
-export * from './consts'
-export * from './helper'
-export * from './builder'
+export const ERROR_TYPE_EMPTY = 'ERROR_TYPE_EMPTY'

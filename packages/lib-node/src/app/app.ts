@@ -42,7 +42,7 @@ export const buildApp = async (
   if (stored) {
     await handler.loadStore(async () => {
       return await buildWalletWrapper(
-        { crypto: cryptoHelper, extensions: extensions.registry },
+        { crypto: cryptoHelper, extensions: extensions.registry.normalize() },
         config.wallet?.password || DEFAULT_STORE_PASSWORD,
         stored,
         {
@@ -55,7 +55,7 @@ export const buildApp = async (
   } else {
     await handler.loadStore(async () => {
       const wallet = await buildWalletWrapper(
-        { crypto: cryptoHelper, extensions: extensions.registry },
+        { crypto: cryptoHelper, extensions: extensions.registry.normalize() },
         config.wallet?.password || DEFAULT_STORE_PASSWORD,
         {
           alias: config.wallet?.alias || DEFAULT_WALLET_ALIAS,
@@ -77,7 +77,7 @@ export const buildApp = async (
     }
 
     await extensions.triggerEvent<ServerEventProduceIdentityParams>(
-      handler.wallet, APP_EVENT_PRODUCE_IDENTITY, { extensions: extensions.registry }
+      handler.wallet, APP_EVENT_PRODUCE_IDENTITY, { extensions: extensions.registry.normalize() }
     )
 
     handler.notify()

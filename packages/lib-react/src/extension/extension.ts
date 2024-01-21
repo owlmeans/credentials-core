@@ -24,17 +24,18 @@ import { MaybeArray } from "@owlmeans/vc-core"
 export const buildUIExtension = (
   extension: Extension,
   produceComponent: UIExtensionFactory
-) => {
-  const _extension: UIExtension = {
-    extension,
+): UIExtension => {
+  
+  const _extension: Partial<UIExtension> = extension
 
-    produceComponent
-  }
+  _extension.produceComponent = produceComponent
 
-  return _extension
+  _extension.extension = extension
+
+  return _extension as UIExtension
 }
 
-export type UIExtension = {
+export interface UIExtension extends Extension {
   extension: Extension
 
   produceComponent: UIExtensionFactory

@@ -18,7 +18,6 @@ import { Fragment, FunctionComponent } from 'react'
 import { EmptyProps, WalletComponentProps, withOwlWallet, WrappedComponentProps } from '../../../../common/'
 import { EvidenceValidationResult } from '@owlmeans/vc-core'
 
-
 export const ValidationResultWidget: FunctionComponent<ResultWidgetParams> = withOwlWallet<ResultWidgetProps>(
   { namespace: 'owlmeans-wallet-credential' },
   ({ t, i18n, result, reload, com: Renderer }) => {

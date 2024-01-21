@@ -21,7 +21,7 @@ import {
 } from '../../../../shared'
 import { ValidationResult } from '@owlmeans/vc-core'
 import { normalizeValue } from '@owlmeans/vc-core'
-import { EvidenceTrust, EvidenceTrustHandle } from './evidence/'
+import { EvidenceTrust, EvidenceTrustHandle } from './evidence/index'
 import Done from '@mui/icons-material/Done'
 import ErrorOutline from '@mui/icons-material/ErrorOutline'
 import ExpandMore from '@mui/icons-material/ExpandMore'

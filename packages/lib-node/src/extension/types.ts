@@ -18,7 +18,7 @@ import { Extension } from "@owlmeans/vc-core"
 import { Router } from "express"
 
 
-export type ServerExtension = {
+export interface ServerExtension extends Extension {
   extension: Extension
 
   produceRouter: ProduceRouter

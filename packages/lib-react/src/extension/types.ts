@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { CredentialDescription, CredentialWrapper, EventParams, RegistryType, WalletHandler } from "@owlmeans/vc-core"
+import { CredentialDescription, CredentialWrapper, EventParams, MaybeArray, RegistryType, WalletHandler } from "@owlmeans/vc-core"
 import { EmptyProps, WalletNavigator, BasicNavigator } from "../common"
 import {
   EXRENSION_ITEM_PURPOSE_INPUT_ITEM, EXTENSION_ITEM_PURPOSE_CREATION,
@@ -24,6 +24,8 @@ import {
   EXTENSION_ITEM_PURPOSE_TOP_ACTION, EXTENSION_ITEM_PURPOSE_VALIDATION
 } from './consts'
 import { UIExtensionRegistry } from './registry'
+import { UIExtension, UIExtensionFactoryProduct } from './extension'
+import { FC } from 'react'
 
 export type ExtensionItemPurpose = typeof EXTENSION_ITEM_PURPOSE_ITEM
   | typeof EXTENSION_ITEM_PURPOSE_ROUTE
@@ -37,16 +39,43 @@ export type ExtensionItemPurpose = typeof EXTENSION_ITEM_PURPOSE_ITEM
   | typeof EXRENSION_ITEM_PURPOSE_INPUT_ITEM
   | string
 
+export interface UIExtensionBuilder {
+  ext?: UIExtension
+  menuItems: ManuItemParams[]
+
+  addMenu: (tag: MaybeArray<string>, params?: Partial<ManuItemParams>) => ExtensionMenuBuilder
+  products: Record<string, Record<string, MaybeArray<UIExtProductMeta>>>
+  addComponent: <Params extends EmptyProps>(
+    purpose: ExtensionItemPurpose, component: UIExtensionFC<Params>, path?: string, type?: MaybeArray<string>
+  ) => void
+  addRenderer: (
+    purpose: ExtensionItemPurpose, product: UIExtensionFactoryProduct, type?: MaybeArray<string>
+  ) => void
+  build: () => UIExtension
+}
+
+export interface UIExtProductMeta {
+  product: UIExtensionFactoryProduct
+  type: MaybeArray<string>
+}
+
+export interface ExtensionMenuBuilder {
+  addItem: (title: string, action: MenuItemAction, params?: Partial<ManuItemParams>) => void
+}
+
+export interface UIExtensionFC<Params extends EmptyProps = EmptyProps> extends FC<Params> { }
 
 export type ManuItemParams = {
   title: string
-  action: (() => Promise<void | MenuActionResult> | MenuActionResult | void)
-  | MenuActionResult
-  | string
+  action: MenuItemAction
   ns?: string
   order?: number
   menuTag?: string | string[]
 }
+
+export type MenuItemAction = (() => Promise<void | MenuActionResult> | MenuActionResult | void)
+| MenuActionResult
+| string
 
 export type MenuActionResult = { path: string, params?: Object }
 
@@ -70,9 +99,7 @@ export type PurposeCredentialCreationParams = EmptyProps & {
   next: () => void
 }
 
-export type PurposeDashboardWidgetParams = EmptyProps & {
-
-}
+export type PurposeDashboardWidgetParams = EmptyProps & { }
 
 export type ClaimNavigator = WalletNavigator<ClaimNavigatorParams> & BasicNavigator
 

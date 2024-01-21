@@ -16,5 +16,5 @@
 
 
 export * from './evidence'
-export * from './evidence/'
+export * from './evidence/index'
 export * from './validation'

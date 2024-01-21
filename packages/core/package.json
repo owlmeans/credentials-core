@@ -5,9 +5,9 @@
   "author": "Igor Tkachenk <igor.w.tkachenko@gmail.com>",
   "homepage": "https://github.com/owlmeans/credentials-core#readme",
   "license": "Apache-2.0",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "typings": "dist/main.d.ts",
   "files": [
     "dist"
   ],
@@ -16,10 +16,22 @@
     "url": "git+https://github.com/owlmeans/credentials-core.git",
     "directory": "packages/core"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "require": "./dist/index.mjs",
+      "import": "./dist/index.mjs"
+    },
+    "./warmup": {
+      "types": "./dist/warmup.d.ts",
+      "require": "./dist/warmup.mjs",
+      "import": "./dist/wamup.mjs"
+    }
+  },
   "scripts": {
     "test": "jest --testTimeout 30000",
-    "build": "tsc -b -f",
-    "build:watch": "tsc -b -w --preserveWatchOutput --pretty",
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
     "review:ssi": "ts-node --project tsconfig.json --cwd-mode --ignore .js ./src/debug/ssi.ts",
     "review:compact": "ts-node --project tsconfig.json --cwd-mode --ignore .js ./src/debug/compactssi.ts"
   },
@@ -27,10 +39,16 @@
     "url": "https://github.com/owlmeans/credentials-core/issues"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/crypto-ld": "^7.0.0",
     "@types/uuid": "^8.3.1",
     "dotenv": "^16.0.3",
-    "ethers": "^6.7.1"
+    "esbuild": "^0.19.11",
+    "ethers": "^6.7.1",
+    "rollup": "^4.9.5",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.0"
   },
   "dependencies": {
     "@digitalbazaar/jws-linked-data-signature": "^3.0.0",

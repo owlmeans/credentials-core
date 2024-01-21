@@ -15,21 +15,17 @@
  */
 
 
-import { normalizeValue } from '../../common'
+import { normalizeValue, singleValue } from '../../common'
 import { ExtensionEvent } from '../schema'
 import { CredentialService, Extension } from '../ext'
 import { ERROR_NO_EXTENSION, ExtensionRegistry } from './types'
 import { documentWarmer } from '../../did/loader'
 import { BASE_CREDENTIAL_TYPE } from '../../vc'
+import { ERROR_TYPE_EMPTY } from './consts'
 
+export const buildExtensionRegistry = <CredType extends string>(): ExtensionRegistry => {
 
-export const buildExtensionRegistry = <
-  CredType extends string
->(): ExtensionRegistry => {
-
-  const _typeToExtension: {
-    [type: string]: Extension[]
-  } = {}
+  const _typeToExtension: { [type: string]: Extension[] } = {}
 
   const _registry: ExtensionRegistry = {
     extensions: [],
@@ -67,6 +63,10 @@ export const buildExtensionRegistry = <
     },
 
     getExtensions: (type) => {
+      if (Array.isArray(type) && type.length < 1) {
+        throw ERROR_TYPE_EMPTY
+      }
+      type = singleValue(type) as string
       return _typeToExtension[type] || []
     },
 
@@ -129,7 +129,7 @@ export const buildExtensionRegistry = <
 
     getCredentialDescription: type => {
       const descrPair = Object.entries(_registry.getExtension(type).schema.credentials ?? {})
-        .find(([,descr]) => (Array.isArray(type) ? type : [type]).includes(descr.mainType))
+        .find(([, descr]) => (Array.isArray(type) ? type : [type]).includes(descr.mainType))
 
       return descrPair ? descrPair[1] : undefined
     },
@@ -179,6 +179,8 @@ export const buildExtensionRegistry = <
         }, Promise.resolve(true)
       )
     },
+
+    normalize: () => _registry
   }
 
   return _registry

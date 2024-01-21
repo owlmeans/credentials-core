@@ -15,4 +15,4 @@
  */
 
 export * from './evidence'
-export * from './evidence/'
+export * from './evidence/index'

@@ -17,13 +17,12 @@
 import { Extension } from "@owlmeans/vc-core"
 import { ProduceRouter, ServerExtension } from "./types"
 
+export const buildServerExtension = (extension: Extension, produceRouter: ProduceRouter): ServerExtension => {
+  const _extension: Partial<ServerExtension> = extension
 
-export const buildServerExtension = (extension: Extension, produceRouter: ProduceRouter) => {
-  const _extension: ServerExtension = {
-    extension,
+  _extension.produceRouter = produceRouter
 
-    produceRouter
-  }
+  _extension.extension = extension
 
-  return _extension
+  return _extension as ServerExtension
 }

@@ -270,4 +270,3 @@ groupsUIExtension.menuItems = [
     }
   }
 ]
-

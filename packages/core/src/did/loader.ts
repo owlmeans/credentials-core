@@ -17,8 +17,11 @@
 import { BuildDocumentLoader, DocumentWarmer } from "./types"
 import { DIDRegistryWrapper } from "./types/registry"
 
+if ((global as any)['documentCache'] == null) {
+  (global as any)['documentCache'] = {}
+}
 
-const documentCache: { [key: string]: any } = {}
+const documentCache: { [key: string]: any } = (global as any)['documentCache']
 
 export const buildDocumentLoader = (did: DIDRegistryWrapper): BuildDocumentLoader =>
   (fallback?) => async (url) => {
@@ -48,3 +51,4 @@ export const documentWarmer: DocumentWarmer =
       documentUrl: url,
     }
   }
+  

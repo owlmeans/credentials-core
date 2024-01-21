@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-import { Dispatch, SetStateAction } from "react"
-import { EXTENSION_TRIGGER_UNAUTHENTICATED } from "../extension"
 import { EncryptedStore } from "../store"
 import { WalletWrapper } from "./types"
-
+import { MaybeArray } from '../common'
+import { EXTENSION_TRIGGER_AUTHENTICATED, EXTENSION_TRIGGER_UNAUTHENTICATED } from '../extension/schema/consts'
+import { EventParams } from '../extension/schema/types'
 
 export const createWalletHandler = (): WalletHandler => {
   const _handler: WalletHandler = {
@@ -51,28 +51,31 @@ export const createWalletHandler = (): WalletHandler => {
     },
 
     logout: async () => {
-      await _handler.wallet?.getExtensions()?.triggerEvent(
-        _handler.wallet, EXTENSION_TRIGGER_UNAUTHENTICATED
-      )
+      await _handler.emit(EXTENSION_TRIGGER_UNAUTHENTICATED)
       await _handler.loadStore(async () => undefined)
     },
 
     loadStore: async (loader) => {
       const prev = _handler.wallet
       _handler.wallet = await loader(_handler)
-
+      void _handler.emit(EXTENSION_TRIGGER_AUTHENTICATED)
       _handler.notify()
 
       return prev
+    },
+
+    emit: async (event, params) => {
+      if (_handler.wallet != null) {
+        await _handler.wallet.getExtensions()?.triggerEvent(_handler.wallet, event, params)
+      }
     }
   }
 
   return _handler
 }
 
-
 export type WalletHandler = {
-  wallet: WalletWrapper | undefined,
+  wallet?: WalletWrapper,
 
   stores: { [key: string]: EncryptedStore },
 
@@ -90,6 +93,10 @@ export type WalletHandler = {
   ) => () => void
 
   loadStore: (loader: StoreLoader) => Promise<WalletWrapper | undefined>
+
+  emit: <
+    Params extends EventParams = EventParams
+  >(event: MaybeArray<string>, params?: Params) => Promise<void>
 }
 
 export type StoreLoader = (hanlder: WalletHandler) => Promise<WalletWrapper | undefined>
@@ -99,6 +106,9 @@ export type HandlerObserver = () => void
 export type ObserverTransformerOption<
   T extends any = any,
   Props extends any = any
-  > = (wallet: WalletWrapper | undefined, props?: Props, handler?: WalletHandler) => T
+> = (wallet: WalletWrapper | undefined, props?: Props, handler?: WalletHandler) => T
 
 export type HandlerObserverTransformer<T> = (wallet?: WalletWrapper) => T
+
+type Dispatch<A> = (value: A) => void
+type SetStateAction<S> = S | ((prevState: S) => S)

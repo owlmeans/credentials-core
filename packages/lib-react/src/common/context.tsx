@@ -28,7 +28,6 @@ import {
 import { UIExtensionRegistry } from '../extension'
 import { ServerClient } from './client'
 
-
 export const OwlWalletContext = createContext<ContextParams>({
   map: {},
   handler: createWalletHandler(),
@@ -39,7 +38,9 @@ export const OwlWalletContext = createContext<ContextParams>({
 })
 
 export const useOwlWallet = () => {
-  return useContext(OwlWalletContext)
+  const ctx = useContext(OwlWalletContext)
+  
+  return ctx
 }
 
 export const OwlWalletProvider = ({
@@ -116,7 +117,6 @@ export const withOwlWallet = <
     return <Com {..._props} />
   }) as FunctionComponent<T>
 }
-
 
 export type WalletComponentProps<
   Type extends EmptyProps = EmptyProps,

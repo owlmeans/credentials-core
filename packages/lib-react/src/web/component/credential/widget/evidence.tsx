@@ -20,7 +20,7 @@ import {
   PurposeEvidenceWidgetParams, useOwlWallet
 } from '../../../../shared'
 import { CredentialWrapper, Credential } from '@owlmeans/vc-core'
-import { StandardEvidenceWidget } from './evidence/'
+import { StandardEvidenceWidget } from './evidence/index'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'

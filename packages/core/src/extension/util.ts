@@ -16,7 +16,7 @@
 
 import { normalizeValue } from "../common"
 import { BASE_CREDENTIAL_TYPE, BASE_PRESENTATION_TYPE, BasicCredentialType, Credential } from "../vc"
-import { defaultRefuseMethod } from './ext'
+import { defaultRefuseMethod } from './ext/factory/refusing'
 import { defaultBuildMethod } from "./ext/factory/building"
 import { defaultClaimMethod } from "./ext/factory/claiming"
 import { defaultOfferMethod } from "./ext/factory/offering"

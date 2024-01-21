@@ -19,23 +19,22 @@ import { WalletWrapper } from "../../wallet"
 import { CredentialService, Extension } from "../ext"
 import { CredentialDescription, EventParams, ExtensionEvent } from "../schema"
 
-
-export type ExtensionRegistry = {
-  extensions: Extension[],
-  registerAll: (exts: Extension[]) => Promise<void>
-  getExtensions: (type: string) => Extension[]
-  getExtension: (type: string | string[], code?: string) => Extension
-  getFactory: (type: string | string[]) => CredentialService
+export interface ExtensionRegistry<Ext extends Extension = Extension> {
+  extensions: Ext[],
+  registerAll: (exts: Ext[]) => Promise<void>
+  getExtensions: (type: MaybeArray<string>) => Ext[]
+  getExtension: (type: MaybeArray<string>, code?: string) => Ext
+  getFactory: (type: MaybeArray<string>) => CredentialService
   getCredentialDescription: (type: string | string[]) => CredentialDescription | undefined
-  register: (ext: Extension) => Promise<void>
-  registerSync: (ext: Extension) => void
-  getObservers: (event: MaybeArray<string>) => [ExtensionEvent, Extension][]
+  register: (ext: Ext) => Promise<void>
+  registerSync: (ext: Ext) => void
+  getObservers: (event: MaybeArray<string>) => [ExtensionEvent, Ext][]
   triggerEvent: TriggerEventMethod
+  normalize: () => ExtensionRegistry<Extension>
 }
 
 export type TriggerEventMethod = <Params extends EventParams = EventParams>(
   wallet: WalletWrapper, event: MaybeArray<string>, params?: Params
 ) => Promise<void>
-
 
 export const ERROR_NO_EXTENSION = 'ERROR_NO_EXTENSION'

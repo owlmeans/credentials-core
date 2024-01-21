@@ -19,7 +19,7 @@ import { BasicCredentialType, CredentialSchema, MultiSchema, Credential, Present
 import { CredentialWrapper, WalletWrapper } from '../../wallet'
 import { Extension } from "../ext"
 import { ExtensionRegistry } from "../registry"
-
+import { META_ROLE_CLAIM, META_ROLE_CREDENTIAL, META_ROLE_OFFER, META_ROLE_REQUEST, META_ROLE_RESPONSE } from './consts'
 
 export type ExtensionSchema = {
   details: ExtensionDetails
@@ -31,6 +31,10 @@ export type ExtensionDetails = {
   name: string
   code: string
   defaultCredType?: string
+  /**
+   * Will be used as claim / offer types in case different creds can be asked with the same claim.
+   * Actually it looks like it should be made DEPRECATED soon.
+   * */ 
   types?: ExtensionTypes
   organization?: string
   home?: string
@@ -72,12 +76,6 @@ export type MetaRole = typeof META_ROLE_CREDENTIAL
   | typeof META_ROLE_REQUEST
   | typeof META_ROLE_RESPONSE
 
-export const META_ROLE_CREDENTIAL = 'credential'
-export const META_ROLE_CLAIM = 'claim'
-export const META_ROLE_OFFER = 'offer'
-export const META_ROLE_REQUEST = 'request'
-export const META_ROLE_RESPONSE = 'response'
-
 export type CredentialIdMeta = {
   fields: string[]
 }
@@ -104,17 +102,6 @@ export type EventParams = { ext?: Extension }
 
 export type ExtensionEventFilter =
   (wallet: WalletWrapper, params: EventParams) => Promise<boolean>
-
-export const EXTENSION_TRIGGER_AUTHENTICATION = 'wallet:authentication'
-export const EXTENSION_TRIGGER_AUTHENTICATED = 'wallet:authenticated'
-export const EXTENSION_TRIGGER_UNAUTHENTICATED = 'wallet:unauthenticated'
-export const EXTENSION_TRIGGER_INIT_SENSETIVE = 'wallet:init-sensetive'
-export const EXTENSION_TRIGGER_ADD_CREDENTIAL = 'wallet:add-credential'
-export const EXTENSION_TRIGGER_REMOVE_CREDENTIAL = 'wallet:remove-credential'
-export const EXTENSION_TRIGGER_DEFAULT_SIGNATURE = 'signer:default-signature'
-export const EXTENSION_TRIGGER_INCOMMING_DOC_RECEIVED = 'documnet:received'
-export const EXTENSION_TRIGGER_RETRIEVE_NAME = 'credentail:get-name'
-export const EXTENSION_TRIGGER_PRODUCE_IDENTITY = 'identity:produce'
 
 export type CredentialEventParams = EventParams & {
   item: CredentialWrapper

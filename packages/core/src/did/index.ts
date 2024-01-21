@@ -17,7 +17,7 @@
 // require('dotenv').config()
 
 export * from './types'
-export * from './types/'
+export * from './types/index'
 
 export * from './model'
 export * from './registry'

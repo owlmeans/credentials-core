@@ -17,7 +17,6 @@
 import { addToValue, MaybeArray, normalizeValue } from "../../common"
 import { CredentialDescription, ExtensionDetails, ExtensionEvent, ExtensionSchema } from "./types"
 
-
 export const buildExtensionSchema = <CredType extends string>(
   details: ExtensionDetails,
   credentials: { [key: string]: CredentialDescription },

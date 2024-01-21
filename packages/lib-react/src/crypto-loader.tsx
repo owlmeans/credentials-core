@@ -15,10 +15,10 @@
  */
 
 import { FC, useEffect } from 'react'
-import { CryptoLoaderProps } from '@owlmeans/vc-lib-react'
 import { encodeBase58, decodeBase58, toBeArray, getBytes, sha256, randomBytes, HDNodeWallet } from 'ethers'
 import { getCryptoAdapter } from '@owlmeans/vc-core'
 import { secp256k1 } from '@noble/curves/secp256k1'
+import type { CryptoLoaderProps } from './shared'
 
 const aes = require('browserify-aes/browser')
 
